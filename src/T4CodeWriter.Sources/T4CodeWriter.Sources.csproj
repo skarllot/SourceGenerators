@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <Content Include="..\T4CodeWriter\*.cs" Exclude="bin\**;obj\**" PackagePath="contentFiles\cs\netstandard2.0\" BuildAction="Compile" />
+  </ItemGroup>
+
+</Project>
