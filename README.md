@@ -2,7 +2,7 @@
 
 [![Build status](https://github.com/skarllot/SourceGenerators/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/skarllot/SourceGenerators/actions)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/skarllot/SourceGenerators/badge)](https://securityscorecards.dev/viewer/?uri=github.com/skarllot/SourceGenerators)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/EngRajabi/Enum.Source.Generator/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/skarllot/SourceGenerators/main/LICENSE)
 
 _Provides utility functions and helpers to aid in writing source files for source generators based on T4 templates_
 

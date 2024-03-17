@@ -46,13 +46,16 @@ body:
     attributes:
       label: Package Name
       description: Which package are you using?
+      options:
+        - Raiqub.Generators.T4CodeWriter
+        - Raiqub.Generators.T4CodeWriter.Sources
     validations:
       required: true
   - type: input
     attributes:
       label: Package version
       description: |
-        Which version of Raiqub.EnumUtilities are you facing the issue with?
+        Which version of Raiqub.Generators.T4CodeWriter are you facing the issue with?
     validations:
       required: false
   - type: input
@@ -60,7 +63,7 @@ body:
       label: .NET Version
       description: |
         Run `dotnet --version` to get the .NET SDK version you're using.
-        Alternatively, which target framework(s) (e.g. `net6.0`) does the project you're using Raiqub.EnumUtilities in target?
+        Alternatively, which target framework(s) (e.g. `net6.0`) does the project you're using Raiqub.Generators.T4CodeWriter in target?
     validations:
       required: false
   - type: textarea
