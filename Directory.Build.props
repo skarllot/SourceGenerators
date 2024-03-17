@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>Source files for high performance T4 base class</Description>
+    <Description>Provides a high performance T4 base class</Description>
     <Authors>Fabricio Godoy</Authors>
     <Copyright>Copyright © Fabricio Godoy</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,6 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133" PrivateAssets="All" />
   </ItemGroup>
 
