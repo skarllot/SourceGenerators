@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <None Include="$(SolutionDir).nuget\_._" Pack="true" PackagePath="lib/netstandard2.0" Visible="true" />
+    <Content Include="..\T4CodeWriter\*.cs" Exclude="bin\**;obj\**" PackagePath="contentFiles\cs\netstandard2.0\" BuildAction="Compile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Polyfill" Version="4.0.0" />
+  </ItemGroup>
+
+</Project>

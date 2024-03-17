@@ -1,0 +1,36 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <RootNamespace>Raiqub.Generators.$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>$(RootNamespace)</AssemblyName>
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)</SolutionDir>
+    <PackageOutputPath>$(SolutionDir)artifacts</PackageOutputPath>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <LangVersion>12</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>Recommended</AnalysisMode>
+    <NBGV_EmitThisAssemblyClass>false</NBGV_EmitThisAssemblyClass>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>Provides a high performance T4 base class</Description>
+    <Authors>Fabricio Godoy</Authors>
+    <Copyright>Copyright © Fabricio Godoy</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/skarllot/SourceGenerators</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/skarllot/SourceGenerators</PackageProjectUrl>
+    <PackageTags>
+      generator;source;t4;tt;codewriter
+    </PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
