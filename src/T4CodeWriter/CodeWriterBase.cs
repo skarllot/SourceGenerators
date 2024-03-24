@@ -16,6 +16,8 @@ namespace Raiqub.Generators.T4CodeWriter
     public abstract class CodeWriterBase
     {
         private const char IndentationChar = ' ';
+
+        /// <summary>Represents the number of characters per indentation level.</summary>
         protected const int CharsPerIndentation = 4;
 
         private readonly StringBuilder _builder;
@@ -39,6 +41,9 @@ namespace Raiqub.Generators.T4CodeWriter
         /// <summary>Gets or sets the string builder that generation-time code is using to assemble generated output.</summary>
         protected StringBuilder GenerationEnvironment => _builder;
 
+        /// <summary>
+        /// Gets the helper class for producing culture-oriented representations of objects as strings.
+        /// </summary>
         protected ToStringInstanceHelper ToStringHelper
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -66,6 +71,13 @@ namespace Raiqub.Generators.T4CodeWriter
             _builder.Clear();
             ClearIndent();
             context.AddSource(GetFileName(), SourceText.From(TransformText(), Encoding.UTF8));
+        }
+
+        /// <summary>Remove the specified number of characters from written text.</summary>
+        /// <param name="numberOfChars">The number of characters to remove from the end of the string.</param>
+        protected void Rewind(int numberOfChars)
+        {
+            _builder.Length -= numberOfChars;
         }
 
         /// <summary>Write text directly into the generated output.</summary>
@@ -96,6 +108,8 @@ namespace Raiqub.Generators.T4CodeWriter
             _builder.Append(number.Value);
         }
 
+        /// <summary>Write text directly into the generated output.</summary>
+        /// <param name="textToAppend">The text to be appended to the generated output.</param>
         protected void Write(ReadOnlySpan<char> textToAppend)
         {
             if (textToAppend.IsEmpty)
@@ -279,6 +293,9 @@ namespace Raiqub.Generators.T4CodeWriter
         /// </summary>
         protected sealed class ToStringInstanceHelper
         {
+            /// <summary>
+            /// The singleton instance of the <see cref="ToStringInstanceHelper"/>.
+            /// </summary>
             public static readonly ToStringInstanceHelper Instance = new();
 
             /// <summary>Does nothing, returns specified string as-is.</summary>
@@ -304,32 +321,48 @@ namespace Raiqub.Generators.T4CodeWriter
             }
         }
 
+        /// <summary>Represents a handler for interpolated string formatting.</summary>
         [InterpolatedStringHandler]
         protected readonly struct WriteInterpolatedStringHandler
         {
             private readonly CodeWriterBase _codeWriter;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="WriteInterpolatedStringHandler"/> struct.
+            /// </summary>
+            /// <param name="literalLength">The length of the literal part of the interpolated string.</param>
+            /// <param name="formattedCount">The number of formatted expressions in the interpolated string.</param>
+            /// <param name="codeWriter">The code writer to append the formatted string to.</param>
             public WriteInterpolatedStringHandler(int literalLength, int formattedCount, CodeWriterBase codeWriter)
             {
                 _codeWriter = codeWriter;
             }
 
+            /// <summary>Appends the literal part of the interpolated string.</summary>
+            /// <param name="s">The literal string to append.</param>
             public void AppendLiteral(string s)
             {
                 _codeWriter.Write(s);
             }
 
+            /// <summary>Appends a formatted expression to the interpolated string.</summary>
+            /// <typeparam name="T">The type of the value to format.</typeparam>
+            /// <param name="value">The value to format and append.</param>
             public void AppendFormatted<T>(T value)
             {
                 if (value is not null)
                     _codeWriter.Write(value.ToString());
             }
 
+            /// <summary>Appends a formatted string to the interpolated string.</summary>
+            /// <param name="value">The string value to append.</param>
             public void AppendFormatted(string? value)
             {
                 _codeWriter.Write(value);
             }
 
+            /// <summary>Appends a formatted integer value to the interpolated string.</summary>
+            /// <param name="value">The integer value to append.</param>
             public void AppendFormatted(int? value)
             {
                 _codeWriter.Write(value);
