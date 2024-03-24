@@ -15,7 +15,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>Provides a high performance T4 base class</Description>
     <Authors>Fabricio Godoy</Authors>
     <Copyright>Copyright © Fabricio Godoy</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -23,14 +22,6 @@
     <RepositoryUrl>https://github.com/skarllot/SourceGenerators</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/skarllot/SourceGenerators</PackageProjectUrl>
-    <PackageTags>
-      generator;source;t4;tt;codewriter
-    </PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133" PrivateAssets="All" />
-  </ItemGroup>
 
 </Project>
