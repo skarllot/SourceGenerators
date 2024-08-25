@@ -80,11 +80,284 @@ namespace Raiqub.Generators.T4CodeWriter
             _builder.Length -= numberOfChars;
         }
 
-        /// <summary>Write text directly into the generated output.</summary>
-        /// <param name="textToAppend">The text to be appended to the generated output.</param>
-        protected void Write(string? textToAppend)
+        /// <summary>Write the string representation of a specified boolean value directly into the generated output.</summary>
+        /// <param name="value">The boolean to be appended to the generated output.</param>
+        protected void Write(bool value)
         {
-            Write(textToAppend.AsSpan());
+            if (_indentation == 0)
+            {
+                _builder.Append(value);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(value);
+        }
+
+        /// <summary>Write character directly into the generated output.</summary>
+        /// <param name="value">The character to be appended to the generated output.</param>
+        protected void Write(char value)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(value);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(byte number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(sbyte number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(short number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(ushort number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(int number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(uint number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(long number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(ulong number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(float number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(double number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(decimal number)
+        {
+            if (_indentation == 0)
+            {
+                _builder.Append(number);
+                return;
+            }
+
+            if (EndsWithNewLine)
+                WriteIndentation();
+
+            _builder.Append(number);
+        }
+
+        /// <summary>Write the string representation of a specified boolean value directly into the generated output.</summary>
+        /// <param name="value">The boolean to be appended to the generated output.</param>
+        protected void Write(bool? value)
+        {
+            if (value is null)
+            {
+                return;
+            }
+
+            Write(value.Value);
+        }
+
+        /// <summary>Write character directly into the generated output.</summary>
+        /// <param name="value">The character to be appended to the generated output.</param>
+        protected void Write(char? value)
+        {
+            if (value is null)
+            {
+                return;
+            }
+
+            Write(value.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(byte? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(sbyte? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(short? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(ushort? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
         }
 
         /// <summary>Write number directly into the generated output.</summary>
@@ -96,16 +369,98 @@ namespace Raiqub.Generators.T4CodeWriter
                 return;
             }
 
-            if (_indentation == 0)
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(uint? number)
+        {
+            if (number is null)
             {
-                _builder.Append(number.Value);
                 return;
             }
 
-            if (EndsWithNewLine)
-                WriteIndentation();
+            Write(number.Value);
+        }
 
-            _builder.Append(number.Value);
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(long? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(ulong? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(float? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(double? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write number directly into the generated output.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected void Write(decimal? number)
+        {
+            if (number is null)
+            {
+                return;
+            }
+
+            Write(number.Value);
+        }
+
+        /// <summary>Write the string representation of a specified object directly into the generated output.</summary>
+        /// <param name="value">The object to be appended to the generated output.</param>
+        protected void Write(object? value)
+        {
+            if (value is null)
+            {
+                return;
+            }
+
+            Write(value.ToString());
+        }
+
+        /// <summary>Write text directly into the generated output.</summary>
+        /// <param name="textToAppend">The text to be appended to the generated output.</param>
+        protected void Write(string? textToAppend)
+        {
+            Write(textToAppend.AsSpan());
         }
 
         /// <summary>Write text directly into the generated output.</summary>
@@ -166,24 +521,128 @@ namespace Raiqub.Generators.T4CodeWriter
         }
 
         /// <summary>Appends a new line into the generated output.</summary>
-        public void WriteLine()
+        protected void WriteLine()
         {
             _builder.AppendLine();
         }
 
-        /// <summary>Write text directly into the generated output and appends a new line.</summary>
-        /// <param name="textToAppend">The text to be written.</param>
-        public void WriteLine(string textToAppend)
+        /// <summary>Write boolean directly into the generated output and appends a new line.</summary>
+        /// <param name="value">The boolean to be written.</param>
+        protected void WriteLine(bool? value)
         {
-            Write(textToAppend);
+            Write(value);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write character directly into the generated output and appends a new line.</summary>
+        /// <param name="value">The character to be written.</param>
+        protected void WriteLine(char? value)
+        {
+            Write(value);
             _builder.AppendLine();
         }
 
         /// <summary>Write number directly into the generated output and appends a new line.</summary>
         /// <param name="number">The number to be written.</param>
-        public void WriteLine(int? number)
+        protected void WriteLine(byte? number)
         {
             Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(sbyte? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(short? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(ushort? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(int? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(uint? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(long? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(ulong? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(float? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(double? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write number directly into the generated output and appends a new line.</summary>
+        /// <param name="number">The number to be written.</param>
+        protected void WriteLine(decimal? number)
+        {
+            Write(number);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write text directly into the generated output and appends a new line.</summary>
+        /// <param name="textToAppend">The text to be written.</param>
+        protected void WriteLine(string? textToAppend)
+        {
+            Write(textToAppend);
+            _builder.AppendLine();
+        }
+
+        /// <summary>Write text directly into the generated output and appends a new line.</summary>
+        /// <param name="value">The text to be written.</param>
+        protected void WriteLine(object? value)
+        {
+            Write(value);
             _builder.AppendLine();
         }
 
@@ -196,11 +655,155 @@ namespace Raiqub.Generators.T4CodeWriter
             _builder.AppendLine();
         }
 
-        /// <summary>Append text directly into the generated output for expression control blocks.</summary>
-        /// <param name="textToAppend">The text to be appended to the generated output.</param>
-        protected None Append(string? textToAppend)
+        /// <summary>Append boolean directly into the generated output for expression control blocks.</summary>
+        /// <param name="value">The boolean to be appended to the generated output.</param>
+        protected None Append(bool value)
         {
-            Write(textToAppend);
+            Write(value);
+            return default;
+        }
+
+        /// <summary>Append character directly into the generated output for expression control blocks.</summary>
+        /// <param name="value">The character to be appended to the generated output.</param>
+        protected None Append(char value)
+        {
+            Write(value);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(byte number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(sbyte number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(short number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(ushort number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(int number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(uint number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(long number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(ulong number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(float number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(double number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(decimal number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append boolean directly into the generated output for expression control blocks.</summary>
+        /// <param name="value">The boolean to be appended to the generated output.</param>
+        protected None Append(bool? value)
+        {
+            Write(value);
+            return default;
+        }
+
+        /// <summary>Append character directly into the generated output for expression control blocks.</summary>
+        /// <param name="value">The character to be appended to the generated output.</param>
+        protected None Append(char? value)
+        {
+            Write(value);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(byte? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(sbyte? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(short? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(ushort? number)
+        {
+            Write(number);
             return default;
         }
 
@@ -209,6 +812,70 @@ namespace Raiqub.Generators.T4CodeWriter
         protected None Append(int? number)
         {
             Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(uint? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(long? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(ulong? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(float? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(double? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append number directly into the generated output for expression control blocks.</summary>
+        /// <param name="number">The number to be appended to the generated output.</param>
+        protected None Append(decimal? number)
+        {
+            Write(number);
+            return default;
+        }
+
+        /// <summary>Append text directly into the generated output for expression control blocks.</summary>
+        /// <param name="textToAppend">The text to be appended to the generated output.</param>
+        protected None Append(string? textToAppend)
+        {
+            Write(textToAppend);
+            return default;
+        }
+
+        /// <summary>Append object value directly into the generated output for expression control blocks.</summary>
+        /// <param name="value">The object value to be appended to the generated output.</param>
+        protected None Append(object? value)
+        {
+            Write(value);
             return default;
         }
 
@@ -298,17 +965,173 @@ namespace Raiqub.Generators.T4CodeWriter
             /// </summary>
             public static readonly ToStringInstanceHelper Instance = new();
 
-            /// <summary>Does nothing, returns specified string as-is.</summary>
-            /// <param name="value">The string to convert.</param>
+            /// <summary>Does nothing, returns specified boolean as-is.</summary>
+            /// <param name="value">The boolean value to convert.</param>
             /// <returns>The <paramref name="value"/> without any change.</returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public string? ToStringWithCulture(string? value) => value;
+            public bool ToStringWithCulture(bool value) => value;
+
+            /// <summary>Does nothing, returns specified character as-is.</summary>
+            /// <param name="value">The character to convert.</param>
+            /// <returns>The <paramref name="value"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public char ToStringWithCulture(char value) => value;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public byte ToStringWithCulture(byte number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public sbyte ToStringWithCulture(sbyte number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public short ToStringWithCulture(short number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public ushort ToStringWithCulture(ushort number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public int ToStringWithCulture(int number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public uint ToStringWithCulture(uint number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public long ToStringWithCulture(long number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public ulong ToStringWithCulture(ulong number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public float ToStringWithCulture(float number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public double ToStringWithCulture(double number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public decimal ToStringWithCulture(decimal number) => number;
+
+            /// <summary>Does nothing, returns specified boolean as-is.</summary>
+            /// <param name="value">The boolean value to convert.</param>
+            /// <returns>The <paramref name="value"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public bool? ToStringWithCulture(bool? value) => value;
+
+            /// <summary>Does nothing, returns specified character as-is.</summary>
+            /// <param name="value">The character to convert.</param>
+            /// <returns>The <paramref name="value"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public char? ToStringWithCulture(char? value) => value;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public byte? ToStringWithCulture(byte? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public sbyte? ToStringWithCulture(sbyte? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public short? ToStringWithCulture(short? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public ushort? ToStringWithCulture(ushort? number) => number;
 
             /// <summary>Does nothing, returns specified number as-is.</summary>
             /// <param name="number">The number to convert.</param>
             /// <returns>The <paramref name="number"/> without any change.</returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public int? ToStringWithCulture(int? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public uint? ToStringWithCulture(uint? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public long? ToStringWithCulture(long? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public ulong? ToStringWithCulture(ulong? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public float? ToStringWithCulture(float? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public double? ToStringWithCulture(double? number) => number;
+
+            /// <summary>Does nothing, returns specified number as-is.</summary>
+            /// <param name="number">The number to convert.</param>
+            /// <returns>The <paramref name="number"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public decimal? ToStringWithCulture(decimal? number) => number;
+
+            /// <summary>Does nothing, returns specified string as-is.</summary>
+            /// <param name="value">The string to convert.</param>
+            /// <returns>The <paramref name="value"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public string? ToStringWithCulture(string? value) => value;
+
+            /// <summary>Does nothing, returns specified object as-is.</summary>
+            /// <param name="value">The object to convert.</param>
+            /// <returns>The <paramref name="value"/> without any change.</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public object? ToStringWithCulture(object? value) => value;
 
             /// <summary>Does nothing, used by <see cref="CodeWriterBase.Append(string?)"/> method.</summary>
             /// <param name="none">An empty value.</param>
@@ -354,6 +1177,188 @@ namespace Raiqub.Generators.T4CodeWriter
                     _codeWriter.Write(value.ToString());
             }
 
+            /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
+            /// <param name="value">The boolean value to append.</param>
+            public void AppendFormatted(bool value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted character to the interpolated string.</summary>
+            /// <param name="value">The character to append.</param>
+            public void AppendFormatted(char value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(byte value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(sbyte value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(short value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(ushort value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(int value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(uint value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(long value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(ulong value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(float value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(double value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(decimal value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
+            /// <param name="value">The boolean value to append.</param>
+            public void AppendFormatted(bool? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted character to the interpolated string.</summary>
+            /// <param name="value">The character to append.</param>
+            public void AppendFormatted(char? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(byte? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(sbyte? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(short? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(ushort? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(int? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(uint? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(long? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(ulong? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(float? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(double? value)
+            {
+                _codeWriter.Write(value);
+            }
+
+            /// <summary>Appends a formatted number value to the interpolated string.</summary>
+            /// <param name="value">The number value to append.</param>
+            public void AppendFormatted(decimal? value)
+            {
+                _codeWriter.Write(value);
+            }
+
             /// <summary>Appends a formatted string to the interpolated string.</summary>
             /// <param name="value">The string value to append.</param>
             public void AppendFormatted(string? value)
@@ -361,9 +1366,9 @@ namespace Raiqub.Generators.T4CodeWriter
                 _codeWriter.Write(value);
             }
 
-            /// <summary>Appends a formatted integer value to the interpolated string.</summary>
-            /// <param name="value">The integer value to append.</param>
-            public void AppendFormatted(int? value)
+            /// <summary>Appends a string representation of an object value to the interpolated string.</summary>
+            /// <param name="value">The object value to append.</param>
+            public void AppendFormatted(object? value)
             {
                 _codeWriter.Write(value);
             }
