@@ -34,9 +34,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "eb6mkftrXasI7B1AflSaB48f1U/aLJuHfwlfuEUHc07hnSkNUbkQKhzwnSBrfKuNG1vfTTtFzqHLGBsUS0oI9A=="
+        "requested": "[6.12.0, )",
+        "resolved": "6.12.0",
+        "contentHash": "KLAqsRkPIlwDPqZrQDRerRmSGrH2Kvk+xUzZcWsGiUrZkmRl9B0ZvqYvxCM37jGLgsPbH/BTnLTm0woyu6JgDA=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
@@ -146,9 +146,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "eb6mkftrXasI7B1AflSaB48f1U/aLJuHfwlfuEUHc07hnSkNUbkQKhzwnSBrfKuNG1vfTTtFzqHLGBsUS0oI9A=="
+        "requested": "[6.12.0, )",
+        "resolved": "6.12.0",
+        "contentHash": "KLAqsRkPIlwDPqZrQDRerRmSGrH2Kvk+xUzZcWsGiUrZkmRl9B0ZvqYvxCM37jGLgsPbH/BTnLTm0woyu6JgDA=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
@@ -230,9 +230,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "eb6mkftrXasI7B1AflSaB48f1U/aLJuHfwlfuEUHc07hnSkNUbkQKhzwnSBrfKuNG1vfTTtFzqHLGBsUS0oI9A=="
+        "requested": "[6.12.0, )",
+        "resolved": "6.12.0",
+        "contentHash": "KLAqsRkPIlwDPqZrQDRerRmSGrH2Kvk+xUzZcWsGiUrZkmRl9B0ZvqYvxCM37jGLgsPbH/BTnLTm0woyu6JgDA=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
