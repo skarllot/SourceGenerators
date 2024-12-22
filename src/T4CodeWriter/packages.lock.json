@@ -34,9 +34,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[7.5.0, )",
-        "resolved": "7.5.0",
-        "contentHash": "mGfOtfwzvFANqqHqz1Wr0K4RHYbhDeNYzHcokhUSwl4w0zdN3vYETvBR0iZzXuI3eyZK/jmcGWUVj5fgZe/oWA=="
+        "requested": "[7.8.0, )",
+        "resolved": "7.8.0",
+        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
       },
       "System.Memory": {
         "type": "Direct",
@@ -147,9 +147,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[7.5.0, )",
-        "resolved": "7.5.0",
-        "contentHash": "mGfOtfwzvFANqqHqz1Wr0K4RHYbhDeNYzHcokhUSwl4w0zdN3vYETvBR0iZzXuI3eyZK/jmcGWUVj5fgZe/oWA=="
+        "requested": "[7.8.0, )",
+        "resolved": "7.8.0",
+        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
@@ -232,9 +232,9 @@
       },
       "Polyfill": {
         "type": "Direct",
-        "requested": "[7.5.0, )",
-        "resolved": "7.5.0",
-        "contentHash": "mGfOtfwzvFANqqHqz1Wr0K4RHYbhDeNYzHcokhUSwl4w0zdN3vYETvBR0iZzXuI3eyZK/jmcGWUVj5fgZe/oWA=="
+        "requested": "[7.8.0, )",
+        "resolved": "7.8.0",
+        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
