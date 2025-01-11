@@ -2,4 +2,9 @@
   <ItemGroup>
     <PackageReference Include="Polyfill" Version="7.8.0" PrivateAssets="all" Condition="'$(UsePolyfill)' == 'true'" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="@(Compile)">
+      <Visible Condition="'%(NuGetItemType)' == 'Compile' and '%(NuGetPackageId)' == 'Raiqub.Generators.T4CodeWriter.Sources'">false</Visible>
+    </Compile>
+  </ItemGroup>
 </Project>
