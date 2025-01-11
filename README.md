@@ -13,8 +13,9 @@ _Provides utility functions and helpers to aid in writing source files for sourc
 Provides a high performance T4 base class on compiled library or source files package.
 
 ## NuGet Packages
-* [![NuGet](https://buildstats.info/nuget/Raiqub.Generators.T4CodeWriter)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter/) **Raiqub.Generators.T4CodeWriter**: provides a compiled library with a high performance T4 base class
-* [![NuGet](https://buildstats.info/nuget/Raiqub.Generators.T4CodeWriter.Sources)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter.Sources/) **Raiqub.Generators.T4CodeWriter.Sources**: provides source files with a high performance T4 base class
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.T4Template?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.T4Template?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.T4Template/) **Raiqub.T4Template**: provides a compiled library with a high performance T4 base class for general use
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.T4CodeWriter?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.T4CodeWriter?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter/) **Raiqub.Generators.T4CodeWriter**: provides a compiled library with a high performance T4 base class for code generation
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.T4CodeWriter.Sources?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.T4CodeWriter.Sources?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter.Sources/) **Raiqub.Generators.T4CodeWriter.Sources**: provides source files with a high performance T4 base class
 
 ## Compatibility
 
@@ -32,7 +33,7 @@ Adding the package the base class `CodeWriterBase<T>` will be available as a bas
 
 ## Guide
 
-### CodeWriterBase
+### CodeWriterBase / T4TemplateBase
 
 To override the base class of a T4 template set the [inherits attribute](https://learn.microsoft.com/en-us/visualstudio/modeling/t4-template-directive?view=vs-2022#inherits-attribute). For example:
 

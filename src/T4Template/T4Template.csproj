@@ -3,20 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RootNamespace>Raiqub.$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>$(RootNamespace)</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
-  </ItemGroup>
 
   <Import
     Condition="$(TargetFramework) == 'netstandard2.0'"
     Project="$(SolutionDir)modules\polyfill.props" />
-
-  <ItemGroup>
-    <Compile
-      Include="$(SolutionDir)src\T4Template\T4TemplateBase.cs"
-      Link="Base\%(Filename)%(Extension)" />
-  </ItemGroup>
 
 </Project>

@@ -32,12 +32,6 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "Polyfill": {
-        "type": "Direct",
-        "requested": "[7.8.0, )",
-        "resolved": "7.8.0",
-        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
-      },
       "System.Memory": {
         "type": "Direct",
         "requested": "[4.6.0, )",
@@ -145,12 +139,6 @@
         "resolved": "3.7.112",
         "contentHash": "j0jcfnTjvhytRanVR34Gaj6RFKk8EDmVhRW7929nWjCo8tzBxsa3XmFmbSGDA6nWXGhfehTixWhPgGWAbz+NQA=="
       },
-      "Polyfill": {
-        "type": "Direct",
-        "requested": "[7.8.0, )",
-        "resolved": "7.8.0",
-        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
-      },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
         "resolved": "3.3.3",
@@ -229,12 +217,6 @@
         "requested": "[3.7.112, )",
         "resolved": "3.7.112",
         "contentHash": "j0jcfnTjvhytRanVR34Gaj6RFKk8EDmVhRW7929nWjCo8tzBxsa3XmFmbSGDA6nWXGhfehTixWhPgGWAbz+NQA=="
-      },
-      "Polyfill": {
-        "type": "Direct",
-        "requested": "[7.8.0, )",
-        "resolved": "7.8.0",
-        "contentHash": "jKvbkhnnzUJF+yzj3nLySCImRMBoAWCKrgTdHUNz0EH1T2VWiaEZLsenc4DJUgvsEHphYtMRXLeWT4c5crnz5Q=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Transitive",
