@@ -8,7 +8,7 @@ namespace Raiqub.T4Template
     /// <summary>Base class for T4 templates.</summary>
     /// <typeparam name="T">The type of the model associated with the template.</typeparam>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", ThisAssembly.AssemblyFileVersion)]
     public abstract class T4TemplateBase<T> : T4TemplateBase
     {
         /// <summary>

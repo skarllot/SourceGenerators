@@ -5,6 +5,8 @@
     <DevelopmentDependency>true</DevelopmentDependency>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NBGV_EmitThisAssemblyClass>false</NBGV_EmitThisAssemblyClass>
   </PropertyGroup>
 
   <ItemGroup>

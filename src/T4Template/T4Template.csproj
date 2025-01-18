@@ -5,6 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>Raiqub.$(MSBuildProjectName)</RootNamespace>
     <AssemblyName>$(RootNamespace)</AssemblyName>
+    <DefineConstants>$(DefineConstants);IS_T4_TEMPLATE_BASE</DefineConstants>
   </PropertyGroup>
 
   <Import

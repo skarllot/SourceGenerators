@@ -7,14 +7,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using Raiqub.T4Template;
 
 namespace Raiqub.Generators.T4CodeWriter
 {
     /// <summary>Represents the base class for code writers.</summary>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", "1.0.0.0")]
-    public abstract class CodeWriterBase : T4TemplateBase
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", GeneratorInfo.Version)]
+    public abstract partial class CodeWriterBase
     {
         /// <summary>
         /// Initializes a new instance of the CodeWriterBase class with a StringBuilder.
@@ -22,17 +21,17 @@ namespace Raiqub.Generators.T4CodeWriter
         /// <param name="builder">The StringBuilder object used for building the template.</param>
         /// <param name="charsPerIndentation">The number of characters per indentation level.</param>
         protected CodeWriterBase(StringBuilder builder, int charsPerIndentation = CharsPerIndentation)
-            : base(builder, charsPerIndentation)
         {
+            _builder = builder;
+            _charsPerIndentation = charsPerIndentation;
         }
+
+        /// <summary>Gets the name of the current assembly.</summary>
+        protected static AssemblyName CurrentAssemblyName { get; } = typeof(CodeWriterBase).Assembly.GetName();
 
         /// <summary>Retrieves the name of the file for the code of current code writer state.</summary>
         /// <returns>The name of the file.</returns>
         public abstract string GetFileName();
-
-        /// <summary>Create the source text from current code writer state.</summary>
-        /// <returns>The transformed text.</returns>
-        public abstract override string TransformText();
 
         /// <summary>Adds a source to the compilation using the provided context.</summary>
         /// <param name="context">The source production context.</param>

@@ -9,7 +9,7 @@ namespace Raiqub.Generators.T4CodeWriter
 {
     /// <summary>Represents a dispatcher for code writers that generate compilation source.</summary>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", GeneratorInfo.Version)]
     public sealed class CodeWriterDispatcher
     {
         private const int DefaultStringBuilderCapacity = 1024;
