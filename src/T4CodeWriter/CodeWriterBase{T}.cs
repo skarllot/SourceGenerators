@@ -9,7 +9,7 @@ namespace Raiqub.Generators.T4CodeWriter
     /// <summary>Base class for code writers that generate compilation source.</summary>
     /// <typeparam name="T">The type of the model associated with the code writer.</typeparam>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", GeneratorInfo.Version)]
     public abstract class CodeWriterBase<T> : CodeWriterBase
     {
         /// <summary>

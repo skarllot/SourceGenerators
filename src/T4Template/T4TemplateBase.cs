@@ -11,7 +11,7 @@ namespace Raiqub.T4Template
 {
     /// <summary>Represents the base class for T4 templates.</summary>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", "1.1.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", ThisAssembly.AssemblyFileVersion)]
     public abstract partial class T4TemplateBase
 #else
 namespace Raiqub.Generators.T4CodeWriter

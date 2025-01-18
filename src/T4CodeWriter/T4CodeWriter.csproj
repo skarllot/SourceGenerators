@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DefineConstants>$(DefineConstants);IS_COMPILED</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

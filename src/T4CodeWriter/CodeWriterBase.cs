@@ -12,7 +12,7 @@ namespace Raiqub.Generators.T4CodeWriter
 {
     /// <summary>Represents the base class for code writers.</summary>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", "1.1.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.T4CodeWriter", GeneratorInfo.Version)]
     public abstract partial class CodeWriterBase
     {
         /// <summary>
