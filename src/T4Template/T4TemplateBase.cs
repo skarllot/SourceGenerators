@@ -6,12 +6,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+#if IS_T4_TEMPLATE_BASE
 namespace Raiqub.T4Template
 {
     /// <summary>Represents the base class for T4 templates.</summary>
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", "1.0.0.0")]
-    public abstract class T4TemplateBase
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.T4Template", "1.1.0.0")]
+    public abstract partial class T4TemplateBase
+#else
+namespace Raiqub.Generators.T4CodeWriter
+{
+    public abstract partial class CodeWriterBase
+#endif
     {
         private const char IndentationChar = ' ';
 
@@ -22,6 +28,7 @@ namespace Raiqub.T4Template
         private readonly int _charsPerIndentation;
         private int _indentation;
 
+#if IS_T4_TEMPLATE_BASE
         /// <summary>
         /// Initializes a new instance of the T4TemplateBase class.
         /// </summary>
@@ -42,9 +49,7 @@ namespace Raiqub.T4Template
             _builder = builder;
             _charsPerIndentation = charsPerIndentation;
         }
-
-        /// <summary>Gets the name of the current assembly.</summary>
-        protected static AssemblyName CurrentAssemblyName { get; } = typeof(T4TemplateBase).Assembly.GetName();
+#endif
 
         /// <summary>Gets or sets the string builder that generation-time code is using to assemble generated output.</summary>
         protected StringBuilder GenerationEnvironment => _builder;
@@ -1131,9 +1136,15 @@ namespace Raiqub.T4Template
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public object? ToStringWithCulture(object? value) => value;
 
+#if IS_T4_TEMPLATE_BASE
             /// <summary>Does nothing, used by <see cref="T4TemplateBase.Append(string?)"/> method.</summary>
             /// <param name="none">An empty value.</param>
             /// <returns>The <paramref name="none"/> without any change.</returns>
+#else
+            /// <summary>Does nothing, used by <see cref="CodeWriterBase.Append(string?)"/> method.</summary>
+            /// <param name="none">An empty value.</param>
+            /// <returns>The <paramref name="none"/> without any change.</returns>
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public None ToStringWithCulture(None none)
             {
@@ -1146,7 +1157,11 @@ namespace Raiqub.T4Template
         [InterpolatedStringHandler]
         protected readonly struct WriteInterpolatedStringHandler
         {
+#if IS_T4_TEMPLATE_BASE
             private readonly T4TemplateBase _templateBase;
+#else
+            private readonly CodeWriterBase _templateBase;
+#endif
 
             /// <summary>
             /// Initializes a new instance of the <see cref="WriteInterpolatedStringHandler"/> struct.
@@ -1154,7 +1169,11 @@ namespace Raiqub.T4Template
             /// <param name="literalLength">The length of the literal part of the interpolated string.</param>
             /// <param name="formattedCount">The number of formatted expressions in the interpolated string.</param>
             /// <param name="templateBase">The T4 template to append the formatted string to.</param>
+#if IS_T4_TEMPLATE_BASE
             public WriteInterpolatedStringHandler(int literalLength, int formattedCount, T4TemplateBase templateBase)
+#else
+            public WriteInterpolatedStringHandler(int literalLength, int formattedCount, CodeWriterBase templateBase)
+#endif
             {
                 _templateBase = templateBase;
             }
