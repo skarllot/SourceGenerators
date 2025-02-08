@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
-    <PackageReference Include="Polyfill" Version="7.15.0" PrivateAssets="all" Condition="'$(UsePolyfill)' == 'true'" />
+    <PackageReference Include="Polyfill" Version="7.16.1" PrivateAssets="all" Condition="'$(UsePolyfill)' == 'true'" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="@(Compile)">
