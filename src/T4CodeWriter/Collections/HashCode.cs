@@ -20,22 +20,11 @@ namespace Raiqub.Generators.T4CodeWriter.Collections
         private const uint Prime4 = 668265263U;
         private const uint Prime5 = 374761393U;
 
-        private static readonly uint s_seed = GenerateGlobalSeed();
+        private static readonly uint s_seed = 2000727972;
 
         private uint _v1, _v2, _v3, _v4;
         private uint _queue1, _queue2, _queue3;
         private uint _length;
-
-        /// <summary>
-        /// Initializes the default seed.
-        /// </summary>
-        /// <returns>A random seed.</returns>
-        private static uint GenerateGlobalSeed()
-        {
-            var buffer = new byte[sizeof(uint)];
-            new Random().NextBytes(buffer);
-            return BitConverter.ToUInt32(buffer, 0);
-        }
 
         /// <summary>
         /// Adds a single value to the current hash.
