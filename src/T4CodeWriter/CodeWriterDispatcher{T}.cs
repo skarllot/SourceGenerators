@@ -3,8 +3,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Raiqub.Generators.T4CodeWriter.Collections;
 
 namespace Raiqub.Generators.T4CodeWriter
 {
@@ -40,6 +42,23 @@ namespace Raiqub.Generators.T4CodeWriter
         /// <param name="models">The collection of models.</param>
         /// <param name="context">The incremental source generator context.</param>
         public void GenerateSources(IEnumerable<T> models, SourceProductionContext context)
+        {
+            GenerateSources(models, context);
+        }
+
+        /// <summary>Generates compilation sources for the specified models.</summary>
+        /// <param name="models">The collection of models.</param>
+        /// <param name="context">The incremental source generator context.</param>
+        public void GenerateSources(ImmutableArray<T> models, SourceProductionContext context)
+        {
+            GenerateSources(models, context);
+        }
+
+        /// <summary>Generates compilation sources for the specified models.</summary>
+        /// <param name="models">The collection of models.</param>
+        /// <param name="context">The incremental source generator context.</param>
+        private void GenerateSources<TEnumerable>(TEnumerable models, SourceProductionContext context)
+            where TEnumerable : IEnumerable<T>
         {
             var codeWriters = new CodeWriterBase<T>[_codeWriterFactories.Length];
             var sb = new StringBuilder(DefaultStringBuilderCapacity);
