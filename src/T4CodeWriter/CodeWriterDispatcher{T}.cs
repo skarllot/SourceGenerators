@@ -43,7 +43,7 @@ namespace Raiqub.Generators.T4CodeWriter
         /// <param name="context">The incremental source generator context.</param>
         public void GenerateSources(IEnumerable<T> models, SourceProductionContext context)
         {
-            GenerateSources(models, context);
+            GenerateSources<IEnumerable<T>>(models, context);
         }
 
         /// <summary>Generates compilation sources for the specified models.</summary>
@@ -51,7 +51,7 @@ namespace Raiqub.Generators.T4CodeWriter
         /// <param name="context">The incremental source generator context.</param>
         public void GenerateSources(ImmutableArray<T> models, SourceProductionContext context)
         {
-            GenerateSources(models, context);
+            GenerateSources<ImmutableArray<T>>(models, context);
         }
 
         /// <summary>Generates compilation sources for the specified models.</summary>
