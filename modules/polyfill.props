@@ -28,6 +28,12 @@
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\Polyfill_TryFormatToCharSpan.cs"
       Link="Polyfill\%(Filename)%(Extension)" />
     <Compile
+      Include="$(SolutionDir)modules\polyfill\src\Polyfill\EnumPolyfill.cs"
+      Link="Polyfill\%(Filename)%(Extension)" />
+    <Compile
+      Include="$(SolutionDir)modules\polyfill\src\Polyfill\MathPolyfill.cs"
+      Link="Polyfill\%(Filename)%(Extension)" />
+    <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringPolyfill.cs"
       Link="Polyfill\%(Filename)%(Extension)" />
     <Compile
