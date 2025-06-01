@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 1,
   "dependencies": {
     ".NETStandard,Version=v2.0": {
       "DotNet.ReproducibleBuilds": {
