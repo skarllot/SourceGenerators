@@ -8,6 +8,10 @@
     <DefineConstants>$(DefineConstants);IS_T4_TEMPLATE_BASE</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory" Version="[4.5.4]" />
+  </ItemGroup>
+
   <Import
     Condition="$(TargetFramework) == 'netstandard2.0'"
     Project="$(SolutionDir)modules\polyfill.props" />

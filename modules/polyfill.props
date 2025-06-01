@@ -4,7 +4,6 @@
     <DefineConstants>$(DefineConstants);FeatureMemory;AllowUnsafeBlocks;FeatureValueTuple</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
-    <PackageReference Include="System.Memory" />
     <Using Include="Polyfills" />
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\IndexRange\*.cs"
