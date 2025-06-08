@@ -4,5 +4,13 @@
     "local>skarllot/renovate-config"
   ],
   "reviewers": ["skarllot"],
-  "assignees": ["skarllot"]
+  "assignees": ["skarllot"],
+  "packageRules": [
+    {
+      "description": "Pin System.Memory",
+      "matchDatasources": ["nuget"],
+      "matchPackageNames": ["System.Memory"],
+      "enabled": false
+    }
+  ]
 }
