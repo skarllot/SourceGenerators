@@ -1,4 +1,4 @@
 [submodule "modules/polyfill"]
 	path = modules/polyfill
 	url = git@github.com:SimonCropp/Polyfill.git
-	branch = 7.33.0
+	branch = 8.0.1
