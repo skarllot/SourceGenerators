@@ -13,7 +13,7 @@
     <Compile Remove="**\*.cs" />
     <Content
       Include="..\T4CodeWriter\**\*.cs"
-      Exclude="**\bin\**;**\obj\**"
+      Exclude="**\obj\**"
       PackagePath="contentFiles\cs\netstandard2.0\RaiqubT4CodeWriter\"
       BuildAction="Compile" />
     <Content
