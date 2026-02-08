@@ -145,9 +145,7 @@ public sealed partial class SourceTextWriter
     /// <summary>Writes the specified interpolated string directly into the generated output and appends a new line.</summary>
     /// <param name="handler">The interpolated string to append.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void WriteLine(
-        [InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler
-    )
+    public void WriteLine([InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler)
     {
         // Text is written using interpolated string handler by compiler generated code
         _builder.Append(_newLine);

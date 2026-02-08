@@ -1,5 +1,4 @@
 <Project>
-
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
@@ -23,5 +22,4 @@
     <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="" />
     <None Include="$(SolutionDir)logos\logo-128.png" Pack="true" PackagePath="icon.png" />
   </ItemGroup>
-
 </Project>

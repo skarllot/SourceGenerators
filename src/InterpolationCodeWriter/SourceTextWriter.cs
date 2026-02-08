@@ -9,10 +9,7 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 /// <summary>Provides a text writer for generating source code with automatic indentation support.</summary>
 #if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[System.CodeDom.Compiler.GeneratedCodeAttribute(
-    "Raiqub.Generators.InterpolationCodeWriter",
-    GeneratorInfo.Version
-)]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
 #endif
 public sealed partial class SourceTextWriter
 {
@@ -49,12 +46,7 @@ public sealed partial class SourceTextWriter
         int charsPerIndentation = DefaultCharsPerIndentation,
         IFormatProvider? formatProvider = null
     )
-        : this(
-            new StringBuilder(DefaultStringBuilderCapacity),
-            newLine,
-            charsPerIndentation,
-            formatProvider
-        ) { }
+        : this(new StringBuilder(DefaultStringBuilderCapacity), newLine, charsPerIndentation, formatProvider) { }
 
     /// <summary>Remove all characters from the writer state.</summary>
     public void ClearAllText()
@@ -65,8 +57,12 @@ public sealed partial class SourceTextWriter
 
     /// <summary>Remove the specified number of characters from written text.</summary>
     /// <param name="numberOfChars">The number of characters to remove from the end of the string.</param>
+    /// <exception cref="ArgumentOutOfRangeException">The number of characters to remove is negative or exceeds the length of the written text.</exception>
     public void Rewind(int numberOfChars)
     {
+        Throws.OutOfRangeIfNegative(numberOfChars);
+        Throws.OutOfRangeIfGreaterThan(numberOfChars, _builder.Length);
+
         _builder.Length -= numberOfChars;
     }
 

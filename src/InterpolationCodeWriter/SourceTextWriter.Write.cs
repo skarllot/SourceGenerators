@@ -355,9 +355,7 @@ public sealed partial class SourceTextWriter
     /// <summary>Writes the specified interpolated string directly into the generated output.</summary>
     /// <param name="handler">The interpolated string to append.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Write(
-        [InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler
-    )
+    public void Write([InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler)
     {
         // Text is written using interpolated string handler by compiler generated code
         Debug.Assert(_builder != null);
@@ -367,8 +365,7 @@ public sealed partial class SourceTextWriter
     private static void WriteFormatted(
         StringBuilder builder,
         IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("builder", "provider")]
-            ref AppendInterpolatedStringHandler handler
+        [InterpolatedStringHandlerArgument("builder", "provider")] ref AppendInterpolatedStringHandler handler
     )
     {
         // Text is written using interpolated string handler by compiler generated code

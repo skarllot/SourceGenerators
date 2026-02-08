@@ -8,10 +8,7 @@ namespace Raiqub.Generators.InterpolationCodeWriter.CSharp;
 /// </summary>
 #if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[System.CodeDom.Compiler.GeneratedCodeAttribute(
-    "Raiqub.Generators.InterpolationCodeWriter",
-    GeneratorInfo.Version
-)]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
 #endif
 public static class CodeWriterExtensions
 {

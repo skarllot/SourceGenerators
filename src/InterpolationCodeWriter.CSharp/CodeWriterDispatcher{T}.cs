@@ -11,10 +11,7 @@ namespace Raiqub.Generators.InterpolationCodeWriter.CSharp;
 /// <typeparam name="T">The type associated with the code writer.</typeparam>
 #if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-[System.CodeDom.Compiler.GeneratedCodeAttribute(
-    "Raiqub.Generators.InterpolationCodeWriter",
-    GeneratorInfo.Version
-)]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
 #endif
 public class CodeWriterDispatcher<T>
 {
@@ -25,19 +22,16 @@ public class CodeWriterDispatcher<T>
     /// <param name="codeWriters">An array of code writers.</param>
     public CodeWriterDispatcher(ICodeWriter<T>[] codeWriters)
     {
-        _codeWriters = codeWriters;
+        _codeWriters = codeWriters ?? throw new ArgumentNullException(nameof(codeWriters));
     }
 
     /// <summary>Initializes a new instance of the <see cref="CodeWriterDispatcher{T}"/> class.</summary>
     /// <param name="exceptionHandler">An optional exception handler.</param>
     /// <param name="codeWriters">An array of code writers.</param>
-    public CodeWriterDispatcher(
-        Func<Exception, T, Diagnostic>? exceptionHandler,
-        params ICodeWriter<T>[] codeWriters
-    )
+    public CodeWriterDispatcher(Func<Exception, T, Diagnostic>? exceptionHandler, params ICodeWriter<T>[] codeWriters)
     {
         _exceptionHandler = exceptionHandler;
-        _codeWriters = codeWriters;
+        _codeWriters = codeWriters ?? throw new ArgumentNullException(nameof(codeWriters));
     }
 
     /// <summary>Generates compilation sources for the specified models.</summary>

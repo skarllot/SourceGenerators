@@ -18,11 +18,7 @@ public sealed partial class SourceTextWriter
         /// <param name="formattedCount">The number of interpolation expressions in the interpolated string.</param>
         /// <param name="writer">The <see cref="SourceTextWriter"/> to write to.</param>
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        public WriteInterpolatedStringHandler(
-            int literalLength,
-            int formattedCount,
-            SourceTextWriter writer
-        )
+        public WriteInterpolatedStringHandler(int literalLength, int formattedCount, SourceTextWriter writer)
         {
             _writer = writer;
         }

@@ -7,6 +7,10 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 /// <summary>
 /// Enumerates the lines of a <see cref="ReadOnlySpan{Char}"/> for <see cref="SourceTextWriter"/>.
 /// </summary>
+#if !IS_COMPILED
+[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
+#endif
 internal ref struct SpanLineEnumerator
 {
     private ReadOnlySpan<char> _remaining;

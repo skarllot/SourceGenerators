@@ -55,8 +55,10 @@ public static class EquatableArray
 /// An immutable, equatable array. This is equivalent to <see cref="ImmutableArray{T}"/> but with value equality support.
 /// </summary>
 /// <typeparam name="T">The type of values in the array.</typeparam>
+#if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
+#endif
 public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnumerable<T>
     where T : IEquatable<T>
 {
