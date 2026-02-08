@@ -8,9 +8,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReleaseNotes>See https://github.com/skarllot/SourceGenerators/releases for release notes.</PackageReleaseNotes>
-    <Description>Provides a high performance T4 base class</Description>
+    <Description>A high-performance source text writer for .NET incremental source generators using string interpolations</Description>
     <PackageTags>
-      generator;source;t4;tt;codewriter
+      generator;source;codewriter;interpolation;sourcegenerator;indentation
     </PackageTags>
   </PropertyGroup>
 

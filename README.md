@@ -1,94 +1,135 @@
-# SourceGenerators
+<div style="text-align: center;">
+  <img src="logos/banner-12x4.png" alt="SourceGenerators Logo" height="256" style="border-radius: 15px;" />
+</div>
+
+<h1 style="text-align: center;">SourceGenerators</h1>
+
+<div style="text-align: center;">
 
 [![Build status](https://github.com/skarllot/SourceGenerators/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/skarllot/SourceGenerators/actions)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/skarllot/SourceGenerators/badge)](https://securityscorecards.dev/viewer/?uri=github.com/skarllot/SourceGenerators)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/skarllot/SourceGenerators/main/LICENSE)
 
-_Provides utility functions and helpers to aid in writing source files for source generators based on T4 templates_
+</div>
+
+_Provides utility functions and helpers to aid in writing source files for source generators using high-performance writer and string interpolations_
 
 [🏃 Quickstart](#quickstart) &nbsp; | &nbsp; [📗 Guide](#guide) &nbsp; | &nbsp; [📦 NuGet](#nuget-packages)
 
 <hr />
 
-Provides a high performance T4 base class on compiled library or source files package.
+A high-performance source text writer for .NET incremental source generators. Write generated source code using plain
+strings or C# string interpolations with automatic indentation support.
 
 ## NuGet Packages
-* [![NuGet](https://img.shields.io/nuget/v/Raiqub.T4Template?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.T4Template?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.T4Template/) **Raiqub.T4Template**: provides a compiled library with a high performance T4 base class for general use
-* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.T4CodeWriter?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.T4CodeWriter?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter/) **Raiqub.Generators.T4CodeWriter**: provides a compiled library with a high performance T4 base class for code generation
-* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.T4CodeWriter.Sources?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.T4CodeWriter.Sources?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.T4CodeWriter.Sources/) **Raiqub.Generators.T4CodeWriter.Sources**: provides source files with a high performance T4 base class
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.InterpolationCodeWriter?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.InterpolationCodeWriter?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.InterpolationCodeWriter/) **Raiqub.Generators.InterpolationCodeWriter**: provides a compiled library with `SourceTextWriter` for writing source code
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.InterpolationCodeWriter.CSharp?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.InterpolationCodeWriter.CSharp?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.InterpolationCodeWriter.CSharp/) **Raiqub.Generators.InterpolationCodeWriter.CSharp**: provides a compiled library with `CodeWriterDispatcher` and extensions for Roslyn source generators
+* [![NuGet](https://img.shields.io/nuget/v/Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources?label=&logo=nuget&style=flat-square)![NuGet](https://img.shields.io/nuget/dt/Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources?label=&style=flat-square)](https://www.nuget.org/packages/Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources/) **Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources**: provides source files that are embedded into your project (no runtime dependency)
 
 ## Compatibility
 
-Raiqub T4 Code Writer library requires .NET Standard 2.0 runtime to run, and the source files requires at least the .NET 6 SDK to run, but you can target earlier frameworks.
+The compiled libraries target .NET Standard 2.0, .NET 8, and .NET 10. The source files package requires at least the
+.NET 6.0 SDK, but you can target earlier frameworks.
 
 ## Quickstart
 
-Add the package to your application using
+Add the source files package to your source generator project:
 
 ```shell
-dotnet add package Raiqub.Generators.T4CodeWriter.Sources
+dotnet add package Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources
 ```
 
-Adding the package the base class `CodeWriterBase<T>` will be available as a base class for T4 templates.
+Then implement the `ICodeWriter<T>` interface to define your code writer:
+
+```csharp
+public class MyWriter : ICodeWriter<MyModel>
+{
+    public bool CanGenerateFor(MyModel model) => model.Properties.Count > 0;
+
+    public string GetFileName(MyModel model) => $"{model.Namespace ?? "_"}.{model.Name}Extensions.g.cs";
+
+    public void Write(SourceTextWriter writer, MyModel model)
+    {
+        writer.WriteLine($"namespace {model.Namespace};");
+        writer.WriteLine();
+        writer.WriteLine($"public static partial class {model.Name}Extensions");
+        writer.WriteLine("{");
+        writer.PushIndent();
+
+        // Write members using string interpolation...
+
+        writer.PopIndent();
+        writer.WriteLine("}");
+    }
+}
+```
 
 ## Guide
 
-### CodeWriterBase / T4TemplateBase
+### SourceTextWriter
 
-To override the base class of a T4 template set the [inherits attribute](https://learn.microsoft.com/en-us/visualstudio/modeling/t4-template-directive?view=vs-2022#inherits-attribute). For example:
+`SourceTextWriter` is a high-performance text writer built on `StringBuilder` with automatic indentation support. It accepts plain strings and C# string interpolations through a custom `InterpolatedStringHandler`.
 
-```t4
-<#@ template debug="false" linePragmas="false" hostspecific="false" language="C#" inherits="CodeWriterBase<MyModel>" #>
+```csharp
+var writer = new SourceTextWriter();
+
+writer.WriteLine("using System;");
+writer.WriteLine();
+writer.WriteLine($"namespace {ns};");
+writer.WriteLine();
+writer.WriteLine($"public class {className}");
+writer.WriteLine("{");
+writer.PushIndent();
+writer.WriteLine($"public string Name {{ get; set; }}");
+writer.PopIndent();
+writer.WriteLine("}");
+
+string result = writer.ToString();
 ```
 
-The constructor of `CodeWriterBase` class need to receive a `StringBuilder` instance, then T4 templates that inherits from `CodeWriterBase` need to define a constructor passing a `StringBuilder` instance to base class. For example:
+Key features:
+- **Automatic indentation**: Use `PushIndent()` / `PopIndent()` to manage indentation levels (4 spaces per level by default)
+- **String interpolation support**: Write code using `$"..."` syntax directly
+- **Culture-invariant formatting**: Numbers and other values are formatted using `InvariantCulture` by default
+- **Configurable**: Customize line endings, indentation size, and format provider
 
-```t4
-<#+
-    public MyWriter(StringBuilder builder) : base(builder)
-    {
-    }
-#>
-```
+### ICodeWriter / ICodeWriter&lt;T&gt;
 
-Additionally the method `GetFileName` must be implemented to define the name of file of the generated source. For example:
+`ICodeWriter` defines a stateless code writer that generates source code. `ICodeWriter<T>` extends it with model-based generation:
 
-```t4
-<#+
-    public override string GetFileName() => $"{Model.Namespace ?? "_"}.{Model.Name}Extensions.g.cs";
-#>
-```
+- `CanGenerateFor(T model)` - determines if code should be generated for the given model
+- `GetFileName(T model)` - returns the file name for the generated source
+- `Write(SourceTextWriter writer, T model)` - writes the source code using the provided writer and model
 
-Optionally the method `CanGenerateFor` can be implemented to determine if source code should be generated according with the specified model state. For example:
-
-```t4
-<#+
-    protected override bool CanGenerateFor(MyModel model) => model.Properties.Count > 0;
-#>
-```
+Implementations should be stateless to ensure thread-safety in source generator contexts.
 
 ### CodeWriterDispatcher
 
-The `CodeWriterDispatcher` is a dispatcher for code writers that generate compilation source. As it does not mutate any internal state is safe to define it as a static readonly field. Example:
+`CodeWriterDispatcher<T>` dispatches source generation across multiple code writers. It is stateless and safe to store as a static field:
+
+```csharp
+private static readonly CodeWriterDispatcher<MyModel> s_dispatcher =
+    new([new MyWriter1(), new MyWriter2()]);
+```
+
+Then call `GenerateSources` to generate source files using the `SourceProductionContext`:
+
+```csharp
+private static void Emit(
+    SourceProductionContext context,
+    ImmutableArray<MyModel> types)
+{
+    s_dispatcher.GenerateSources(types, context);
+}
+```
+
+An optional exception handler can be provided to report diagnostics instead of throwing:
 
 ```csharp
 private static readonly CodeWriterDispatcher<MyModel> s_dispatcher =
     new(
-        sb => new MyWriter1(sb),
-        sb => new MyWriter2(sb));
-```
-
-Then just call the `GenerateSources` method to generate source files using the `SourceProductionContext`. For example:
-
-```csharp
-private static void Emit(
-    Compilation compilation,
-    SourceProductionContext context,
-    ImmutableArray<MyModel> types)
-{
-    // ...
-    s_dispatcher.GenerateSources(typesToGenerate, context);
-}
+        (ex, model) => Diagnostic.Create(...),
+        new MyWriter1(), new MyWriter2());
 ```
 
 ## Contributing

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>disable</Nullable>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PolyfillLib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content
+      Include="..\..\src\InterpolationCodeWriter\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+    <Content
+      Include="..\..\src\InterpolationCodeWriter.CSharp\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+  </ItemGroup>
+</Project>
