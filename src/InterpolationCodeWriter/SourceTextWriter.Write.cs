@@ -1,9 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -361,6 +359,6 @@ public sealed partial class SourceTextWriter
     public void Write([InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler)
     {
         // Text is written using interpolated string handler by compiler generated code
-        Debug.Assert(_builder != null);
+        _ = _builder;
     }
 }
