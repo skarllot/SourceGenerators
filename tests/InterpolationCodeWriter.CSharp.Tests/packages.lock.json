@@ -48,14 +48,6 @@
           "Microsoft.CodeAnalysis.Analyzers": "3.3.3"
         }
       },
-      "Microsoft.CodeAnalysis.CSharp": {
-        "type": "Transitive",
-        "resolved": "4.3.1",
-        "contentHash": "5C9VHvahL98tumlyaT/loB5rW+K/6q0UU7uLyT1Dv15YjZraRkqML9u2t2e8GaO7XqEOtBVqK/SlxXOPqwzxog==",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
-        }
-      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
         "resolved": "18.0.1",
@@ -128,6 +120,15 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[4.3.1, )",
           "Raiqub.Generators.InterpolationCodeWriter": "[1.0.0, )"
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp": {
+        "type": "CentralTransitive",
+        "requested": "[4.3.1, )",
+        "resolved": "4.3.1",
+        "contentHash": "5C9VHvahL98tumlyaT/loB5rW+K/6q0UU7uLyT1Dv15YjZraRkqML9u2t2e8GaO7XqEOtBVqK/SlxXOPqwzxog==",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
         }
       }
     },
@@ -178,14 +179,6 @@
           "Microsoft.CodeAnalysis.Analyzers": "3.3.3"
         }
       },
-      "Microsoft.CodeAnalysis.CSharp": {
-        "type": "Transitive",
-        "resolved": "4.3.1",
-        "contentHash": "5C9VHvahL98tumlyaT/loB5rW+K/6q0UU7uLyT1Dv15YjZraRkqML9u2t2e8GaO7XqEOtBVqK/SlxXOPqwzxog==",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
-        }
-      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
         "resolved": "18.0.1",
@@ -258,6 +251,15 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "[4.3.1, )",
           "Raiqub.Generators.InterpolationCodeWriter": "[1.0.0, )"
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp": {
+        "type": "CentralTransitive",
+        "requested": "[4.3.1, )",
+        "resolved": "4.3.1",
+        "contentHash": "5C9VHvahL98tumlyaT/loB5rW+K/6q0UU7uLyT1Dv15YjZraRkqML9u2t2e8GaO7XqEOtBVqK/SlxXOPqwzxog==",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
         }
       }
     }
