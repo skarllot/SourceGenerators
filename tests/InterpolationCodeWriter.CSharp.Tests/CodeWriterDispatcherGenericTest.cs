@@ -275,7 +275,7 @@ public class CodeWriterDispatcherGenericTest
             _suffix = suffix;
         }
 
-        public bool CanGenerateFor(TestModel model) => _shouldGenerate && model.Name != "Skip";
+        public bool CanGenerateFor(TestModel model) => _shouldGenerate;
 
         public string GetFileName(TestModel model) => $"{model.Name}{_suffix}.g.cs";
 

@@ -8,7 +8,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write($"hello world");
 
-        Assert.Equal("hello world", writer.ToString());
+        Assert.Equal("hello world", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public partial class SourceTextWriterTest
         var x = 42;
         writer.Write($"value={x}");
 
-        Assert.Equal("value=42", writer.ToString());
+        Assert.Equal("value=42", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -28,7 +28,7 @@ public partial class SourceTextWriterTest
         var b = true;
         writer.Write($"flag={b}");
 
-        Assert.Equal("flag=True", writer.ToString());
+        Assert.Equal("flag=True", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public partial class SourceTextWriterTest
         var b = false;
         writer.Write($"{n}-{c}-{b}");
 
-        Assert.Equal("1-A-False", writer.ToString());
+        Assert.Equal("1-A-False", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public partial class SourceTextWriterTest
         string? s = null;
         writer.Write($"before{s}after");
 
-        Assert.Equal("beforeafter", writer.ToString());
+        Assert.Equal("beforeafter", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public partial class SourceTextWriterTest
         int? n = null;
         writer.Write($"x{n}y");
 
-        Assert.Equal("xy", writer.ToString());
+        Assert.Equal("xy", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -70,7 +70,7 @@ public partial class SourceTextWriterTest
         int? n = 7;
         writer.Write($"x{n}y");
 
-        Assert.Equal("x7y", writer.ToString());
+        Assert.Equal("x7y", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public partial class SourceTextWriterTest
         object obj = new CustomToStringObject("hello");
         writer.Write($"val={obj}");
 
-        Assert.Equal("val=hello", writer.ToString());
+        Assert.Equal("val=hello", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -90,7 +90,7 @@ public partial class SourceTextWriterTest
         object? o = null;
         writer.Write($"a{o}b");
 
-        Assert.Equal("ab", writer.ToString());
+        Assert.Equal("ab", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -110,7 +110,7 @@ public partial class SourceTextWriterTest
 
         Assert.Equal(
             "public class {\n    void DoWork()\n    {\n        Console.WriteLine(\"MyClass\");\n    }",
-            writer.ToString()
+            writer.ToStringAndClear()
         );
     }
 

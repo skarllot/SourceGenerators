@@ -15,6 +15,6 @@ public static class SourceTextWriterExtensions
     /// <returns>A <see cref="SourceText"/> containing all written text.</returns>
     public static SourceText ToSourceText(this SourceTextWriter writer)
     {
-        return SourceText.From(writer.ToString(), Encoding.UTF8);
+        return SourceText.From(writer.ToStringAndClear(), Encoding.UTF8);
     }
 }

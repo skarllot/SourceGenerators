@@ -48,6 +48,9 @@ public sealed partial class SourceTextWriter
     )
         : this(new StringBuilder(DefaultStringBuilderCapacity), newLine, charsPerIndentation, formatProvider) { }
 
+    /// <summary>Gets the format provider used for formatting.</summary>
+    public IFormatProvider FormatProvider => _formatProvider;
+
     /// <summary>Remove all characters from the writer state.</summary>
     public void ClearAllText()
     {
@@ -68,10 +71,14 @@ public sealed partial class SourceTextWriter
 
     /// <summary>Converts the written text to a string and clears the writer state.</summary>
     /// <returns>A string containing all written text.</returns>
-    public override string ToString()
+    public string ToStringAndClear()
     {
         var text = _builder.ToString();
         ClearAllText();
         return text;
     }
+
+    /// <summary>Converts the written text to a string.</summary>
+    /// <returns>A string containing all written text.</returns>
+    public override string ToString() => _builder.ToString();
 }

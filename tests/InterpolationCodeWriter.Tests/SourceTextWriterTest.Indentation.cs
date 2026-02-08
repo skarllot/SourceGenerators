@@ -10,7 +10,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\n    second", writer.ToString());
+        Assert.Equal("first\n    second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -21,7 +21,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\n            second", writer.ToString());
+        Assert.Equal("first\n            second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\n    second", writer.ToString());
+        Assert.Equal("first\n    second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\n    second", writer.ToString());
+        Assert.Equal("first\n    second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -65,7 +65,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\nsecond", writer.ToString());
+        Assert.Equal("first\nsecond", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -77,7 +77,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\nsecond", writer.ToString());
+        Assert.Equal("first\nsecond", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -89,7 +89,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine();
         writer.Write("second");
 
-        Assert.Equal("first\n    second", writer.ToString());
+        Assert.Equal("first\n    second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -100,7 +100,7 @@ public partial class SourceTextWriterTest
         writer.Write("first");
         writer.Write("second");
 
-        Assert.Equal("firstsecond", writer.ToString());
+        Assert.Equal("firstsecond", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -111,7 +111,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("first");
         writer.Write("second");
 
-        Assert.Equal("first\n  second", writer.ToString());
+        Assert.Equal("first\n  second", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -128,6 +128,6 @@ public partial class SourceTextWriterTest
         writer.WriteLine();
         writer.Write("level1again");
 
-        Assert.Equal("level0\n    level1\n        level2\n    level1again", writer.ToString());
+        Assert.Equal("level0\n    level1\n        level2\n    level1again", writer.ToStringAndClear());
     }
 }

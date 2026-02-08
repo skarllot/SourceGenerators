@@ -12,6 +12,8 @@ public sealed partial class SourceTextWriter
     /// <summary>The default number of characters per indentation level.</summary>
     private const int DefaultCharsPerIndentation = 4;
 
+    private int _indentation;
+
     /// <summary>Increase the indent.</summary>
     /// <param name="levels">The number of levels to increase.</param>
     /// <exception cref="ArgumentOutOfRangeException">The number of levels is negative.</exception>

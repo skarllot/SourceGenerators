@@ -9,7 +9,7 @@ public partial class SourceTextWriterTest
     {
         var writer = new SourceTextWriter();
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter(newLine: "\r\n");
         writer.WriteLine("hello");
 
-        Assert.Equal("hello\r\n", writer.ToString());
+        Assert.Equal("hello\r\n", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -28,17 +28,17 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter(sb);
         writer.Write(" content");
 
-        Assert.Equal("existing content", writer.ToString());
+        Assert.Equal("existing content", writer.ToStringAndClear());
     }
 
     [Fact]
-    public void ToStringReturnsContentAndClearsState()
+    public void ToStringAndClearReturnsContentAndClearsState()
     {
         var writer = new SourceTextWriter();
         writer.Write("hello");
 
-        var first = writer.ToString();
-        var second = writer.ToString();
+        var first = writer.ToStringAndClear();
+        var second = writer.ToStringAndClear();
 
         Assert.Equal("hello", first);
         Assert.Equal("", second);
@@ -54,7 +54,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("line1");
         writer.Write("line2");
 
-        Assert.Equal("line1\nline2", writer.ToString());
+        Assert.Equal("line1\nline2", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -64,7 +64,7 @@ public partial class SourceTextWriterTest
         writer.Write("Hello, World!");
         writer.Rewind(8);
 
-        Assert.Equal("Hello", writer.ToString());
+        Assert.Equal("Hello", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -74,6 +74,6 @@ public partial class SourceTextWriterTest
         writer.Write("abc");
         writer.Rewind(3);
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 }

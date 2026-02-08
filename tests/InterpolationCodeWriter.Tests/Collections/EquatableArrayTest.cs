@@ -14,7 +14,7 @@ public class EquatableArrayTest
         var arr2 = val2.ToEquatableArray();
 
         Assert.True(arr1.Equals(arr2));
-        Assert.True(arr1.GetHashCode() == arr2.GetHashCode());
+        Assert.Equal(arr1.GetHashCode(), arr2.GetHashCode());
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public class EquatableArrayTest
         var arr2 = val2.ToEquatableArray();
 
         Assert.True(arr1.Equals(arr2));
-        Assert.True(arr1.GetHashCode() == arr2.GetHashCode());
+        Assert.Equal(arr1.GetHashCode(), arr2.GetHashCode());
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class EquatableArrayTest
         var arr2 = val2.ToEquatableArray();
 
         Assert.True(arr1.Equals(arr2));
-        Assert.True(arr1.GetHashCode() == arr2.GetHashCode());
+        Assert.Equal(arr1.GetHashCode(), arr2.GetHashCode());
     }
 
     [Fact]
@@ -54,7 +54,7 @@ public class EquatableArrayTest
 
         Assert.True(arr1.Equals(arr2));
         Assert.True(arr2.Equals(arr1));
-        Assert.True(arr1.GetHashCode() == arr2.GetHashCode());
+        Assert.Equal(arr1.GetHashCode(), arr2.GetHashCode());
     }
 
     public sealed record Record(int Value);

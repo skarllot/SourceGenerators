@@ -9,8 +9,6 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 
 public sealed partial class SourceTextWriter
 {
-    private int _indentation;
-
     /// <summary>Write the string representation of a specified boolean value directly into the generated output.</summary>
     /// <param name="value">The boolean to be appended to the generated output.</param>
     public void Write(bool value)
@@ -18,7 +16,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{value}");
+        _builder.Append(value.ToString(_formatProvider));
     }
 
     /// <summary>Write character directly into the generated output.</summary>
@@ -28,7 +26,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{value}");
+        _builder.Append(value);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -38,7 +36,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -48,7 +46,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -58,7 +56,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -68,7 +66,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -78,7 +76,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -88,7 +86,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -98,7 +96,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -108,7 +106,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -118,7 +116,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -128,7 +126,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
@@ -138,7 +136,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        WriteFormatted(_builder, _formatProvider, $"{number}");
+        _builder.Append(number.ToString(_formatProvider));
     }
 
     /// <summary>Write the string representation of a specified boolean value directly into the generated output.</summary>
@@ -301,12 +299,17 @@ public sealed partial class SourceTextWriter
     /// <param name="value">The object to be appended to the generated output.</param>
     public void Write(object? value)
     {
-        if (value is null)
+        switch (value)
         {
-            return;
+            case null:
+                return;
+            case IFormattable formattable:
+                Write(formattable.ToString(null, _formatProvider));
+                break;
+            default:
+                Write(value.ToString());
+                break;
         }
-
-        Write(value.ToString());
     }
 
     /// <summary>Write text directly into the generated output.</summary>
@@ -360,29 +363,4 @@ public sealed partial class SourceTextWriter
         // Text is written using interpolated string handler by compiler generated code
         Debug.Assert(_builder != null);
     }
-
-#if NETSTANDARD2_0
-    private static void WriteFormatted(
-        StringBuilder builder,
-        IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("builder", "provider")] ref AppendInterpolatedStringHandler handler
-    )
-    {
-        // Text is written using interpolated string handler by compiler generated code
-        Debug.Assert(builder != null);
-        Debug.Assert(provider != null || provider == null);
-        Debug.Assert(handler.GetType() != null);
-    }
-#else
-    private static void WriteFormatted(
-        StringBuilder builder,
-        IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("builder", "provider")]
-            ref StringBuilder.AppendInterpolatedStringHandler handler
-    )
-    {
-        // Text is written using interpolated string handler by compiler generated code
-        Debug.Assert(handler.GetType() != null);
-    }
-#endif
 }

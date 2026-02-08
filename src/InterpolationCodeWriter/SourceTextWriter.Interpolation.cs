@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -35,7 +36,9 @@ public sealed partial class SourceTextWriter
         /// <param name="value">The value to format and append.</param>
         public void AppendFormatted<T>(T value)
         {
-            if (value is not null)
+            if (value is IFormattable formattable)
+                _writer.Write(formattable.ToString(null, _writer.FormatProvider));
+            else if (value is not null)
                 _writer.Write(value.ToString());
         }
 

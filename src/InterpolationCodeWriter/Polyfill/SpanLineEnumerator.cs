@@ -50,7 +50,8 @@ internal ref struct SpanLineEnumerator
 
         ReadOnlySpan<char> remaining = _remaining;
 
-        var idx = remaining.IndexOfAny("\r\n".AsSpan());
+        ReadOnlySpan<char> lineEndings = stackalloc char[] { '\r', '\n' };
+        var idx = remaining.IndexOfAny(lineEndings);
 
         if ((uint)idx < (uint)remaining.Length)
         {

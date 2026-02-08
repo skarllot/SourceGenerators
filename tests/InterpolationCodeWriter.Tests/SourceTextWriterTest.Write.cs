@@ -8,7 +8,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write("hello");
 
-        Assert.Equal("hello", writer.ToString());
+        Assert.Equal("hello", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -17,7 +17,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((string?)null);
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -26,7 +26,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write("");
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -37,7 +37,7 @@ public partial class SourceTextWriterTest
         writer.Write(" ");
         writer.Write("world");
 
-        Assert.Equal("hello world", writer.ToString());
+        Assert.Equal("hello world", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write("\n\nline1");
 
-        Assert.Equal("line1", writer.ToString());
+        Assert.Equal("line1", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write("\r\n\r\nline1");
 
-        Assert.Equal("line1", writer.ToString());
+        Assert.Equal("line1", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -65,7 +65,7 @@ public partial class SourceTextWriterTest
         writer.Write("existing");
         writer.Write("\n\nline1");
 
-        Assert.Equal("existing\n\nline1", writer.ToString());
+        Assert.Equal("existing\n\nline1", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -76,7 +76,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("header");
         writer.Write("line1\nline2\nline3");
 
-        Assert.Equal("header\n    line1\n    line2\n    line3", writer.ToString());
+        Assert.Equal("header\n    line1\n    line2\n    line3", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -87,7 +87,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("header");
         writer.Write("line1\nline2");
 
-        Assert.Equal("header\r\n    line1\r\n    line2", writer.ToString());
+        Assert.Equal("header\r\n    line1\r\n    line2", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -96,7 +96,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write(true);
 
-        Assert.Equal("True", writer.ToString());
+        Assert.Equal("True", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -105,7 +105,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write(42);
 
-        Assert.Equal("42", writer.ToString());
+        Assert.Equal("42", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -114,7 +114,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write('X');
 
-        Assert.Equal("X", writer.ToString());
+        Assert.Equal("X", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -127,7 +127,7 @@ public partial class SourceTextWriterTest
         writer.Write(",");
         writer.Write(9.99m);
 
-        Assert.Equal("123,3.14,9.99", writer.ToString());
+        Assert.Equal("123,3.14,9.99", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -136,7 +136,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((int?)42);
 
-        Assert.Equal("42", writer.ToString());
+        Assert.Equal("42", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -145,7 +145,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((int?)null);
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -154,7 +154,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((bool?)null);
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -163,7 +163,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((object)42);
 
-        Assert.Equal("42", writer.ToString());
+        Assert.Equal("42", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -172,7 +172,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter();
         writer.Write((object?)null);
 
-        Assert.Equal("", writer.ToString());
+        Assert.Equal("", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -183,7 +183,7 @@ public partial class SourceTextWriterTest
         writer.WriteLine("header");
         writer.Write(42);
 
-        Assert.Equal("header\n    42", writer.ToString());
+        Assert.Equal("header\n    42", writer.ToStringAndClear());
     }
 
     [Fact]
@@ -193,6 +193,6 @@ public partial class SourceTextWriterTest
         var name = "World";
         writer.Write($"Hello, {name}!");
 
-        Assert.Equal("Hello, World!", writer.ToString());
+        Assert.Equal("Hello, World!", writer.ToStringAndClear());
     }
 }
