@@ -61,7 +61,7 @@ internal static class Throws
             throw new ArgumentOutOfRangeException(
                 paramName,
                 value,
-                $"The value must be greater than {other}. Actual: {value}"
+                $"The value must be less than or equal to {other}. Actual: {value}"
             );
 #else
         ArgumentOutOfRangeException.ThrowIfGreaterThan(value, other, paramName);

@@ -38,5 +38,8 @@
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringSyntaxAttribute.cs"
       Link="Polyfill\Attributes\%(Filename)%(Extension)" />
+    <Compile
+      Include="$(SolutionDir)modules\polyfill\src\Polyfill\CallerArgumentExpressionAttribute.cs"
+      Link="Polyfill\Attributes\%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>
