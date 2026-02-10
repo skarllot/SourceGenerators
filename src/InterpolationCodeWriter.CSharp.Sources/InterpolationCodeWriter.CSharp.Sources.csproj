@@ -10,6 +10,12 @@
   <ItemGroup>
     <Compile Remove="**\*.cs" />
     <Content
+      Include="..\InternalPolyfill\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+    <Content
       Include="..\InterpolationCodeWriter\**\*.cs"
       Exclude="**\obj\**"
       PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"

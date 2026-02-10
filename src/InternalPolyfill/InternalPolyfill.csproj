@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <DefineConstants>$(DefineConstants);IS_COMPILED</DefineConstants>
+    <RootNamespace>Raiqub.Generators.InterpolationCodeWriter</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\InterpolationCodeWriter\GeneratorInfo.cs" />
+  </ItemGroup>
+</Project>

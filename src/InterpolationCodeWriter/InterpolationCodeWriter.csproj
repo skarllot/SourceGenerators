@@ -10,5 +10,8 @@
     <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
     <PackageReference Include="System.Memory" Version="4.5.4" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <Compile Include="..\InternalPolyfill\**\*.cs" LinkBase="Polyfill" Exclude="**\obj\**" />
+  </ItemGroup>
   <Import Condition="'$(TargetFramework)' == 'netstandard2.0'" Project="$(SolutionDir)modules\polyfill.props" />
 </Project>

@@ -4,42 +4,17 @@
     <DefineConstants>$(DefineConstants);FeatureMemory;AllowUnsafeBlocks;FeatureValueTuple</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
-    <Using Include="Polyfills" />
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\IndexRange\*.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
+      LinkBase="Polyfill" />
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\Nullable\*.cs"
-      Link="Polyfill\Attributes\%(Filename)%(Extension)" />
+      LinkBase="Polyfill\Attributes" />
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\IsExternalInit.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
+      LinkBase="Polyfill" />
     <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringInterpolation\*.cs"
-      Link="Polyfill\Text\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\Polyfill_String.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\Polyfill_StringBuilder*.cs"
-      Link="Polyfill\Text\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\Polyfill_TryFormatToCharSpan.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\EnumPolyfill.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\MathPolyfill.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringPolyfill.cs"
-      Link="Polyfill\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringSyntaxAttribute.cs"
-      Link="Polyfill\Attributes\%(Filename)%(Extension)" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\CallerArgumentExpressionAttribute.cs"
-      Link="Polyfill\Attributes\%(Filename)%(Extension)" />
+      Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringInterpolation\*Attribute.cs"
+      LinkBase="Polyfill\Text" />
   </ItemGroup>
 </Project>

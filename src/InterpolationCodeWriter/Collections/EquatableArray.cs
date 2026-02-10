@@ -102,7 +102,7 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
         }
     }
 
-    /// <sinheritdoc/>
+    /// <inheritdoc/>
     public bool Equals(EquatableArray<T> array)
     {
         return _array.AsSpan().SequenceEqual(array._array.AsSpan());

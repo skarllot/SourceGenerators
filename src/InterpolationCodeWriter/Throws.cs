@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -15,6 +14,12 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 #endif
 internal static class Throws
 {
+    public static void IfNull([NotNull] object? argument, string paramName)
+    {
+        if (argument == null)
+            throw new ArgumentNullException(paramName);
+    }
+
     /// <summary>
     /// Throws an <see cref="InvalidOperationException"/> if the specified condition is true.
     /// </summary>
@@ -33,7 +38,7 @@ internal static class Throws
     /// <param name="value">The value to check.</param>
     /// <param name="paramName">The name of the parameter being checked.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/> is negative.</exception>
-    public static void OutOfRangeIfNegative(int value, [CallerArgumentExpression("value")] string? paramName = null)
+    public static void OutOfRangeIfNegative(int value, string paramName)
     {
 #if NETSTANDARD2_0
         if (value < 0)
@@ -50,11 +55,7 @@ internal static class Throws
     /// <param name="other">The value to compare against.</param>
     /// <param name="paramName">The name of the parameter being checked.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/> is greater than <paramref name="other"/>.</exception>
-    public static void OutOfRangeIfGreaterThan(
-        int value,
-        int other,
-        [CallerArgumentExpression("value")] string? paramName = null
-    )
+    public static void OutOfRangeIfGreaterThan(int value, int other, string paramName)
     {
 #if NETSTANDARD2_0
         if (value > other)

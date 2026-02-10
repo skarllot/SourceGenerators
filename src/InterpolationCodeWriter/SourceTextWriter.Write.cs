@@ -14,7 +14,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(value.ToString(_formatProvider));
+        _builder.Append(value ? bool.TrueString : bool.FalseString);
     }
 
     /// <summary>Write character directly into the generated output.</summary>
@@ -333,13 +333,21 @@ public sealed partial class SourceTextWriter
 
         if (_indentation == 0)
         {
+#if NETSTANDARD2_0
+            StringBuilderMemory.Append(_builder, textToAppend);
+#else
             _builder.Append(textToAppend);
+#endif
             return;
         }
 
         var endsWithNewline = EndsWithNewLine;
         var lineIndex = 0;
+#if NETSTANDARD2_0
+        foreach (var line in new InternalSpanLineEnumerator(textToAppend))
+#else
         foreach (var line in textToAppend.EnumerateLines())
+#endif
         {
             if (lineIndex > 0)
                 _builder.Append(_newLine);
@@ -347,7 +355,11 @@ public sealed partial class SourceTextWriter
             if (endsWithNewline)
                 WriteIndentation();
 
+#if NETSTANDARD2_0
+            StringBuilderMemory.Append(_builder, line);
+#else
             _builder.Append(line);
+#endif
             lineIndex++;
             endsWithNewline = true;
         }

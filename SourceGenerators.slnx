@@ -8,6 +8,7 @@
     <File Path="version.json" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/InternalPolyfill/InternalPolyfill.csproj" />
     <Project Path="src/InterpolationCodeWriter.CSharp.Sources/InterpolationCodeWriter.CSharp.Sources.csproj" />
     <Project Path="src/InterpolationCodeWriter.CSharp/InterpolationCodeWriter.CSharp.csproj" />
     <Project Path="src/InterpolationCodeWriter/InterpolationCodeWriter.csproj" />

@@ -27,10 +27,14 @@ public sealed partial class SourceTextWriter
     public SourceTextWriter(
         StringBuilder builder,
         string newLine = "\n",
-        int charsPerIndentation = SourceTextWriter.DefaultCharsPerIndentation,
+        int charsPerIndentation = DefaultCharsPerIndentation,
         IFormatProvider? formatProvider = null
     )
     {
+        Throws.IfNull(builder, nameof(builder));
+        Throws.IfNull(newLine, nameof(newLine));
+        Throws.OutOfRangeIfNegative(charsPerIndentation, nameof(charsPerIndentation));
+
         _builder = builder;
         _newLine = newLine;
         _charsPerIndentation = charsPerIndentation;
@@ -63,8 +67,8 @@ public sealed partial class SourceTextWriter
     /// <exception cref="ArgumentOutOfRangeException">The number of characters to remove is negative or exceeds the length of the written text.</exception>
     public void Rewind(int numberOfChars)
     {
-        Throws.OutOfRangeIfNegative(numberOfChars);
-        Throws.OutOfRangeIfGreaterThan(numberOfChars, _builder.Length);
+        Throws.OutOfRangeIfNegative(numberOfChars, nameof(numberOfChars));
+        Throws.OutOfRangeIfGreaterThan(numberOfChars, _builder.Length, nameof(numberOfChars));
 
         _builder.Length -= numberOfChars;
     }

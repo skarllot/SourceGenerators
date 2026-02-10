@@ -1,23 +1,22 @@
-﻿#if NETSTANDARD2_0
-#nullable enable
+﻿#nullable enable
 using System;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
 /// <summary>
-/// Enumerates the lines of a <see cref="ReadOnlySpan{Char}"/> for <see cref="SourceTextWriter"/>.
+/// Enumerates the lines of a <see cref="ReadOnlySpan{Char}"/>.
 /// </summary>
 #if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
 #endif
-internal ref struct SpanLineEnumerator
+internal ref struct InternalSpanLineEnumerator
 {
     private ReadOnlySpan<char> _remaining;
     private ReadOnlySpan<char> _current;
     private bool _isEnumeratorActive;
 
-    public SpanLineEnumerator(ReadOnlySpan<char> buffer)
+    public InternalSpanLineEnumerator(ReadOnlySpan<char> buffer)
     {
         _remaining = buffer;
         _current = default;
@@ -32,7 +31,7 @@ internal ref struct SpanLineEnumerator
     /// <summary>
     /// Returns this instance as an enumerator.
     /// </summary>
-    public SpanLineEnumerator GetEnumerator() => this;
+    public InternalSpanLineEnumerator GetEnumerator() => this;
 
     /// <summary>
     /// Advances the enumerator to the next line of the span.
@@ -78,4 +77,3 @@ internal ref struct SpanLineEnumerator
         return true;
     }
 }
-#endif

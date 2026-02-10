@@ -19,7 +19,7 @@ public sealed partial class SourceTextWriter
     /// <exception cref="ArgumentOutOfRangeException">The number of levels is negative.</exception>
     public void PushIndent(int levels = 1)
     {
-        Throws.OutOfRangeIfNegative(levels);
+        Throws.OutOfRangeIfNegative(levels, nameof(levels));
         _indentation += levels;
     }
 
@@ -29,7 +29,7 @@ public sealed partial class SourceTextWriter
     /// <exception cref="InvalidOperationException">Indentation cannot decrease below zero.</exception>
     public void PopIndent(int levels = 1)
     {
-        Throws.OutOfRangeIfNegative(levels);
+        Throws.OutOfRangeIfNegative(levels, nameof(levels));
         Throws.InvalidOperationIf(_indentation - levels < 0, "Indentation cannot decrease below zero");
 
         _indentation -= levels;
