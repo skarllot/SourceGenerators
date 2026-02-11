@@ -63,8 +63,8 @@
       },
       "System.Collections.Immutable": {
         "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
+        "resolved": "6.0.1",
+        "contentHash": "Cc+SfP+jyCmA1TnRnDA7cRZy5jbLyWodfuUJKDJ+PJZBwWkv8szz+ztSCHAonqnL01DRaHaS2ptc4bYIEdgvWw==",
         "dependencies": {
           "System.Memory": "4.5.4",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -118,7 +118,7 @@
       "Raiqub.Generators.InterpolationCodeWriter": {
         "type": "Project",
         "dependencies": {
-          "System.Collections.Immutable": "[6.0.0, )",
+          "System.Collections.Immutable": "[6.0.1, )",
           "System.Memory": "[4.5.4, )"
         }
       }
