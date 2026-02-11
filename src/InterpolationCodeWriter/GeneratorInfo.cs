@@ -5,6 +5,6 @@ internal static class GeneratorInfo
 #if IS_COMPILED
     internal const string Version = ThisAssembly.AssemblyFileVersion;
 #else
-    internal const string Version = "1.0.0.0";
+    internal const string Version = "2.0.0.0";
 #endif
 }
