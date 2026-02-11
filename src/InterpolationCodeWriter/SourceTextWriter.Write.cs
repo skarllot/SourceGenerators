@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
@@ -14,7 +15,7 @@ public sealed partial class SourceTextWriter
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(value ? bool.TrueString : bool.FalseString);
+        _builder.Append(value.ToString(_formatProvider));
     }
 
     /// <summary>Write character directly into the generated output.</summary>
@@ -310,6 +311,17 @@ public sealed partial class SourceTextWriter
         }
     }
 
+    /// <summary>Write the string representation of a specified value directly into the generated output.</summary>
+    /// <typeparam name="T">The type of the value to write.</typeparam>
+    /// <param name="value">The value to be appended to the generated output.</param>
+    public void Write<T>(T value)
+    {
+        if (value is IFormattable formattable)
+            Write(formattable.ToString(null, _formatProvider));
+        else if (value is not null)
+            Write(value.ToString());
+    }
+
     /// <summary>Write text directly into the generated output.</summary>
     /// <param name="textToAppend">The text to be appended to the generated output.</param>
     public void Write(string? textToAppend)
@@ -368,9 +380,10 @@ public sealed partial class SourceTextWriter
     /// <summary>Writes the specified interpolated string directly into the generated output.</summary>
     /// <param name="handler">The interpolated string to append.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public void Write([InterpolatedStringHandlerArgument("")] ref WriteInterpolatedStringHandler handler)
     {
         // Text is written using interpolated string handler by compiler generated code
-        _ = _builder;
     }
 }

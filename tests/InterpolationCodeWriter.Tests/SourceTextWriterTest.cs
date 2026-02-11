@@ -9,7 +9,7 @@ public partial class SourceTextWriterTest
     {
         var writer = new SourceTextWriter();
 
-        Assert.Equal("", writer.ToStringAndClear());
+        Assert.Equal("", writer.ToStringAndReset());
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter(newLine: "\r\n");
         writer.WriteLine("hello");
 
-        Assert.Equal("hello\r\n", writer.ToStringAndClear());
+        Assert.Equal("hello\r\n", writer.ToStringAndReset());
     }
 
     [Fact]
@@ -28,33 +28,33 @@ public partial class SourceTextWriterTest
         var writer = new SourceTextWriter(sb);
         writer.Write(" content");
 
-        Assert.Equal("existing content", writer.ToStringAndClear());
+        Assert.Equal("existing content", writer.ToStringAndReset());
     }
 
     [Fact]
-    public void ToStringAndClearReturnsContentAndClearsState()
+    public void ToStringAndResetReturnsContentAndClearsState()
     {
         var writer = new SourceTextWriter();
         writer.Write("hello");
 
-        var first = writer.ToStringAndClear();
-        var second = writer.ToStringAndClear();
+        var first = writer.ToStringAndReset();
+        var second = writer.ToStringAndReset();
 
         Assert.Equal("hello", first);
         Assert.Equal("", second);
     }
 
     [Fact]
-    public void ClearAllTextRemovesContentAndResetsIndentation()
+    public void ResetRemovesContentAndResetsIndentation()
     {
         var writer = new SourceTextWriter();
         writer.Write("some content");
         writer.PushIndent();
-        writer.ClearAllText();
+        writer.Reset();
         writer.WriteLine("line1");
         writer.Write("line2");
 
-        Assert.Equal("line1\nline2", writer.ToStringAndClear());
+        Assert.Equal("line1\nline2", writer.ToStringAndReset());
     }
 
     [Fact]
@@ -64,7 +64,7 @@ public partial class SourceTextWriterTest
         writer.Write("Hello, World!");
         writer.Rewind(8);
 
-        Assert.Equal("Hello", writer.ToStringAndClear());
+        Assert.Equal("Hello", writer.ToStringAndReset());
     }
 
     [Fact]
@@ -74,6 +74,6 @@ public partial class SourceTextWriterTest
         writer.Write("abc");
         writer.Rewind(3);
 
-        Assert.Equal("", writer.ToStringAndClear());
+        Assert.Equal("", writer.ToStringAndReset());
     }
 }

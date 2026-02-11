@@ -30,7 +30,7 @@ public static class CodeWriterExtensions
         }
         catch
         {
-            textWriter.ClearAllText();
+            textWriter.Reset();
             throw;
         }
 
@@ -65,7 +65,7 @@ public static class CodeWriterExtensions
         }
         catch
         {
-            textWriter.ClearAllText();
+            textWriter.Reset();
             throw;
         }
 

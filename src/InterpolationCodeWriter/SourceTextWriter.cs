@@ -33,6 +33,7 @@ public sealed partial class SourceTextWriter
     {
         Throws.IfNull(builder, nameof(builder));
         Throws.IfNull(newLine, nameof(newLine));
+        Throws.ArgIf(newLine.Length is not (1 or 2), "New line string must be 1 or 2 characters.", nameof(newLine));
         Throws.OutOfRangeIfNegative(charsPerIndentation, nameof(charsPerIndentation));
 
         _builder = builder;
@@ -55,8 +56,8 @@ public sealed partial class SourceTextWriter
     /// <summary>Gets the format provider used for formatting.</summary>
     public IFormatProvider FormatProvider => _formatProvider;
 
-    /// <summary>Remove all characters from the writer state.</summary>
-    public void ClearAllText()
+    /// <summary>Resets the writer to its initial state, clearing all written text and indentation.</summary>
+    public void Reset()
     {
         _builder.Clear();
         ClearIndent();
@@ -73,12 +74,12 @@ public sealed partial class SourceTextWriter
         _builder.Length -= numberOfChars;
     }
 
-    /// <summary>Converts the written text to a string and clears the writer state.</summary>
+    /// <summary>Converts the written text to a string and resets the writer state.</summary>
     /// <returns>A string containing all written text.</returns>
-    public string ToStringAndClear()
+    public string ToStringAndReset()
     {
         var text = _builder.ToString();
-        ClearAllText();
+        Reset();
         return text;
     }
 

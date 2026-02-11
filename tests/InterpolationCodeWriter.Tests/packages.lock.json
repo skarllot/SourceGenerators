@@ -99,6 +99,9 @@
           "xunit.extensibility.core": "[2.9.3]"
         }
       },
+      "Raiqub.Generators.InternalPolyfill": {
+        "type": "Project"
+      },
       "Raiqub.Generators.InterpolationCodeWriter": {
         "type": "Project"
       }
@@ -200,6 +203,9 @@
         "dependencies": {
           "xunit.extensibility.core": "[2.9.3]"
         }
+      },
+      "Raiqub.Generators.InternalPolyfill": {
+        "type": "Project"
       },
       "Raiqub.Generators.InterpolationCodeWriter": {
         "type": "Project"

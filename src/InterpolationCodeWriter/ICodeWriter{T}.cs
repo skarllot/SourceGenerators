@@ -8,7 +8,9 @@
 /// Implementations should be stateless to ensure thread-safety and predictable behavior
 /// in source generator contexts.
 /// </remarks>
+#if !IS_COMPILED
 [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
+#endif
 public interface ICodeWriter<in T>
 {
     /// <summary>

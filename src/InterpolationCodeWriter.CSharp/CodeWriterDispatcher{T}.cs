@@ -13,7 +13,7 @@ namespace Raiqub.Generators.InterpolationCodeWriter.CSharp;
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
 #endif
-public class CodeWriterDispatcher<T>
+public sealed class CodeWriterDispatcher<T>
 {
     private readonly Func<Exception, T, Diagnostic>? _exceptionHandler;
     private readonly ICodeWriter<T>[] _codeWriters;

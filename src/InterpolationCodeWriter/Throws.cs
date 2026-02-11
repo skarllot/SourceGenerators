@@ -14,6 +14,25 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 #endif
 internal static class Throws
 {
+    /// <summary>
+    /// Throws an <see cref="ArgumentException"/> if the specified condition is true.
+    /// </summary>
+    /// <param name="condition">The condition to evaluate.</param>
+    /// <param name="message">The error message that explains the reason for the exception.</param>
+    /// <param name="paramName">The name of the parameter that caused the exception.</param>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="condition"/> is true.</exception>
+    public static void ArgIf(bool condition, string message, string paramName)
+    {
+        if (condition)
+            throw new ArgumentException(message, paramName);
+    }
+
+    /// <summary>
+    /// Throws an <see cref="ArgumentNullException"/> if the specified argument is null.
+    /// </summary>
+    /// <param name="argument">The argument to check for null.</param>
+    /// <param name="paramName">The name of the parameter being checked.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="argument"/> is null.</exception>
     public static void IfNull([NotNull] object? argument, string paramName)
     {
         if (argument == null)

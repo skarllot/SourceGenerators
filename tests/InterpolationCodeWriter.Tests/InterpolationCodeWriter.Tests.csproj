@@ -22,6 +22,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\InternalPolyfill\InternalPolyfill.csproj" />
     <ProjectReference Include="..\..\src\InterpolationCodeWriter\InterpolationCodeWriter.csproj" />
   </ItemGroup>
 </Project>
