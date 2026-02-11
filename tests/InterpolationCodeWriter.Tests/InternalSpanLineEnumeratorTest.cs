@@ -92,6 +92,22 @@ public class InternalSpanLineEnumeratorTest
         Assert.False(enumerator.MoveNext());
     }
 
+    [Fact]
+    public void ConsecutiveCrLfYieldsEmptyLines()
+    {
+        var lines = CollectLines("a\r\n\r\nb");
+
+        Assert.Equal(["a", "", "b"], lines);
+    }
+
+    [Fact]
+    public void LfFollowedByCrAreTwoSeparateEndings()
+    {
+        var lines = CollectLines("\n\r");
+
+        Assert.Equal(["", "", ""], lines);
+    }
+
     private static string[] CollectLines(string input)
     {
         var result = new List<string>();

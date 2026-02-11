@@ -195,4 +195,68 @@ public partial class SourceTextWriterTest
 
         Assert.Equal("Hello, World!", writer.ToStringAndReset());
     }
+
+    [Fact]
+    public void WriteTextEndingWithNewlineDoesNotProduceTrailingIndentation()
+    {
+        var writer = new SourceTextWriter();
+        writer.PushIndent();
+        writer.WriteLine("header");
+        writer.Write("line1\nline2\n");
+
+        Assert.Equal("header\n    line1\n    line2\n", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteTextEndingWithCRLFDoesNotProduceTrailingIndentation()
+    {
+        var writer = new SourceTextWriter(newLine: "\r\n");
+        writer.PushIndent();
+        writer.WriteLine("header");
+        writer.Write("line1\r\nline2\r\n");
+
+        Assert.Equal("header\r\n    line1\r\n    line2\r\n", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteMultiLineTextWithEmptyLinesDoesNotIndentEmptyLines()
+    {
+        var writer = new SourceTextWriter();
+        writer.PushIndent();
+        writer.WriteLine("header");
+        writer.Write("line1\n\nline2");
+
+        Assert.Equal("header\n    line1\n\n    line2", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteSingleLineEndingWithNewlineDoesNotProduceTrailingIndentation()
+    {
+        var writer = new SourceTextWriter();
+        writer.PushIndent();
+        writer.WriteLine("header");
+        writer.Write("content\n");
+
+        Assert.Equal("header\n    content\n", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteTextEndingWithNewlineNoIndentationIsUnchanged()
+    {
+        var writer = new SourceTextWriter();
+        writer.Write("line1\nline2\n");
+
+        Assert.Equal("line1\nline2\n", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteMultipleTrailingNewlinesWithIndentation()
+    {
+        var writer = new SourceTextWriter();
+        writer.PushIndent();
+        writer.WriteLine("header");
+        writer.Write("content\n\n");
+
+        Assert.Equal("header\n    content\n\n", writer.ToStringAndReset());
+    }
 }

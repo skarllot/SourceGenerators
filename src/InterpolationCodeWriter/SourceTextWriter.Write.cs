@@ -364,7 +364,7 @@ public sealed partial class SourceTextWriter
             if (lineIndex > 0)
                 _builder.Append(_newLine);
 
-            if (endsWithNewline)
+            if (endsWithNewline && line.Length > 0)
                 WriteIndentation();
 
 #if NETSTANDARD2_0
