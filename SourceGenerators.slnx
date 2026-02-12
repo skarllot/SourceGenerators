@@ -8,11 +8,14 @@
     <File Path="version.json" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/T4CodeWriter.Sources/T4CodeWriter.Sources.csproj" />
-    <Project Path="src/T4CodeWriter/T4CodeWriter.csproj" />
-    <Project Path="src/T4Template/T4Template.csproj" />
+    <Project Path="src/InternalPolyfill/InternalPolyfill.csproj" />
+    <Project Path="src/InterpolationCodeWriter.CSharp.Sources/InterpolationCodeWriter.CSharp.Sources.csproj" />
+    <Project Path="src/InterpolationCodeWriter.CSharp/InterpolationCodeWriter.CSharp.csproj" />
+    <Project Path="src/InterpolationCodeWriter/InterpolationCodeWriter.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/T4CodeWriter.Tests/T4CodeWriter.Tests.csproj" />
+    <Project Path="tests/InterpolationCodeWriter.CSharp.Tests/InterpolationCodeWriter.CSharp.Tests.csproj" />
+    <Project Path="tests/InterpolationCodeWriter.CSharp10.Tests/InterpolationCodeWriter.CSharp10.Tests.csproj" />
+    <Project Path="tests/InterpolationCodeWriter.Tests/InterpolationCodeWriter.Tests.csproj" />
   </Folder>
 </Solution>
