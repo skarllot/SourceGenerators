@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NBGV_EmitThisAssemblyClass>false</NBGV_EmitThisAssemblyClass>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <Content
+      Include="..\InternalPolyfill\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+    <Content
+      Include="..\InterpolationCodeWriter\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+    <Content
+      Include="..\InterpolationCodeWriter.CSharp\**\*.cs"
+      Exclude="**\obj\**"
+      PackagePath="contentFiles\cs\netstandard2.0\InterpolationCodeWriter.CSharp\"
+      BuildAction="Compile"
+    />
+    <Content Include="build\**\*" PackagePath="build\" />
+  </ItemGroup>
+</Project>
