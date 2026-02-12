@@ -16,7 +16,7 @@ dotnet add package Raiqub.Generators.InterpolationCodeWriter.CSharp.Sources
 
 ## Quick Start
 
-After installing, use `ICodeWriter<T>` and `CodeWriterDispatcher<T>` directly in your source generator:
+Implement `ICodeWriter<T>` to define a code writer and use `CodeWriterDispatcher<T>` to dispatch source generation:
 
 ```csharp
 public class MyWriter : ICodeWriter<MyModel>
@@ -36,6 +36,20 @@ public class MyWriter : ICodeWriter<MyModel>
         writer.PopIndent();
         writer.WriteLine("}");
     }
+}
+```
+
+Then dispatch generation using `CodeWriterDispatcher<T>`:
+
+```csharp
+private static readonly CodeWriterDispatcher<MyModel> s_dispatcher =
+    new([new MyWriter()]);
+
+private static void Emit(
+    SourceProductionContext context,
+    ImmutableArray<MyModel> types)
+{
+    s_dispatcher.GenerateSources(types, context);
 }
 ```
 
