@@ -259,4 +259,22 @@ public partial class SourceTextWriterTest
 
         Assert.Equal("header\n    content\n\n", writer.ToStringAndReset());
     }
+
+    [Fact]
+    public void WriteStringWithLFNormalizesToConfiguredCRLFWhenIndentationIsZero()
+    {
+        var writer = new SourceTextWriter(newLine: "\r\n");
+        writer.Write("line1\nline2");
+
+        Assert.Equal("line1\r\nline2", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteSpanWithCRLFNormalizesToConfiguredLFWhenIndentationIsZero()
+    {
+        var writer = new SourceTextWriter(newLine: "\n");
+        writer.Write("line1\r\nline2".AsSpan());
+
+        Assert.Equal("line1\nline2", writer.ToStringAndReset());
+    }
 }
