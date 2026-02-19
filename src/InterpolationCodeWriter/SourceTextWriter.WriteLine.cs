@@ -25,6 +25,110 @@ public sealed partial class SourceTextWriter
 
     /// <summary>Write boolean directly into the generated output and appends a new line.</summary>
     /// <param name="value">The boolean to be written.</param>
+    public void WriteLine(bool value)
+    {
+        Write(value);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write character directly into the generated output and appends a new line.</summary>
+    /// <param name="value">The character to be written.</param>
+    public void WriteLine(char value)
+    {
+        Write(value);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(byte number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(sbyte number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(short number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(ushort number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(int number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(uint number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(long number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(ulong number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(float number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(double number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    public void WriteLine(decimal number)
+    {
+        Write(number);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write boolean directly into the generated output and appends a new line.</summary>
+    /// <param name="value">The boolean to be written.</param>
     public void WriteLine(bool? value)
     {
         Write(value);
