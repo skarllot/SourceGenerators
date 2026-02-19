@@ -343,16 +343,6 @@ public sealed partial class SourceTextWriter
             textToAppend = textToAppend.TrimStart("\r\n".AsSpan());
         }
 
-        if (_indentation == 0)
-        {
-#if NETSTANDARD2_0
-            StringBuilderMemory.Append(_builder, textToAppend);
-#else
-            _builder.Append(textToAppend);
-#endif
-            return;
-        }
-
         var endsWithNewline = EndsWithNewLine;
         var lineIndex = 0;
 #if NETSTANDARD2_0
@@ -364,7 +354,7 @@ public sealed partial class SourceTextWriter
             if (lineIndex > 0)
                 _builder.Append(_newLine);
 
-            if (endsWithNewline && line.Length > 0)
+            if (endsWithNewline && _indentation > 0 && line.Length > 0)
                 WriteIndentation();
 
 #if NETSTANDARD2_0
