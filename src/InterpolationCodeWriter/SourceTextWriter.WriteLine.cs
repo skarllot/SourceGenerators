@@ -247,6 +247,14 @@ public sealed partial class SourceTextWriter
         _builder.Append(_newLine);
     }
 
+    /// <summary>Accepts an <see cref="EmptyResult"/> value and appends a new line to the generated output.</summary>
+    /// <param name="value">The empty result value. Its content is ignored.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void WriteLine([SuppressMessage("ReSharper", "UnusedParameter.Global")] EmptyResult value)
+    {
+        _builder.Append(_newLine);
+    }
+
     /// <summary>Writes the specified interpolated string directly into the generated output and appends a new line.</summary>
     /// <param name="handler">The interpolated string to append.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

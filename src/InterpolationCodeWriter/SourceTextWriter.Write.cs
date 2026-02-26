@@ -329,6 +329,15 @@ public sealed partial class SourceTextWriter
         Write(textToAppend.AsSpan());
     }
 
+    /// <summary>Accepts an <see cref="EmptyResult"/> value and writes nothing to the generated output.</summary>
+    /// <param name="value">The empty result value. Its content is ignored.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
+    public void Write([SuppressMessage("ReSharper", "UnusedParameter.Global")] EmptyResult value)
+    {
+        // Nothing to write
+    }
+
     /// <summary>Write text directly into the generated output.</summary>
     /// <param name="textToAppend">The text to be appended to the generated output.</param>
     public void Write(ReadOnlySpan<char> textToAppend)
