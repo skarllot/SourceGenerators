@@ -277,4 +277,13 @@ public partial class SourceTextWriterTest
 
         Assert.Equal("line1\nline2", writer.ToStringAndReset());
     }
+
+    [Fact]
+    public void WriteEmptyResultDoesNothing()
+    {
+        var writer = new SourceTextWriter();
+        writer.Write(EmptyResult.Value);
+
+        Assert.Equal("", writer.ToStringAndReset());
+    }
 }

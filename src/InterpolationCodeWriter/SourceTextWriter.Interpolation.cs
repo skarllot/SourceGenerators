@@ -234,5 +234,14 @@ public sealed partial class SourceTextWriter
         {
             _writer.Write(value);
         }
+
+        /// <summary>Handles an <see cref="EmptyResult"/> value in the interpolated string, writing nothing to the output.</summary>
+        /// <param name="value">The empty result value. Its content is ignored.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage("Performance", "CA1822:Mark members as static")]
+        public void AppendFormatted([SuppressMessage("ReSharper", "UnusedParameter.Global")] EmptyResult value)
+        {
+            // Nothing to write
+        }
     }
 }
