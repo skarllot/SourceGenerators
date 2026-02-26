@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#nullable enable
+
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -9,6 +12,11 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 /// and produces no interpolated output itself.
 /// </remarks>
 public readonly record struct EmptyResult
+#if NET8_0_OR_GREATER
+    : ISpanFormattable, IUtf8SpanFormattable
+#else
+    : IFormattable
+#endif
 {
     /// <summary>Gets the singleton empty result value.</summary>
     [SuppressMessage("ReSharper", "UnassignedReadonlyField")]
@@ -17,4 +25,47 @@ public readonly record struct EmptyResult
     /// <summary>Returns an empty string.</summary>
     /// <returns>An empty string.</returns>
     public override string ToString() => string.Empty;
+
+    /// <summary>Returns an empty string, ignoring the format and format provider.</summary>
+    /// <param name="format">This parameter is ignored.</param>
+    /// <param name="formatProvider">This parameter is ignored.</param>
+    /// <returns>An empty string.</returns>
+    public string ToString(string? format, IFormatProvider? formatProvider) => string.Empty;
+
+    /// <summary>Writes nothing to the destination span.</summary>
+    /// <param name="destination">This parameter is ignored.</param>
+    /// <param name="charsWritten">When this method returns, contains zero.</param>
+    /// <param name="format">This parameter is ignored.</param>
+    /// <param name="provider">This parameter is ignored.</param>
+    /// <returns><see langword="true"/> always.</returns>
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
+    public bool TryFormat(
+        Span<char> destination,
+        out int charsWritten,
+        ReadOnlySpan<char> format,
+        IFormatProvider? provider
+    )
+    {
+        charsWritten = 0;
+        return true;
+    }
+
+    /// <summary>Writes nothing to the destination span.</summary>
+    /// <param name="destination">This parameter is ignored.</param>
+    /// <param name="bytesWritten">When this method returns, contains zero.</param>
+    /// <param name="format">This parameter is ignored.</param>
+    /// <param name="provider">This parameter is ignored.</param>
+    /// <returns><see langword="true"/> always.</returns>
+    [SuppressMessage("Naming", "CA1725:Parameter names should match base declaration")]
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
+    public bool TryFormat(
+        Span<byte> destination,
+        out int bytesWritten,
+        ReadOnlySpan<char> format,
+        IFormatProvider? provider
+    )
+    {
+        bytesWritten = 0;
+        return true;
+    }
 }
