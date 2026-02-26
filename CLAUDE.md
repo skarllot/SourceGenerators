@@ -41,7 +41,7 @@ Tests use **xUnit** with central package management (`tests/Directory.Packages.p
 
 - Root namespace pattern: `Raiqub.Generators.{ProjectName}` (set in `Directory.Build.props`)
 - C# language version: 12 globally, 14 for net10.0 targets, 10 for InternalPolyfill
-- Nullable: disabled globally (enabled in test projects)
+- Nullable: disabled globally (enabled in test projects; source files must opt-in with `#nullable enable`)
 - Implicit usings: disabled globally (enabled in test projects)
 - Warnings as errors enabled
 - Static fields: `s_` prefix. Private/internal fields: `_camelCase`

@@ -32,13 +32,13 @@ public readonly record struct EmptyResult
     /// <returns>An empty string.</returns>
     public string ToString(string? format, IFormatProvider? formatProvider) => string.Empty;
 
+#if NET8_0_OR_GREATER
     /// <summary>Writes nothing to the destination span.</summary>
     /// <param name="destination">This parameter is ignored.</param>
     /// <param name="charsWritten">When this method returns, contains zero.</param>
     /// <param name="format">This parameter is ignored.</param>
     /// <param name="provider">This parameter is ignored.</param>
     /// <returns><see langword="true"/> always.</returns>
-    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public bool TryFormat(
         Span<char> destination,
         out int charsWritten,
@@ -57,7 +57,6 @@ public readonly record struct EmptyResult
     /// <param name="provider">This parameter is ignored.</param>
     /// <returns><see langword="true"/> always.</returns>
     [SuppressMessage("Naming", "CA1725:Parameter names should match base declaration")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public bool TryFormat(
         Span<byte> destination,
         out int bytesWritten,
@@ -68,4 +67,5 @@ public readonly record struct EmptyResult
         bytesWritten = 0;
         return true;
     }
+#endif
 }
