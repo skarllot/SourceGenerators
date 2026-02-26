@@ -114,6 +114,21 @@ public partial class SourceTextWriterTest
         );
     }
 
+    [Fact]
+    public void WriteNestedInterpolated()
+    {
+        var writer = new SourceTextWriter();
+        writer.Write($"<{NestedInterpolate(writer)}>");
+
+        Assert.Equal("<nested>", writer.ToStringAndReset());
+    }
+
+    private static EmptyResult NestedInterpolate(SourceTextWriter writer)
+    {
+        writer.Write("nested");
+        return default;
+    }
+
     private sealed class CustomToStringObject(string value)
     {
         public override string ToString() => value;

@@ -467,4 +467,14 @@ public partial class SourceTextWriterTest
 
         Assert.Equal("start\n", writer.ToStringAndReset());
     }
+
+    [Fact]
+    public void WriteLineEmptyResultAppendsOnlyNewLine()
+    {
+        var writer = new SourceTextWriter();
+        writer.Write("start");
+        writer.WriteLine(EmptyResult.Value);
+
+        Assert.Equal("start\n", writer.ToStringAndReset());
+    }
 }
