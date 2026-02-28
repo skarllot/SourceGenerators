@@ -9,9 +9,7 @@ public class CodeWriterDispatcherTest
     public void GenerateSources_WithNoCodeWriters_DoesNothing()
     {
         var dispatcher = new CodeWriterDispatcher([]);
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Empty(runResult.GeneratedTrees);
         Assert.Empty(runResult.Diagnostics);
@@ -22,9 +20,7 @@ public class CodeWriterDispatcherTest
     {
         var codeWriter = new TestCodeWriter("Test.g.cs", "// Test content");
         var dispatcher = new CodeWriterDispatcher([codeWriter]);
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Single(runResult.GeneratedTrees);
         Assert.EndsWith("Test.g.cs", runResult.GeneratedTrees[0].FilePath);
@@ -38,19 +34,11 @@ public class CodeWriterDispatcherTest
         var codeWriter1 = new TestCodeWriter("Test1.g.cs", "// Test 1");
         var codeWriter2 = new TestCodeWriter("Test2.g.cs", "// Test 2");
         var dispatcher = new CodeWriterDispatcher([codeWriter1, codeWriter2]);
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Equal(2, runResult.GeneratedTrees.Length);
-        Assert.Contains(
-            runResult.GeneratedTrees,
-            s => s.FilePath.EndsWith("Test1.g.cs", StringComparison.Ordinal)
-        );
-        Assert.Contains(
-            runResult.GeneratedTrees,
-            s => s.FilePath.EndsWith("Test2.g.cs", StringComparison.Ordinal)
-        );
+        Assert.Contains(runResult.GeneratedTrees, s => s.FilePath.EndsWith("Test1.g.cs", StringComparison.Ordinal));
+        Assert.Contains(runResult.GeneratedTrees, s => s.FilePath.EndsWith("Test2.g.cs", StringComparison.Ordinal));
         Assert.Empty(runResult.Diagnostics);
     }
 
@@ -60,9 +48,7 @@ public class CodeWriterDispatcherTest
         var codeWriter = new ThrowingCodeWriter();
         var dispatcher = new CodeWriterDispatcher([codeWriter]);
 
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Empty(runResult.GeneratedTrees);
         Assert.Single(runResult.Diagnostics);
@@ -88,17 +74,12 @@ public class CodeWriterDispatcherTest
                 ),
             codeWriters: codeWriter
         );
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Empty(runResult.GeneratedTrees);
         Assert.Single(runResult.Diagnostics);
         Assert.Equal("TEST001", runResult.Diagnostics[0].Id);
-        Assert.Contains(
-            "Test exception",
-            runResult.Diagnostics[0].GetMessage(formatProvider: null)
-        );
+        Assert.Contains("Test exception", runResult.Diagnostics[0].GetMessage(formatProvider: null));
     }
 
     [Fact]
@@ -109,22 +90,13 @@ public class CodeWriterDispatcherTest
         var dispatcher = new CodeWriterDispatcher(
             exceptionHandler: _ =>
                 Diagnostic.Create(
-                    new DiagnosticDescriptor(
-                        "TEST001",
-                        "Test",
-                        "Test",
-                        "Test",
-                        DiagnosticSeverity.Error,
-                        true
-                    ),
+                    new DiagnosticDescriptor("TEST001", "Test", "Test", "Test", DiagnosticSeverity.Error, true),
                     Location.None
                 ),
             throwingWriter,
             successWriter
         );
-        var runResult = SourceProductionContextRunner.Execute(context =>
-            dispatcher.GenerateSources(context)
-        );
+        var runResult = SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context));
 
         Assert.Single(runResult.GeneratedTrees);
         Assert.EndsWith("Success.g.cs", runResult.GeneratedTrees[0].FilePath);
@@ -141,10 +113,7 @@ public class CodeWriterDispatcherTest
         cts.Cancel();
 
         Assert.Throws<OperationCanceledException>(() =>
-            SourceProductionContextRunner.Execute(
-                context => dispatcher.GenerateSources(context),
-                cts.Token
-            )
+            SourceProductionContextRunner.Execute(context => dispatcher.GenerateSources(context), cts.Token)
         );
     }
 

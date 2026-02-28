@@ -4,17 +4,12 @@
     <DefineConstants>$(DefineConstants);FeatureMemory;AllowUnsafeBlocks;FeatureValueTuple</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\IndexRange\*.cs"
-      LinkBase="Polyfill" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\Nullable\*.cs"
-      LinkBase="Polyfill\Attributes" />
-    <Compile
-      Include="$(SolutionDir)modules\polyfill\src\Polyfill\IsExternalInit.cs"
-      LinkBase="Polyfill" />
+    <Compile Include="$(SolutionDir)modules\polyfill\src\Polyfill\IndexRange\*.cs" LinkBase="Polyfill" />
+    <Compile Include="$(SolutionDir)modules\polyfill\src\Polyfill\Nullable\*.cs" LinkBase="Polyfill\Attributes" />
+    <Compile Include="$(SolutionDir)modules\polyfill\src\Polyfill\IsExternalInit.cs" LinkBase="Polyfill" />
     <Compile
       Include="$(SolutionDir)modules\polyfill\src\Polyfill\StringInterpolation\*Attribute.cs"
-      LinkBase="Polyfill\Text" />
+      LinkBase="Polyfill\Text"
+    />
   </ItemGroup>
 </Project>
