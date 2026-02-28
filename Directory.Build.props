@@ -1,5 +1,4 @@
 ﻿<Project>
-
   <PropertyGroup>
     <RootNamespace>Raiqub.Generators.$(MSBuildProjectName)</RootNamespace>
     <AssemblyName>$(RootNamespace)</AssemblyName>
@@ -13,7 +12,6 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>Recommended</AnalysisMode>
   </PropertyGroup>
-
   <PropertyGroup>
     <Authors>Fabricio Godoy</Authors>
     <Copyright>Copyright © Fabricio Godoy</Copyright>
@@ -23,5 +21,4 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/skarllot/SourceGenerators</PackageProjectUrl>
   </PropertyGroup>
-
 </Project>

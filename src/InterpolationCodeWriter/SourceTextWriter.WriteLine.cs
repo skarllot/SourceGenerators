@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -43,7 +43,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(byte number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(byte number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -51,7 +59,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(sbyte number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(sbyte number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -59,7 +75,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(short number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(short number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -67,7 +91,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(ushort number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(ushort number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -75,7 +107,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(int number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(int number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -83,7 +123,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(uint number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(uint number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -91,7 +139,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(long number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(long number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -99,7 +155,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(ulong number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(ulong number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -107,7 +171,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(float number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(float number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -115,7 +187,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(double number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(double number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -123,7 +203,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(decimal number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(decimal number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -147,7 +235,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(byte? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(byte? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -155,7 +251,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(sbyte? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(sbyte? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -163,7 +267,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(short? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(short? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -171,7 +283,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(ushort? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(ushort? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -179,7 +299,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(int? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(int? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -187,7 +315,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(uint? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(uint? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -195,7 +331,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(long? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(long? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -203,7 +347,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(ulong? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(ulong? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -211,7 +363,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(float? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(float? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -219,7 +379,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(double? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(double? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -227,7 +395,15 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be written.</param>
     public void WriteLine(decimal? number)
     {
-        Write(number);
+        WriteLine(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output and appends a new line.</summary>
+    /// <param name="number">The number to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(decimal? number, string? format)
+    {
+        Write(number, format);
         _builder.Append(_newLine);
     }
 
@@ -243,7 +419,33 @@ public sealed partial class SourceTextWriter
     /// <param name="value">The text to be written.</param>
     public void WriteLine(object? value)
     {
-        Write(value);
+        WriteLine(value, format: null);
+    }
+
+    /// <summary>Write text directly into the generated output and appends a new line.</summary>
+    /// <param name="value">The text to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine(object? value, string? format)
+    {
+        Write(value, format);
+        _builder.Append(_newLine);
+    }
+
+    /// <summary>Write the string representation of a specified value directly into the generated output and appends a new line.</summary>
+    /// <typeparam name="T">The type of the value to write.</typeparam>
+    /// <param name="value">The value to be written.</param>
+    public void WriteLine<T>(T value)
+    {
+        WriteLine(value, format: null);
+    }
+
+    /// <summary>Write the string representation of a specified value directly into the generated output and appends a new line.</summary>
+    /// <typeparam name="T">The type of the value to write.</typeparam>
+    /// <param name="value">The value to be written.</param>
+    /// <param name="format">The format string.</param>
+    public void WriteLine<T>(T value, string? format)
+    {
+        Write(value, format);
         _builder.Append(_newLine);
     }
 

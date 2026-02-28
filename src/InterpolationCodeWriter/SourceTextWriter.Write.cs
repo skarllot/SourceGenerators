@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -32,110 +32,198 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(byte number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(byte number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(sbyte number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(sbyte number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(short number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(short number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(ushort number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(ushort number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(int number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(int number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(uint number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(uint number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(long number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(long number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(ulong number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(ulong number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(float number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(float number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(double number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(double number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(decimal number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(decimal number, string? format)
+    {
         if (_indentation > 0 && EndsWithNewLine)
             WriteIndentation();
 
-        _builder.Append(number.ToString(_formatProvider));
+        _builder.Append(number.ToString(format, _formatProvider));
     }
 
     /// <summary>Write the string representation of a specified boolean value directly into the generated output.</summary>
@@ -166,144 +254,240 @@ public sealed partial class SourceTextWriter
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(byte? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(byte? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(sbyte? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(sbyte? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(short? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(short? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(ushort? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(ushort? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(int? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(int? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(uint? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(uint? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(long? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(long? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(ulong? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(ulong? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(float? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(float? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(double? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(double? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write number directly into the generated output.</summary>
     /// <param name="number">The number to be appended to the generated output.</param>
     public void Write(decimal? number)
     {
+        Write(number, format: null);
+    }
+
+    /// <summary>Write number directly into the generated output.</summary>
+    /// <param name="number">The number to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(decimal? number, string? format)
+    {
         if (number is null)
         {
             return;
         }
 
-        Write(number.Value);
+        Write(number.Value, format);
     }
 
     /// <summary>Write the string representation of a specified object directly into the generated output.</summary>
     /// <param name="value">The object to be appended to the generated output.</param>
     public void Write(object? value)
     {
+        Write(value, format: null);
+    }
+
+    /// <summary>Write the string representation of a specified object directly into the generated output.</summary>
+    /// <param name="value">The object to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write(object? value, string? format)
+    {
         switch (value)
         {
             case null:
                 return;
             case IFormattable formattable:
-                Write(formattable.ToString(null, _formatProvider));
+                Write(formattable.ToString(format, _formatProvider));
                 break;
             default:
                 Write(value.ToString());
@@ -316,8 +500,17 @@ public sealed partial class SourceTextWriter
     /// <param name="value">The value to be appended to the generated output.</param>
     public void Write<T>(T value)
     {
+        Write(value, format: null);
+    }
+
+    /// <summary>Write the string representation of a specified value directly into the generated output.</summary>
+    /// <typeparam name="T">The type of the value to write.</typeparam>
+    /// <param name="value">The value to be appended to the generated output.</param>
+    /// <param name="format">The format string.</param>
+    public void Write<T>(T value, string? format)
+    {
         if (value is IFormattable formattable)
-            Write(formattable.ToString(null, _formatProvider));
+            Write(formattable.ToString(format, _formatProvider));
         else if (value is not null)
             Write(value.ToString());
     }

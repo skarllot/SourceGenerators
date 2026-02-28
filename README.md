@@ -7,6 +7,7 @@
 <div style="text-align: center;">
 
 [![Build status](https://github.com/skarllot/SourceGenerators/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/skarllot/SourceGenerators/actions)
+[![codecov](https://codecov.io/gh/skarllot/SourceGenerators/graph/badge.svg?token=LS2ZQG4BAM)](https://codecov.io/gh/skarllot/SourceGenerators)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/skarllot/SourceGenerators/badge)](https://securityscorecards.dev/viewer/?uri=github.com/skarllot/SourceGenerators)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/skarllot/SourceGenerators/main/LICENSE)
 

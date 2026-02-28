@@ -29,19 +29,13 @@ public class SourceProductionContextRunner
         );
     }
 
-    private sealed class TestSourceGenerator(Action<SourceProductionContext> generateAction)
-        : IIncrementalGenerator
+    private sealed class TestSourceGenerator(Action<SourceProductionContext> generateAction) : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            var valueProvider = context
-                .SyntaxProvider.CreateSyntaxProvider((_, _) => true, (_, _) => 0)
-                .Collect();
+            var valueProvider = context.SyntaxProvider.CreateSyntaxProvider((_, _) => true, (_, _) => 0).Collect();
 
-            context.RegisterSourceOutput(
-                valueProvider,
-                (productionContext, _) => generateAction(productionContext)
-            );
+            context.RegisterSourceOutput(valueProvider, (productionContext, _) => generateAction(productionContext));
         }
     }
 }

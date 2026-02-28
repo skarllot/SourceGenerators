@@ -1,21 +1,21 @@
 <Solution>
-  <Folder Name="/.root/">
-    <File Path=".editorconfig" />
-    <File Path=".gitignore" />
-    <File Path="Directory.Build.props" />
-    <File Path="global.json" />
-    <File Path="README.md" />
-    <File Path="version.json" />
-  </Folder>
-  <Folder Name="/src/">
-    <Project Path="src/InternalPolyfill/InternalPolyfill.csproj" />
-    <Project Path="src/InterpolationCodeWriter.CSharp.Sources/InterpolationCodeWriter.CSharp.Sources.csproj" />
-    <Project Path="src/InterpolationCodeWriter.CSharp/InterpolationCodeWriter.CSharp.csproj" />
-    <Project Path="src/InterpolationCodeWriter/InterpolationCodeWriter.csproj" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/InterpolationCodeWriter.CSharp.Tests/InterpolationCodeWriter.CSharp.Tests.csproj" />
-    <Project Path="tests/InterpolationCodeWriter.CSharp10.Tests/InterpolationCodeWriter.CSharp10.Tests.csproj" />
-    <Project Path="tests/InterpolationCodeWriter.Tests/InterpolationCodeWriter.Tests.csproj" />
-  </Folder>
+    <Folder Name="/.root/">
+        <File Path=".editorconfig" />
+        <File Path=".gitignore" />
+        <File Path="Directory.Build.props" />
+        <File Path="global.json" />
+        <File Path="README.md" />
+        <File Path="version.json" />
+    </Folder>
+    <Folder Name="/src/">
+        <Project Path="src/InternalPolyfill/InternalPolyfill.csproj" />
+        <Project Path="src/InterpolationCodeWriter.CSharp.Sources/InterpolationCodeWriter.CSharp.Sources.csproj" />
+        <Project Path="src/InterpolationCodeWriter.CSharp/InterpolationCodeWriter.CSharp.csproj" />
+        <Project Path="src/InterpolationCodeWriter/InterpolationCodeWriter.csproj" />
+    </Folder>
+    <Folder Name="/tests/">
+        <Project Path="tests/InterpolationCodeWriter.CSharp.Tests/InterpolationCodeWriter.CSharp.Tests.csproj" />
+        <Project Path="tests/InterpolationCodeWriter.CSharp10.Tests/InterpolationCodeWriter.CSharp10.Tests.csproj" />
+        <Project Path="tests/InterpolationCodeWriter.Tests/InterpolationCodeWriter.Tests.csproj" />
+    </Folder>
 </Solution>

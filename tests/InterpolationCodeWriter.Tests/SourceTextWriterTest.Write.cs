@@ -2,32 +2,96 @@ namespace Raiqub.Generators.InterpolationCodeWriter.Tests;
 
 public partial class SourceTextWriterTest
 {
-    [Fact]
-    public void WriteStringAppendsText()
+    [Theory]
+    [MemberData(nameof(WritePrimitiveCases))]
+    [MemberData(nameof(WriteNullableValueCases))]
+    public void WriteValueAppendsStringRepresentation(Action<SourceTextWriter> write, string expected)
     {
         var writer = new SourceTextWriter();
-        writer.Write("hello");
-
-        Assert.Equal("hello", writer.ToStringAndReset());
+        write(writer);
+        Assert.Equal(expected, writer.ToStringAndReset());
     }
 
-    [Fact]
-    public void WriteNullStringDoesNothing()
+    public static TheoryData<Action<SourceTextWriter>, string> WritePrimitiveCases =>
+        new()
+        {
+            { w => w.Write(true), "True" },
+            { w => w.Write(false), "False" },
+            { w => w.Write('X'), "X" },
+            { w => w.Write((byte)42), "42" },
+            { w => w.Write((sbyte)42), "42" },
+            { w => w.Write((short)42), "42" },
+            { w => w.Write((ushort)42), "42" },
+            { w => w.Write(42), "42" },
+            { w => w.Write(42u), "42" },
+            { w => w.Write(42L), "42" },
+            { w => w.Write(42ul), "42" },
+            { w => w.Write(1.5f), "1.5" },
+            { w => w.Write(3.14), "3.14" },
+            { w => w.Write(9.99m), "9.99" },
+            { w => w.Write("hello"), "hello" },
+            { w => w.Write((object)42), "42" },
+        };
+
+    public static TheoryData<Action<SourceTextWriter>, string> WriteNullableValueCases =>
+        new()
+        {
+            { w => w.Write((bool?)true), "True" },
+            { w => w.Write((char?)'A'), "A" },
+            { w => w.Write((byte?)42), "42" },
+            { w => w.Write((sbyte?)42), "42" },
+            { w => w.Write((short?)42), "42" },
+            { w => w.Write((ushort?)42), "42" },
+            { w => w.Write((int?)42), "42" },
+            { w => w.Write((uint?)42u), "42" },
+            { w => w.Write((long?)42L), "42" },
+            { w => w.Write((ulong?)42ul), "42" },
+            { w => w.Write((float?)1.5f), "1.5" },
+            { w => w.Write((double?)3.14), "3.14" },
+            { w => w.Write((decimal?)9.99m), "9.99" },
+        };
+
+    [Theory]
+    [MemberData(nameof(WriteNullOrEmptyCases))]
+    public void WriteNullOrEmptyDoesNothing(Action<SourceTextWriter> write)
     {
         var writer = new SourceTextWriter();
-        writer.Write((string?)null);
-
+        write(writer);
         Assert.Equal("", writer.ToStringAndReset());
     }
 
-    [Fact]
-    public void WriteEmptyStringDoesNothing()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write("");
-
-        Assert.Equal("", writer.ToStringAndReset());
-    }
+    public static TheoryData<Action<SourceTextWriter>> WriteNullOrEmptyCases =>
+        new()
+        {
+            w => w.Write((string?)null),
+            w => w.Write(""),
+            w => w.Write((bool?)null),
+            w => w.Write((char?)null),
+            w => w.Write((byte?)null),
+            w => w.Write((sbyte?)null),
+            w => w.Write((short?)null),
+            w => w.Write((ushort?)null),
+            w => w.Write((int?)null),
+            w => w.Write((uint?)null),
+            w => w.Write((long?)null),
+            w => w.Write((ulong?)null),
+            w => w.Write((float?)null),
+            w => w.Write((double?)null),
+            w => w.Write((decimal?)null),
+            w => w.Write((object?)null),
+            w => w.Write((object?)null, "X"),
+            w => w.Write((byte?)null, "X"),
+            w => w.Write((sbyte?)null, "X"),
+            w => w.Write((short?)null, "X"),
+            w => w.Write((ushort?)null, "X"),
+            w => w.Write((int?)null, "X"),
+            w => w.Write((uint?)null, "X"),
+            w => w.Write((long?)null, "X"),
+            w => w.Write((ulong?)null, "X"),
+            w => w.Write((float?)null, "F2"),
+            w => w.Write((double?)null, "F2"),
+            w => w.Write((decimal?)null, "F2"),
+        };
 
     [Fact]
     public void WriteMultipleStringsAppendsConcatenated()
@@ -50,7 +114,7 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
-    public void WriteTrimsLeadingCRLFWhenBuilderIsEmpty()
+    public void WriteTrimsLeadingCrLfWhenBuilderIsEmpty()
     {
         var writer = new SourceTextWriter();
         writer.Write("\r\n\r\nline1");
@@ -91,91 +155,6 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
-    public void WriteBoolAppendsStringRepresentation()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write(true);
-
-        Assert.Equal("True", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteIntAppendsNumber()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write(42);
-
-        Assert.Equal("42", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteCharAppendsCharacter()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write('X');
-
-        Assert.Equal("X", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteRepresentativeNumericTypes()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write(123L);
-        writer.Write(",");
-        writer.Write(3.14);
-        writer.Write(",");
-        writer.Write(9.99m);
-
-        Assert.Equal("123,3.14,9.99", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteNullableIntWithValueWritesNumber()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write((int?)42);
-
-        Assert.Equal("42", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteNullableIntWithNullDoesNothing()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write((int?)null);
-
-        Assert.Equal("", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteNullableBoolWithNullDoesNothing()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write((bool?)null);
-
-        Assert.Equal("", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteObjectCallsToString()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write((object)42);
-
-        Assert.Equal("42", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void WriteNullObjectDoesNothing()
-    {
-        var writer = new SourceTextWriter();
-        writer.Write((object?)null);
-
-        Assert.Equal("", writer.ToStringAndReset());
-    }
-
-    [Fact]
     public void WritePrimitiveWithIndentationAfterNewLine()
     {
         var writer = new SourceTextWriter();
@@ -208,7 +187,7 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
-    public void WriteTextEndingWithCRLFDoesNotProduceTrailingIndentation()
+    public void WriteTextEndingWithCrLfDoesNotProduceTrailingIndentation()
     {
         var writer = new SourceTextWriter(newLine: "\r\n");
         writer.PushIndent();
@@ -261,7 +240,7 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
-    public void WriteStringWithLFNormalizesToConfiguredCRLFWhenIndentationIsZero()
+    public void WriteStringWithLfNormalizesToConfiguredCrLfWhenIndentationIsZero()
     {
         var writer = new SourceTextWriter(newLine: "\r\n");
         writer.Write("line1\nline2");
@@ -270,7 +249,7 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
-    public void WriteSpanWithCRLFNormalizesToConfiguredLFWhenIndentationIsZero()
+    public void WriteSpanWithCrLfNormalizesToConfiguredLfWhenIndentationIsZero()
     {
         var writer = new SourceTextWriter(newLine: "\n");
         writer.Write("line1\r\nline2".AsSpan());

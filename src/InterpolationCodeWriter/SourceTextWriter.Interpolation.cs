@@ -36,7 +36,16 @@ public sealed partial class SourceTextWriter
         /// <param name="value">The value to format and append.</param>
         public void AppendFormatted<T>(T value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted expression to the interpolated string.</summary>
+        /// <typeparam name="T">The type of the value to format.</typeparam>
+        /// <param name="value">The value to format and append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted<T>(T value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
@@ -57,77 +66,165 @@ public sealed partial class SourceTextWriter
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(byte value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(byte value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(sbyte value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(sbyte value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(short value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(short value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(ushort value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(ushort value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(int value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(int value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(uint value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(uint value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(long value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(long value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(ulong value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(ulong value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(float value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(float value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(double value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(double value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(decimal value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(decimal value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
@@ -148,77 +245,165 @@ public sealed partial class SourceTextWriter
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(byte? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(byte? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(sbyte? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(sbyte? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(short? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(short? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(ushort? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(ushort? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(int? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(int? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(uint? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(uint? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(long? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(long? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(ulong? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(ulong? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(float? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(float? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(double? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(double? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted number value to the interpolated string.</summary>
         /// <param name="value">The number value to append.</param>
         public void AppendFormatted(decimal? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a formatted number value to the interpolated string.</summary>
+        /// <param name="value">The number value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(decimal? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Appends a formatted string to the interpolated string.</summary>
@@ -232,7 +417,15 @@ public sealed partial class SourceTextWriter
         /// <param name="value">The object value to append.</param>
         public void AppendFormatted(object? value)
         {
-            _writer.Write(value);
+            _writer.Write(value, format: null);
+        }
+
+        /// <summary>Appends a string representation of an object value to the interpolated string.</summary>
+        /// <param name="value">The object value to append.</param>
+        /// <param name="format">The format string.</param>
+        public void AppendFormatted(object? value, string? format)
+        {
+            _writer.Write(value, format);
         }
 
         /// <summary>Handles an <see cref="EmptyResult"/> value in the interpolated string, writing nothing to the output.</summary>
