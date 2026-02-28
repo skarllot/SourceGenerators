@@ -22,6 +22,16 @@ public partial class SourceTextWriterTest
     }
 
     [Fact]
+    public void WriteInterpolatedStringWithFormattedIntValue()
+    {
+        var writer = new SourceTextWriter();
+        var x = 42;
+        writer.Write($"value={x:N2}");
+
+        Assert.Equal("value=42.00", writer.ToStringAndReset());
+    }
+
+    [Fact]
     public void WriteInterpolatedStringWithBoolValue()
     {
         var writer = new SourceTextWriter();
