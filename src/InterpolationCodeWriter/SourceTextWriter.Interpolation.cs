@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Raiqub.Generators.InterpolationCodeWriter.Collections;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -435,6 +435,13 @@ public sealed partial class SourceTextWriter
         public void AppendFormatted([SuppressMessage("ReSharper", "UnusedParameter.Global")] EmptyResult value)
         {
             // Nothing to write
+        }
+
+        /// <summary>Writes a <see cref="Collections.TextSequence"/> into the generated output and releases its backing store.</summary>
+        /// <param name="value">The sequence whose parts are written to the output.</param>
+        public void AppendFormatted(in TextSequence value)
+        {
+            value.WriteToAndClear(_writer);
         }
     }
 }

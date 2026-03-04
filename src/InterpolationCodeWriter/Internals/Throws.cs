@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Raiqub.Generators.InterpolationCodeWriter;
+namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 /// <summary>
 /// Provides helper methods for throwing exceptions.

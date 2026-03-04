@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Raiqub.Generators.InterpolationCodeWriter.Collections;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -529,6 +530,13 @@ public sealed partial class SourceTextWriter
     public void Write([SuppressMessage("ReSharper", "UnusedParameter.Global")] EmptyResult value)
     {
         // Nothing to write
+    }
+
+    /// <summary>Writes a <see cref="Collections.TextSequence"/> directly into the generated output.</summary>
+    /// <param name="textSequence">The sequence whose parts are written to the output.</param>
+    public void Write(in TextSequence textSequence)
+    {
+        textSequence.WriteToAndClear(this);
     }
 
     /// <summary>Write text directly into the generated output.</summary>
