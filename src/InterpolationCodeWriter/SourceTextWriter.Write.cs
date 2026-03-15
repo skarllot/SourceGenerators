@@ -535,8 +535,13 @@ public sealed partial class SourceTextWriter
 
     /// <summary>Write a sequence of strings directly into the generated output.</summary>
     /// <param name="textParts">The string parts to be appended to the generated output.</param>
-    public void Write(string?[] textParts)
+    public void Write(string?[]? textParts)
     {
+        if (textParts is null)
+        {
+            return;
+        }
+
         foreach (var part in textParts)
         {
             Write(part);
@@ -545,8 +550,13 @@ public sealed partial class SourceTextWriter
 
     /// <summary>Write a sequence of strings directly into the generated output.</summary>
     /// <param name="textParts">The string parts to be appended to the generated output.</param>
-    public void Write(IReadOnlyList<string?> textParts)
+    public void Write(IReadOnlyList<string?>? textParts)
     {
+        if (textParts is null)
+        {
+            return;
+        }
+
         foreach (var part in textParts)
         {
             Write(part);
