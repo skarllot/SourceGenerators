@@ -4,56 +4,44 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Raiqub.Generators.InterpolationCodeWriter.Collections;
+namespace Raiqub.Generators.InterpolationCodeWriter;
 
 /// <summary>
-/// Represents an immutable sequence of string parts that can be written to a <see cref="SourceTextWriter"/>.
+/// Represents an immutable segment of string parts that can be written to a <see cref="SourceTextWriter"/>.
 /// </summary>
 /// <remarks>
 /// <para>
-/// Instances are created via interpolated string syntax using <see cref="CreateInterpolatedStringHandler"/>,
-/// or from a span of strings via <see cref="Create(ReadOnlySpan{string?},bool)"/>.
+/// <see cref="TextSegment"/> is itself an
+/// <see cref="System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute">interpolated string handler</see>,
+/// so instances can be created directly from an interpolated string expression
+/// (e.g. <c>TextSegment seg = $"Hello {name}";</c>), or via
+/// <see cref="Create(ref TextSegment, bool)"/> and
+/// <see cref="Create(IFormatProvider?, ref TextSegment, bool)"/> when an append-line flag
+/// or a custom <see cref="IFormatProvider"/> are needed.
 /// </para>
 /// <para>
-/// For large sequences (256 or more parts), the backing array is rented from <see cref="ArrayPool{T}.Shared"/>
-/// and is automatically returned when the sequence is consumed via <see cref="WriteToAndClear"/>.
+/// For large segments (256 or more parts), the backing array is rented from <see cref="ArrayPool{T}.Shared"/>
+/// and is automatically returned when the segment is consumed via <see cref="WriteToAndClear"/>.
 /// </para>
 /// </remarks>
 [DebuggerDisplay("{DebuggerDisplay}")]
-public readonly partial struct TextSequence
+public partial struct TextSegment
 {
     private const int ArrayPoolThreshold = 256;
 
+    private readonly IFormatProvider _provider;
     private readonly Item[] _parts;
-    private readonly int _length;
     private readonly bool _isRented;
     private readonly bool _appendLine;
+    private int _length;
 
-    private TextSequence(ReadOnlySpan<string?> parts, bool appendLine)
+    private TextSegment(IFormatProvider? provider, Item[] parts, int length, bool isRented, bool appendLine)
     {
-        _length = parts.Length;
-        _appendLine = appendLine;
-
-        switch (parts.Length)
-        {
-            case < ArrayPoolThreshold:
-                _parts = new Item[parts.Length];
-                FillItems(_parts, parts);
-                _isRented = false;
-                break;
-            default:
-                _parts = ArrayPool<Item>.Shared.Rent(parts.Length);
-                FillItems(_parts, parts);
-                _isRented = true;
-                break;
-        }
-    }
-
-    private TextSequence(Item[] parts, int length, bool isRented, bool appendLine)
-    {
+        _provider = provider ?? CultureInfo.InvariantCulture;
         _parts = parts;
         _length = length;
         _isRented = isRented;
@@ -83,35 +71,23 @@ public readonly partial struct TextSequence
         }
     }
 
-    /// <summary>Creates a <see cref="TextSequence"/> from a span of string parts.</summary>
-    /// <param name="parts">The string parts that form the sequence.</param>
-    /// <param name="appendLine">
-    /// <see langword="true"/> to append a line terminator after writing all parts;
-    /// <see langword="false"/> otherwise. Defaults to <see langword="false"/>.
-    /// </param>
-    /// <returns>A new <see cref="TextSequence"/> containing the specified parts.</returns>
-    public static TextSequence Create(ReadOnlySpan<string?> parts, bool appendLine = false)
-    {
-        return new TextSequence(parts, appendLine);
-    }
-
-    /// <summary>Creates a <see cref="TextSequence"/> from an interpolated string.</summary>
+    /// <summary>Creates a <see cref="TextSegment"/> from an interpolated string.</summary>
     /// <param name="handler">The interpolated string handler that holds the accumulated parts.</param>
     /// <param name="appendLine">
     /// <see langword="true"/> to append a line terminator after writing all parts;
     /// <see langword="false"/> otherwise. Defaults to <see langword="false"/>.
     /// </param>
-    /// <returns>A new <see cref="TextSequence"/> built from the interpolated string.</returns>
-    public static TextSequence Create(
-        [InterpolatedStringHandlerArgument] ref CreateInterpolatedStringHandler handler,
+    /// <returns>A new <see cref="TextSegment"/> built from the interpolated string.</returns>
+    public static TextSegment Create(
+        [InterpolatedStringHandlerArgument] ref TextSegment handler,
         bool appendLine = false
     )
     {
-        return handler.Build(appendLine);
+        return handler.WithAppendLine(appendLine);
     }
 
     /// <summary>
-    /// Creates a <see cref="TextSequence"/> from an interpolated string using the specified format provider.
+    /// Creates a <see cref="TextSegment"/> from an interpolated string using the specified format provider.
     /// </summary>
     /// <param name="provider">
     /// The format provider used to format interpolated values, or <see langword="null"/> to use
@@ -122,62 +98,38 @@ public readonly partial struct TextSequence
     /// <see langword="true"/> to append a line terminator after writing all parts;
     /// <see langword="false"/> otherwise. Defaults to <see langword="false"/>.
     /// </param>
-    /// <returns>A new <see cref="TextSequence"/> built from the interpolated string.</returns>
-    public static TextSequence Create(
+    /// <returns>A new <see cref="TextSegment"/> built from the interpolated string.</returns>
+    public static TextSegment Create(
         IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("provider")]
-        ref CreateInterpolatedStringHandler handler,
+        [InterpolatedStringHandlerArgument("provider")] ref TextSegment handler,
         bool appendLine = false
     )
     {
-        return handler.Build(appendLine);
-    }
-
-    private static void FillItems(Span<Item> destination, ReadOnlySpan<string?> source)
-    {
-        for (var i = 0; i < destination.Length; i++)
-        {
-            destination[i] = source[i];
-        }
-    }
-
-    private void Clear()
-    {
-        if (_isRented)
-        {
-            ArrayPool<Item>.Shared.Return(_parts);
-        }
-    }
-
-    private void FillListAndClear(List<string?> list)
-    {
-        try
-        {
-            foreach (var part in _parts)
-            {
-                part.FillList(list);
-            }
-        }
-        finally
-        {
-            Clear();
-        }
+        return handler.WithAppendLine(appendLine);
     }
 
     /// <summary>
-    /// Enumerates all string values in this sequence into a list and returns any rented backing array to
+    /// Enumerates all string values in this segment into a list and returns any rented backing array to
     /// <see cref="ArrayPool{T}.Shared"/>.
     /// </summary>
     /// <returns>A read-only list containing all string values, with <see langword="null"/> for empty parts.</returns>
-    public IReadOnlyList<string?> ToListAndClear()
+    public readonly IReadOnlyList<string?> ToListAndClear()
     {
         var list = new List<string?>();
         FillListAndClear(list);
         return list;
     }
 
+    /// <summary>Returns a <see cref="TextSegment"/> identical to this one but with <see cref="AppendLine"/> set to <paramref name="value"/>.</summary>
+    /// <param name="value"><see langword="true"/> to append a line terminator after writing; <see langword="false"/> otherwise.</param>
+    /// <returns>This instance if <see cref="AppendLine"/> already equals <paramref name="value"/>; otherwise a new instance with the updated flag.</returns>
+    public readonly TextSegment WithAppendLine(bool value)
+    {
+        return _appendLine != value ? new TextSegment(_provider, _parts, _length, _isRented, value) : this;
+    }
+
     /// <summary>
-    /// Writes all parts of this sequence to the specified <see cref="SourceTextWriter"/> and returns any
+    /// Writes all parts of this segment to the specified <see cref="SourceTextWriter"/> and returns any
     /// rented backing array to <see cref="ArrayPool{T}.Shared"/>.
     /// </summary>
     /// <param name="writer">The writer to which the parts are written.</param>
@@ -186,7 +138,7 @@ public readonly partial struct TextSequence
     /// The rented backing array, if any, is returned in a <see langword="finally"/> block so it is always
     /// released even if writing throws.
     /// </remarks>
-    public void WriteToAndClear(SourceTextWriter writer)
+    public readonly void WriteToAndClear(SourceTextWriter writer)
     {
         try
         {
@@ -206,20 +158,51 @@ public readonly partial struct TextSequence
         }
     }
 
+    private readonly void Clear()
+    {
+        if (_isRented)
+        {
+            ArrayPool<Item>.Shared.Return(_parts);
+        }
+    }
+
+    private readonly void FillListAndClear(List<string?> list)
+    {
+        try
+        {
+            foreach (var item in _parts.AsSpan(0, _length))
+            {
+                item.FillList(list);
+            }
+        }
+        finally
+        {
+            Clear();
+        }
+    }
+
     private readonly struct Item
     {
         private readonly string? _text;
-        private readonly TextSequence? _textSequence;
+        private readonly TextSegment? _textSequence;
 
-        private Item(string? text) => _text = text;
+        private Item(string? text)
+        {
+            _text = text;
+            _textSequence = null;
+        }
 
-        private Item(TextSequence? textSequence) => _textSequence = textSequence;
+        private Item(TextSegment? textSequence)
+        {
+            _textSequence = textSequence;
+            _text = null;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Item(string? value) => new(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Item(in TextSequence? value) => new(value);
+        public static implicit operator Item(in TextSegment? value) => new(value);
 
         public void WriteTo(SourceTextWriter writer)
         {

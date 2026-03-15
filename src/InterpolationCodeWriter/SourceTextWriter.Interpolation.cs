@@ -1,8 +1,9 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Raiqub.Generators.InterpolationCodeWriter.Collections;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -31,6 +32,8 @@ public sealed partial class SourceTextWriter
             _writer.Write(s);
         }
 
+        #region Generic formatting
+
         /// <summary>Appends a formatted expression to the interpolated string.</summary>
         /// <typeparam name="T">The type of the value to format.</typeparam>
         /// <param name="value">The value to format and append.</param>
@@ -47,6 +50,10 @@ public sealed partial class SourceTextWriter
         {
             _writer.Write(value, format);
         }
+
+        #endregion
+
+        #region Primitive formatting
 
         /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
         /// <param name="value">The boolean value to append.</param>
@@ -227,6 +234,10 @@ public sealed partial class SourceTextWriter
             _writer.Write(value, format);
         }
 
+        #endregion
+
+        #region Nullable primitive formatting
+
         /// <summary>Appends a formatted boolean value to the interpolated string.</summary>
         /// <param name="value">The boolean value to append.</param>
         public void AppendFormatted(bool? value)
@@ -406,12 +417,46 @@ public sealed partial class SourceTextWriter
             _writer.Write(value, format);
         }
 
+        #endregion
+
+        # region String formatting
+
         /// <summary>Appends a formatted string to the interpolated string.</summary>
         /// <param name="value">The string value to append.</param>
         public void AppendFormatted(string? value)
         {
             _writer.Write(value);
         }
+
+        /// <summary>Appends a span of characters to the interpolated string.</summary>
+        /// <param name="value">The characters to append.</param>
+        public void AppendFormatted(ReadOnlySpan<char> value)
+        {
+            _writer.Write(value);
+        }
+
+        /// <summary>Appends a sequence of strings to the interpolated string.</summary>
+        /// <param name="textParts">The string parts to append.</param>
+        public void AppendFormatted(ReadOnlySpan<string?> textParts)
+        {
+            _writer.Write(textParts);
+        }
+
+        /// <summary>Appends a sequence of strings to the interpolated string.</summary>
+        /// <param name="textParts">The string parts to append.</param>
+        public void AppendFormatted(string?[] textParts)
+        {
+            _writer.Write(textParts);
+        }
+
+        /// <summary>Appends a sequence of strings to the interpolated string.</summary>
+        /// <param name="textParts">The string parts to append.</param>
+        public void AppendFormatted(IReadOnlyList<string?> textParts)
+        {
+            _writer.Write(textParts);
+        }
+
+        #endregion
 
         /// <summary>Appends a string representation of an object value to the interpolated string.</summary>
         /// <param name="value">The object value to append.</param>
@@ -437,9 +482,9 @@ public sealed partial class SourceTextWriter
             // Nothing to write
         }
 
-        /// <summary>Writes a <see cref="Collections.TextSequence"/> into the generated output and releases its backing store.</summary>
+        /// <summary>Writes a <see cref="TextSegment"/> into the generated output and releases its backing store.</summary>
         /// <param name="value">The sequence whose parts are written to the output.</param>
-        public void AppendFormatted(in TextSequence value)
+        public void AppendFormatted(in TextSegment value)
         {
             value.WriteToAndClear(_writer);
         }
