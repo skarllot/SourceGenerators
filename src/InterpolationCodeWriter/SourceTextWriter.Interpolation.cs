@@ -444,14 +444,14 @@ public sealed partial class SourceTextWriter
 
         /// <summary>Appends a sequence of strings to the interpolated string.</summary>
         /// <param name="textParts">The string parts to append.</param>
-        public void AppendFormatted(string?[] textParts)
+        public void AppendFormatted(string?[]? textParts)
         {
             _writer.Write(textParts);
         }
 
         /// <summary>Appends a sequence of strings to the interpolated string.</summary>
         /// <param name="textParts">The string parts to append.</param>
-        public void AppendFormatted(IReadOnlyList<string?> textParts)
+        public void AppendFormatted(IReadOnlyList<string?>? textParts)
         {
             _writer.Write(textParts);
         }

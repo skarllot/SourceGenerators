@@ -9,7 +9,7 @@ using System.Text;
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
 /// <summary>
-/// Represents an immutable segment of string parts that can be written to a <see cref="SourceTextWriter"/>.
+/// Represents a segment of string parts that can be written to a <see cref="SourceTextWriter"/>.
 /// </summary>
 /// <remarks>
 /// <para>
@@ -20,6 +20,12 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 /// <see cref="Create(ref TextSegment, bool)"/> and
 /// <see cref="Create(IFormatProvider?, ref TextSegment, bool)"/> when an append-line flag
 /// or a custom <see cref="IFormatProvider"/> are needed.
+/// </para>
+/// <para>
+/// During construction the compiler calls <c>AppendLiteral</c> and <c>AppendFormatted</c>
+/// to accumulate parts, so the instance is mutated while the interpolated string is being
+/// evaluated. Once construction is complete the segment is not modified further and can be
+/// treated as effectively immutable for reading and writing purposes.
 /// </para>
 /// </remarks>
 [DebuggerDisplay("{DebuggerDisplay}")]
