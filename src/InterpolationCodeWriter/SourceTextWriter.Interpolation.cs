@@ -482,11 +482,11 @@ public sealed partial class SourceTextWriter
             // Nothing to write
         }
 
-        /// <summary>Writes a <see cref="TextSegment"/> into the generated output and releases its backing store.</summary>
+        /// <summary>Writes a <see cref="TextSegment"/> into the generated output.</summary>
         /// <param name="value">The sequence whose parts are written to the output.</param>
         public void AppendFormatted(in TextSegment value)
         {
-            value.WriteToAndClear(_writer);
+            value.WriteTo(_writer);
         }
     }
 }

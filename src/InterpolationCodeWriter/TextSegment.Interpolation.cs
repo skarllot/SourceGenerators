@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -30,18 +29,9 @@ partial struct TextSegment
         _provider = provider ?? CultureInfo.InvariantCulture;
         _length = 0;
         _appendLine = false;
+
         var capacity = formattedCount * 2 + 1;
-        switch (capacity)
-        {
-            case < ArrayPoolThreshold:
-                _parts = new Item[capacity];
-                _isRented = false;
-                break;
-            default:
-                _parts = ArrayPool<Item>.Shared.Rent(capacity);
-                _isRented = true;
-                break;
-        }
+        _parts = new Item[capacity];
     }
 
     /// <summary>Appends a literal string part to the segment.</summary>

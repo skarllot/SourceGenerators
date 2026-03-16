@@ -6,27 +6,12 @@ namespace Raiqub.Generators.InterpolationCodeWriter.Tests;
 
 public class TextSegmentTest
 {
-    [Fact]
-    public void LargeInterpolationUsesArrayPoolAndWritesCorrectly()
-    {
-        const int count = 128; // capacity = count * 2 + 1 = 257 >= ArrayPoolThreshold (256)
-        var handler = new TextSegment(0, count);
-        for (var i = 0; i < count; i++)
-            handler.AppendFormatted(i);
-
-        var writer = new SourceTextWriter();
-        handler.WriteToAndClear(writer);
-
-        var expected = string.Concat(Enumerable.Range(0, count).Select(i => i.ToString(CultureInfo.InvariantCulture)));
-        Assert.Equal(expected, writer.ToStringAndReset());
-    }
-
     [Theory]
     [MemberData(nameof(InterpolationWriteCases))]
     public void InterpolationWritesCorrectly(TextSegment seq, string expected)
     {
         var writer = new SourceTextWriter();
-        seq.WriteToAndClear(writer);
+        seq.WriteTo(writer);
         Assert.Equal(expected, writer.ToStringAndReset());
     }
 
@@ -104,9 +89,9 @@ public class TextSegmentTest
 
     [Theory]
     [MemberData(nameof(ToListCases))]
-    public void ToListAndClearReturnsAllParts(TextSegment seq, IReadOnlyList<string?> expected)
+    public void ToListReturnsAllParts(TextSegment seq, IReadOnlyList<string?> expected)
     {
-        var actual = seq.ToListAndClear();
+        var actual = seq.ToList();
         Assert.Equal(expected, actual);
     }
 
@@ -126,41 +111,6 @@ public class TextSegmentTest
             { $"[{TextSegment.Create($"inner")}]", new List<string?> { "[", "inner", "]" } },
             // Nested nullable TextSegment
             { $"[{(TextSegment?)TextSegment.Create($"inner")}]", new List<string?> { "[", "inner", "]" } },
-        };
-
-    [Fact]
-    public void ToListAndClearLargeInterpolationUsesArrayPoolAndReturnsCorrectly()
-    {
-        const int count = 128; // capacity = count * 2 + 1 = 257 >= ArrayPoolThreshold (256)
-        var handler = new TextSegment(0, count);
-        for (var i = 0; i < count; i++)
-            handler.AppendFormatted(i);
-
-        var actual = handler.ToListAndClear();
-
-        var expected = Enumerable.Range(0, count).Select(i => i.ToString(CultureInfo.InvariantCulture)).ToList();
-        Assert.Equal(expected, actual);
-    }
-
-    [Theory]
-    [MemberData(nameof(WithAppendLineCases))]
-    public void WithAppendLineSetsFlag(TextSegment seq, bool value, bool expected)
-    {
-        Assert.Equal(expected, seq.WithAppendLine(value).AppendLine);
-    }
-
-    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
-    public static TheoryData<TextSegment, bool, bool> WithAppendLineCases =>
-        new()
-        {
-            // Already false → false (returns same)
-            { TextSegment.Create($"hello"), false, false },
-            // false → true
-            { TextSegment.Create($"hello"), true, true },
-            // Already true → true (returns same)
-            { TextSegment.Create($"hello", appendLine: true), true, true },
-            // true → false
-            { TextSegment.Create($"hello", appendLine: true), false, false },
         };
 
     [Theory]
