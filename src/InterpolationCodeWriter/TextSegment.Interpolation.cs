@@ -273,6 +273,7 @@ partial struct TextSegment
     /// <param name="value">The value to append.</param>
     public void AppendFormatted(bool? value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(_provider);
     }
 
