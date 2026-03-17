@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -520,6 +521,46 @@ public sealed partial class SourceTextWriter
     public void Write(string? textToAppend)
     {
         Write(textToAppend.AsSpan());
+    }
+
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(ReadOnlySpan<string?> textParts)
+    {
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
+    }
+
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(string?[]? textParts)
+    {
+        if (textParts is null)
+        {
+            return;
+        }
+
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
+    }
+
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(IReadOnlyList<string?>? textParts)
+    {
+        if (textParts is null)
+        {
+            return;
+        }
+
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
     }
 
     /// <summary>Accepts an <see cref="EmptyResult"/> value and writes nothing to the generated output.</summary>

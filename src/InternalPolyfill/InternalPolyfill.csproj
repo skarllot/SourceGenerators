@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\InterpolationCodeWriter\GeneratorInfo.cs" />
+    <None Remove="README.md" />
   </ItemGroup>
 </Project>
