@@ -122,7 +122,7 @@ writer.WriteLine($"public partial class {className}");
 ```csharp
 // Append a newline after the segment is written
 TextSegment line = TextSegment.Create($"public {returnType} {methodName}();", appendLine: true);
-line.WriteToAndClear(writer);
+line.WriteTo(writer);
 ```
 
 ### ICodeWriter / ICodeWriter&lt;T&gt;

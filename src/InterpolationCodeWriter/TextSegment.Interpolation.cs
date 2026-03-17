@@ -23,8 +23,11 @@ partial struct TextSegment
     /// The format provider used to format interpolated values, or <see langword="null"/> to use
     /// <see cref="System.Globalization.CultureInfo.InvariantCulture"/>.
     /// </param>
-    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-    public TextSegment(int literalLength, int formattedCount, IFormatProvider? provider)
+    public TextSegment(
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")] int literalLength,
+        int formattedCount,
+        IFormatProvider? provider
+    )
     {
         _provider = provider ?? CultureInfo.InvariantCulture;
         _length = 0;
@@ -38,6 +41,7 @@ partial struct TextSegment
     /// <param name="s">The literal string to append.</param>
     public void AppendLiteral(string s)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = s;
     }
 
@@ -60,6 +64,7 @@ partial struct TextSegment
     /// </param>
     public void AppendFormatted<T>(T value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         var str = value is IFormattable formattable ? formattable.ToString(format, _provider) : value?.ToString();
         _parts[_length++] = str;
     }
@@ -68,6 +73,7 @@ partial struct TextSegment
     /// <param name="value">The value to append.</param>
     public void AppendFormatted(bool value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(_provider);
     }
 
@@ -79,6 +85,7 @@ partial struct TextSegment
     /// <param name="value">The value to append.</param>
     public void AppendFormatted(char value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(_provider);
     }
 
@@ -94,6 +101,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(byte value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -109,6 +117,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(sbyte value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -124,6 +133,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(short value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -139,6 +149,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(ushort value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -154,6 +165,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(int value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -169,6 +181,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(uint value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -184,6 +197,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(long value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -199,6 +213,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(ulong value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -214,6 +229,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(float value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -229,6 +245,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(double value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -244,6 +261,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(decimal value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value.ToString(format, _provider);
     }
 
@@ -262,6 +280,7 @@ partial struct TextSegment
     /// <param name="value">The value to append.</param>
     public void AppendFormatted(char? value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(_provider);
     }
 
@@ -277,6 +296,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(byte? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -292,6 +312,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(sbyte? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -307,6 +328,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(short? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -322,6 +344,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(ushort? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -337,6 +360,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(int? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -352,6 +376,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(uint? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -367,6 +392,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(long? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -382,6 +408,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(ulong? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -397,6 +424,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(float? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -412,6 +440,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(double? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -427,6 +456,7 @@ partial struct TextSegment
     /// <param name="format">A standard or custom numeric format string.</param>
     public void AppendFormatted(decimal? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value?.ToString(format, _provider);
     }
 
@@ -438,6 +468,7 @@ partial struct TextSegment
     /// <param name="value">The string to append.</param>
     public void AppendFormatted(string? value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value;
     }
 
@@ -458,6 +489,7 @@ partial struct TextSegment
     /// </param>
     public void AppendFormatted(object? value, string? format)
     {
+        EnsureCapacityForAdditionalItems(1);
         var str = value is IFormattable formattable ? formattable.ToString(format, _provider) : value?.ToString();
         _parts[_length++] = str;
     }
@@ -466,6 +498,7 @@ partial struct TextSegment
     /// <param name="value">The segment to append.</param>
     public void AppendFormatted(in TextSegment value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value;
     }
 
@@ -473,6 +506,7 @@ partial struct TextSegment
     /// <param name="value">The segment to append.</param>
     public void AppendFormatted(in TextSegment? value)
     {
+        EnsureCapacityForAdditionalItems(1);
         _parts[_length++] = value;
     }
 }

@@ -170,6 +170,26 @@ public partial class SourceTextWriterTest
         Assert.Equal("<Hello John!>", writer.ToStringAndReset());
     }
 
+    [Fact]
+    public void WriteNullableSegmentWithValue()
+    {
+        var writer = new SourceTextWriter();
+        TextSegment? seg = SegmentInterpolate("John");
+        writer.Write($"<{seg}>");
+
+        Assert.Equal("<Hello John!>", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void WriteNullableSegmentWithNull()
+    {
+        var writer = new SourceTextWriter();
+        TextSegment? seg = null;
+        writer.Write($"<{seg}>");
+
+        Assert.Equal("<>", writer.ToStringAndReset());
+    }
+
     private static EmptyResult NestedInterpolate(SourceTextWriter writer)
     {
         writer.Write("nested");

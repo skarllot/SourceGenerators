@@ -3,8 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -32,9 +34,25 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 public partial struct TextSegment
 {
     private readonly IFormatProvider _provider;
-    private readonly Item[] _parts;
+    private Item[] _parts;
     private bool _appendLine;
     private int _length;
+
+    private TextSegment(string? value)
+    {
+        _provider = CultureInfo.InvariantCulture;
+        _parts = new Item[] { value };
+        _appendLine = false;
+        _length = 1;
+    }
+
+    /// <summary>
+    /// Defines an implicit conversion from a <see cref="string"/> to a <see cref="TextSegment"/> object.
+    /// </summary>
+    /// <param name="value">The string value to be converted to a <see cref="TextSegment"/>.</param>
+    /// <returns>A new instance of <see cref="TextSegment"/> that encapsulates the given string value.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator TextSegment(string? value) => new(value);
 
     /// <summary>Gets a value indicating whether a line terminator should be appended after writing all parts.</summary>
     public readonly bool AppendLine => _appendLine;
@@ -90,7 +108,8 @@ public partial struct TextSegment
     /// <returns>A new <see cref="TextSegment"/> built from the interpolated string.</returns>
     public static ref TextSegment Create(
         IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("provider")] ref TextSegment handler,
+        [InterpolatedStringHandlerArgument("provider")]
+        ref TextSegment handler,
         bool appendLine = false
     )
     {
@@ -101,7 +120,10 @@ public partial struct TextSegment
     /// <summary>
     /// Enumerates all string values in this segment into a list.
     /// </summary>
-    /// <returns>A read-only list containing all string values, with <see langword="null"/> for empty parts.</returns>
+    /// <returns>
+    /// A read-only list containing all string parts.
+    /// Entries are <see langword="null"/> when the corresponding interpolated value was <see langword="null"/> at the time the segment was created.
+    /// </returns>
     public readonly IReadOnlyList<string?> ToList()
     {
         var list = new List<string?>();
@@ -126,12 +148,30 @@ public partial struct TextSegment
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void EnsureCapacityForAdditionalItems(int additionalItems)
+    {
+        if (_parts.Length - _length < additionalItems)
+        {
+            Grow(additionalItems);
+        }
+    }
+
     private readonly void FillList(List<string?> list)
     {
         foreach (var item in _parts.AsSpan(0, _length))
         {
             item.FillList(list);
         }
+    }
+
+    private void Grow(int additionalItems)
+    {
+        var requiredMinCapacity = (uint)_length + (uint)additionalItems;
+        var newCapacity = Math.Max(requiredMinCapacity, Math.Min((uint)_parts.Length * 2, int.MaxValue));
+        var arraySize = (int)MathEx.Clamp(newCapacity, 4, int.MaxValue);
+
+        Array.Resize(ref _parts, arraySize);
     }
 
     private readonly struct Item

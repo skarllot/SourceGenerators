@@ -419,7 +419,7 @@ public sealed partial class SourceTextWriter
 
         #endregion
 
-        # region String formatting
+        #region String formatting
 
         /// <summary>Appends a formatted string to the interpolated string.</summary>
         /// <param name="value">The string value to append.</param>
@@ -487,6 +487,13 @@ public sealed partial class SourceTextWriter
         public void AppendFormatted(in TextSegment value)
         {
             value.WriteTo(_writer);
+        }
+
+        /// <summary>Writes a <see cref="TextSegment"/> into the generated output, or nothing if the value is <see langword="null"/>.</summary>
+        /// <param name="value">The sequence whose parts are written to the output.</param>
+        public void AppendFormatted(in TextSegment? value)
+        {
+            value?.WriteTo(_writer);
         }
     }
 }
