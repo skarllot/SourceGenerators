@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Raiqub.Generators.InterpolationCodeWriter;
+namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 /// <summary>
 /// Provides helper methods for throwing exceptions.
@@ -49,6 +49,18 @@ internal static class Throws
     {
         if (condition)
             throw new InvalidOperationException(message);
+    }
+
+    /// <summary>
+    /// Throws an <see cref="ArgumentOutOfRangeException"/> if the specified minimum value is greater than the maximum value.
+    /// </summary>
+    /// <param name="min">The minimum value to check.</param>
+    /// <param name="max">The maximum value to compare against.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="min"/> is greater than <paramref name="max"/>.</exception>
+    public static void MinMaxExceptionIf(uint min, uint max)
+    {
+        if (min > max)
+            throw new ArgumentOutOfRangeException(nameof(min), $"Minimum value cannot be greater than maximum. min: {min}, max: {max}");
     }
 
     /// <summary>

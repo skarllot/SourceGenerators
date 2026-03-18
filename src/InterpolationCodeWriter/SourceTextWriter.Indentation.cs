@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 

@@ -1,8 +1,10 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -522,6 +524,46 @@ public sealed partial class SourceTextWriter
         Write(textToAppend.AsSpan());
     }
 
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(ReadOnlySpan<string?> textParts)
+    {
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
+    }
+
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(string?[]? textParts)
+    {
+        if (textParts is null)
+        {
+            return;
+        }
+
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
+    }
+
+    /// <summary>Write a sequence of strings directly into the generated output.</summary>
+    /// <param name="textParts">The string parts to be appended to the generated output.</param>
+    public void Write(IReadOnlyList<string?>? textParts)
+    {
+        if (textParts is null)
+        {
+            return;
+        }
+
+        foreach (var part in textParts)
+        {
+            Write(part);
+        }
+    }
+
     /// <summary>Accepts an <see cref="EmptyResult"/> value and writes nothing to the generated output.</summary>
     /// <param name="value">The empty result value. Its content is ignored.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -547,11 +589,7 @@ public sealed partial class SourceTextWriter
 
         var endsWithNewline = EndsWithNewLine;
         var lineIndex = 0;
-#if NETSTANDARD2_0
-        foreach (var line in new InternalSpanLineEnumerator(textToAppend))
-#else
         foreach (var line in textToAppend.EnumerateLines())
-#endif
         {
             if (lineIndex > 0)
                 _builder.Append(_newLine);
@@ -559,11 +597,7 @@ public sealed partial class SourceTextWriter
             if (endsWithNewline && _indentation > 0 && line.Length > 0)
                 WriteIndentation();
 
-#if NETSTANDARD2_0
-            StringBuilderMemory.Append(_builder, line);
-#else
             _builder.Append(line);
-#endif
             lineIndex++;
             endsWithNewline = true;
         }

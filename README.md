@@ -94,6 +94,37 @@ Key features:
 - **Culture-invariant formatting**: Numbers and other values are formatted using `InvariantCulture` by default
 - **Configurable**: Customize line endings, indentation size, and format provider
 
+### TextSegment
+
+`TextSegment` is an [interpolated string handler](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) that captures the parts of an interpolated string for later use. It lets you compose reusable text fragments and embed them directly inside a `writer.Write($"...")` call.
+
+**Direct assignment** from an interpolated string:
+
+```csharp
+TextSegment typeName = $"{namespaceName}.{className}";
+
+writer.WriteLine($"// Generated type: {typeName}");
+```
+
+**Returning segments from helper methods** keeps complex formatting out of the main writer loop:
+
+```csharp
+private static TextSegment FormatTypeRef(string ns, string name) =>
+    $"{ns}.{name}";
+
+// Segments are embedded as holes — no intermediate string allocation
+writer.WriteLine($"[global::{FormatTypeRef("System", "Serializable")}]");
+writer.WriteLine($"public partial class {className}");
+```
+
+**`TextSegment.Create`** provides extra options such as appending a line terminator or supplying a custom `IFormatProvider`:
+
+```csharp
+// Append a newline after the segment is written
+TextSegment line = TextSegment.Create($"public {returnType} {methodName}();", appendLine: true);
+line.WriteTo(writer);
+```
+
 ### ICodeWriter / ICodeWriter&lt;T&gt;
 
 `ICodeWriter` defines a stateless code writer that generates source code. `ICodeWriter<T>` extends it with model-based generation:
