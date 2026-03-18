@@ -1,3 +1,5 @@
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
+
 namespace Raiqub.Generators.InterpolationCodeWriter.Tests;
 
 public class InternalSpanLineEnumeratorTest
@@ -85,7 +87,7 @@ public class InternalSpanLineEnumeratorTest
     [Fact]
     public void MoveNextReturnsFalseAfterExhaustion()
     {
-        var enumerator = new InternalSpanLineEnumerator("ab".AsSpan());
+        var enumerator = new SpanLineEnumerator("ab".AsSpan());
 
         Assert.True(enumerator.MoveNext());
         Assert.False(enumerator.MoveNext());
@@ -111,7 +113,7 @@ public class InternalSpanLineEnumeratorTest
     private static string[] CollectLines(string input)
     {
         var result = new List<string>();
-        foreach (var line in new InternalSpanLineEnumerator(input.AsSpan()))
+        foreach (var line in new SpanLineEnumerator(input.AsSpan()))
         {
             result.Add(line.ToString());
         }

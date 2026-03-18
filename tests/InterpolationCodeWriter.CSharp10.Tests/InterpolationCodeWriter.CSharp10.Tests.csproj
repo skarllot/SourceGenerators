@@ -12,7 +12,6 @@
     <PackageReference Include="PolyfillLib" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\InternalPolyfill\**\*.cs" Exclude="**\obj\**" />
     <Compile Include="..\..\src\InterpolationCodeWriter\**\*.cs" Exclude="**\obj\**" />
     <Compile Include="..\..\src\InterpolationCodeWriter.CSharp\**\*.cs" Exclude="**\obj\**" />
   </ItemGroup>

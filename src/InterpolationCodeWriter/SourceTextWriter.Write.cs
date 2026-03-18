@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
@@ -588,11 +589,7 @@ public sealed partial class SourceTextWriter
 
         var endsWithNewline = EndsWithNewLine;
         var lineIndex = 0;
-#if NETSTANDARD2_0
-        foreach (var line in new InternalSpanLineEnumerator(textToAppend))
-#else
         foreach (var line in textToAppend.EnumerateLines())
-#endif
         {
             if (lineIndex > 0)
                 _builder.Append(_newLine);
@@ -600,11 +597,7 @@ public sealed partial class SourceTextWriter
             if (endsWithNewline && _indentation > 0 && line.Length > 0)
                 WriteIndentation();
 
-#if NETSTANDARD2_0
-            StringBuilderMemory.Append(_builder, line);
-#else
             _builder.Append(line);
-#endif
             lineIndex++;
             endsWithNewline = true;
         }
