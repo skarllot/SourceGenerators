@@ -3,6 +3,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
 
