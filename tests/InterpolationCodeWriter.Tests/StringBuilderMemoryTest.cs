@@ -1,4 +1,5 @@
 using System.Text;
+using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter.Tests;
 

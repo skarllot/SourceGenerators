@@ -35,8 +35,21 @@ string result = writer.ToString();
 
 - **Automatic indentation**: Use `PushIndent()` / `PopIndent()` to manage indentation levels (4 spaces per level by default)
 - **String interpolation support**: Write code using `$"..."` syntax directly
+- **Composable text segments**: Use `TextSegment` to build reusable fragments and embed them inline
 - **Culture-invariant formatting**: Numbers and other values are formatted using `InvariantCulture` by default
 - **Configurable**: Customize line endings, indentation size, and format provider
+
+### TextSegment
+
+`TextSegment` is an interpolated string handler that captures text fragments for embedding inside a `writer.Write($"...")` call. It is ideal for returning formatted snippets from helper methods without intermediate string allocations:
+
+```csharp
+private static TextSegment FormatTypeRef(string ns, string name) =>
+    $"{ns}.{name}";
+
+writer.WriteLine($"[global::{FormatTypeRef("System", "Serializable")}]");
+writer.WriteLine($"public partial class {className}");
+```
 
 ## Compatibility
 

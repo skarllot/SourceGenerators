@@ -1,7 +1,9 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Text;
 
-namespace Raiqub.Generators.InterpolationCodeWriter;
+namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 /// <summary>
 /// Provides methods for <see cref="StringBuilder"/> to work with <see cref="ReadOnlySpan{T}"/>.
@@ -15,7 +17,7 @@ internal static class StringBuilderMemory
     /// <summary>
     /// Appends the string representation of a specified read-only character span to this instance.
     /// </summary>
-    public static unsafe void Append(StringBuilder target, ReadOnlySpan<char> value)
+    public static unsafe void Append(this StringBuilder target, ReadOnlySpan<char> value)
     {
         if (value.Length <= 0)
         {
