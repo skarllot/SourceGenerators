@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <DefineConstants>$(DefineConstants);IS_COMPILED</DefineConstants>
-    <RootNamespace>Raiqub.Generators.InterpolationCodeWriter</RootNamespace>
+    <RootNamespace>Raiqub.Generators.InterpolationCodeWriter.Internals</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>10</LangVersion>
   </PropertyGroup>
@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\InterpolationCodeWriter\GeneratorInfo.cs" />
+    <None Remove="README.md" />
   </ItemGroup>
 </Project>
