@@ -2,7 +2,7 @@ using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter.Tests;
 
-public class InternalSpanLineEnumeratorTest
+public class SpanLineEnumeratorTest
 {
     [Fact]
     public void EnumeratesSingleLine()
