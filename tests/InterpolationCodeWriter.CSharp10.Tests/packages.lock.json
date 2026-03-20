@@ -22,11 +22,11 @@
       },
       "PolyfillLib": {
         "type": "Direct",
-        "requested": "[9.12.0, )",
-        "resolved": "9.12.0",
-        "contentHash": "uPFGN/ulvYDSmzXGJu8fDcPYcJcZnpIgyUjCXoYPwdP4IKIsdwVnFN9DzL4aRX7/JyvfCABbJeWbAANJiMkg+g==",
+        "requested": "[9.22.0, )",
+        "resolved": "9.22.0",
+        "contentHash": "/l3YIok+bG3YL/S3vCR3VkRsf+Yi+juESoleu+JJFOifAPMd339JGtMcZx7/W9REdx43DcpT4HeKwQ0smQ+Drw==",
         "dependencies": {
-          "Microsoft.Bcl.Memory": "10.0.3",
+          "Microsoft.Bcl.Memory": "10.0.5",
           "System.Memory": "4.6.3",
           "System.Runtime.CompilerServices.Unsafe": "6.1.2",
           "System.Threading.Tasks.Extensions": "4.6.3"
@@ -34,8 +34,8 @@
       },
       "Microsoft.Bcl.Memory": {
         "type": "Transitive",
-        "resolved": "10.0.3",
-        "contentHash": "m0dcvnkiDd9a94McI86eARshqbaZa2I27Ka70MIDzs1yYkzw2q93l+A8jrYioMW2o/LQiQ61kATaqhm6VHiXoA==",
+        "resolved": "10.0.5",
+        "contentHash": "odTrIyDJPgqCKEo6sOOfMzh0TaPufY/SLHrrMkqGlxGWVc5NQbZD5h1fxf/Q+PrGnhct5VWmmfKREA4h6JtTng==",
         "dependencies": {
           "System.Memory": "4.6.3",
           "System.Runtime.CompilerServices.Unsafe": "6.1.2"
