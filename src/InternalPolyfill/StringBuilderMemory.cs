@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
+#if !NO_RAIQUB_SOURCEGENERATORS_POLYFILL
 /// <summary>
 /// Provides methods for <see cref="StringBuilder"/> to work with <see cref="ReadOnlySpan{T}"/>.
 /// </summary>
@@ -30,3 +31,4 @@ internal static class StringBuilderMemory
         }
     }
 }
+#endif

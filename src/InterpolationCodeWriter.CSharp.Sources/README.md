@@ -57,6 +57,18 @@ private static void Emit(
 
 Requires .NET 6.0 SDK or later, but you can target earlier frameworks.
 
+## Configuration
+
+### Disabling Built-in Polyfills
+
+This package embeds polyfill types to support targeting .NET Standard 2.0. If your project already provides these types — for example, via the [PolyFill](https://www.nuget.org/packages/PolyFill) library — define the `NO_RAIQUB_SOURCEGENERATORS_POLYFILL` constant to avoid duplicate type definition errors:
+
+```xml
+<PropertyGroup>
+  <DefineConstants>$(DefineConstants);NO_RAIQUB_SOURCEGENERATORS_POLYFILL</DefineConstants>
+</PropertyGroup>
+```
+
 ## Documentation
 
 For the full documentation and guides, see the [project repository](https://github.com/skarllot/SourceGenerators).

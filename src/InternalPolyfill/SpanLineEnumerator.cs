@@ -3,6 +3,7 @@ using System;
 
 namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
+#if !NO_RAIQUB_SOURCEGENERATORS_POLYFILL
 /// <summary>
 /// Enumerates the lines of a <see cref="ReadOnlySpan{Char}"/>.
 /// </summary>
@@ -76,3 +77,4 @@ internal ref struct SpanLineEnumerator
         return true;
     }
 }
+#endif

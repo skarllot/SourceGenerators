@@ -164,6 +164,22 @@ private static readonly CodeWriterDispatcher<MyModel> s_dispatcher =
         new MyWriter1(), new MyWriter2());
 ```
 
+## Advanced Configuration
+
+### Disabling Built-in Polyfills
+
+The `CSharp.Sources` package embeds polyfill types (such as `SpanExtensions`, `SpanLineEnumerator`, and `StringBuilderMemory`) to support targeting .NET Standard 2.0. If your project already provides these types — for example, via the [PolyFill](https://www.nuget.org/packages/PolyFill) library — you can suppress the embedded polyfills to avoid duplicate type definition errors.
+
+Add the `NO_RAIQUB_SOURCEGENERATORS_POLYFILL` compiler constant to your project file:
+
+```xml
+<PropertyGroup>
+  <DefineConstants>$(DefineConstants);NO_RAIQUB_SOURCEGENERATORS_POLYFILL</DefineConstants>
+</PropertyGroup>
+```
+
+This flag has no effect on the compiled library packages (`InterpolationCodeWriter` and `InterpolationCodeWriter.CSharp`).
+
 ## Contributing
 
 If something is not working for you or if you think that the source file
