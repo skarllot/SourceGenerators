@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Raiqub.Generators.InterpolationCodeWriter.Internals;
 
+#if !NO_RAIQUB_SOURCEGENERATORS_POLYFILL
 #if !IS_COMPILED
 [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("Raiqub.Generators.InterpolationCodeWriter", GeneratorInfo.Version)]
@@ -22,3 +23,4 @@ internal static class SpanExtensions
         return new SpanLineEnumerator(span);
     }
 }
+#endif
