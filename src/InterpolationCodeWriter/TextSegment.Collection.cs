@@ -56,6 +56,9 @@ partial struct TextSegment
         }
     }
 
+    /// <summary>Gets the number of string parts in this segment.</summary>
+    public readonly int Count => _length;
+
     private readonly int Capacity
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

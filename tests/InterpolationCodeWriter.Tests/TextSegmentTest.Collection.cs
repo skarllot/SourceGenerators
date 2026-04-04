@@ -9,6 +9,31 @@ public class TextSegmentCollectionTest
     private static TextSegment NinePartSegment =>
         $"a{1}b{2}c{3}d{4}e";
 
+    #region Count
+
+    [Fact]
+    public void CountReturnsNumberOfParts()
+    {
+        Assert.Equal(9, NinePartSegment.Count);
+    }
+
+    [Fact]
+    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
+    public void CountReturnsEightForFullyInlineSegment()
+    {
+        TextSegment seg = $"a{1}b{2}c{3}d{4}";
+        Assert.Equal(8, seg.Count);
+    }
+
+    [Fact]
+    public void CountReturnsOneForSingleLiteral()
+    {
+        TextSegment seg = $"hello";
+        Assert.Equal(1, seg.Count);
+    }
+
+    #endregion
+
     #region Indexer
 
     [Theory]
