@@ -33,15 +33,33 @@ namespace Raiqub.Generators.InterpolationCodeWriter;
 [DebuggerDisplay("{DebuggerDisplay}")]
 public partial struct TextSegment
 {
+    private const int MinimumCapacity = 8;
+
     private readonly IFormatProvider _provider;
-    private Item[] _parts;
+    private string? _part0;
+    private string? _part1;
+    private string? _part2;
+    private string? _part3;
+    private string? _part4;
+    private string? _part5;
+    private string? _part6;
+    private string? _part7;
+    private string?[]? _additionalParts;
     private bool _appendLine;
     private int _length;
 
     private TextSegment(string? value)
     {
         _provider = CultureInfo.InvariantCulture;
-        _parts = new Item[] { value };
+        _part0 = value;
+        _part1 = null;
+        _part2 = null;
+        _part3 = null;
+        _part4 = null;
+        _part5 = null;
+        _part6 = null;
+        _part7 = null;
+        _additionalParts = null;
         _appendLine = false;
         _length = 1;
     }
@@ -63,9 +81,9 @@ public partial struct TextSegment
         get
         {
             var sb = new StringBuilder();
-            foreach (var item in _parts.AsSpan(0, _length))
+            foreach (var item in this)
             {
-                sb.Append(item.ToString());
+                sb.Append(item);
             }
 
             if (_appendLine)
@@ -108,8 +126,7 @@ public partial struct TextSegment
     /// <returns>A new <see cref="TextSegment"/> built from the interpolated string.</returns>
     public static ref TextSegment Create(
         IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("provider")]
-        ref TextSegment handler,
+        [InterpolatedStringHandlerArgument("provider")] ref TextSegment handler,
         bool appendLine = false
     )
     {
@@ -126,8 +143,18 @@ public partial struct TextSegment
     /// </returns>
     public readonly IReadOnlyList<string?> ToList()
     {
-        var list = new List<string?>();
-        FillList(list);
+        var list = new string?[_length];
+        var inlineCount = Math.Min(_length, MinimumCapacity);
+        for (var i = 0; i < inlineCount; i++)
+        {
+            list[i] = GetItemAt(i);
+        }
+
+        if (_additionalParts?.Length > 0)
+        {
+            Array.Copy(_additionalParts, 0, list, MinimumCapacity, _length - MinimumCapacity);
+        }
+
         return list;
     }
 
@@ -137,12 +164,26 @@ public partial struct TextSegment
     /// <param name="writer">The writer to which the parts are written.</param>
     public readonly void WriteTo(SourceTextWriter writer)
     {
-        foreach (var item in _parts.AsSpan(0, _length))
+        WriteTo(writer, _appendLine);
+    }
+
+    /// <summary>
+    /// Writes all parts of this segment to the specified <see cref="SourceTextWriter"/>,
+    /// overriding whether a line terminator is appended.
+    /// </summary>
+    /// <param name="writer">The writer to which the parts are written.</param>
+    /// <param name="appendLine">
+    /// <see langword="true"/> to append a line terminator after writing all parts;
+    /// <see langword="false"/> otherwise. Overrides <see cref="AppendLine"/>.
+    /// </param>
+    public readonly void WriteTo(SourceTextWriter writer, bool appendLine)
+    {
+        foreach (var item in this)
         {
-            item.WriteTo(writer);
+            writer.Write(item);
         }
 
-        if (_appendLine)
+        if (appendLine)
         {
             writer.WriteLine();
         }
@@ -151,76 +192,21 @@ public partial struct TextSegment
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void EnsureCapacityForAdditionalItems(int additionalItems)
     {
-        if (_parts.Length - _length < additionalItems)
+        if (Capacity - _length < additionalItems)
         {
             Grow(additionalItems);
         }
     }
 
-    private readonly void FillList(List<string?> list)
-    {
-        foreach (var item in _parts.AsSpan(0, _length))
-        {
-            item.FillList(list);
-        }
-    }
-
     private void Grow(int additionalItems)
     {
-        var requiredMinCapacity = (uint)_length + (uint)additionalItems;
-        var newCapacity = Math.Max(requiredMinCapacity, Math.Min((uint)_parts.Length * 2, int.MaxValue));
+        var requiredMinCapacity = (uint)_length + (uint)additionalItems - MinimumCapacity;
+        var newCapacity = Math.Max(
+            requiredMinCapacity,
+            Math.Min((uint)(_additionalParts?.Length ?? 0) * 2, int.MaxValue)
+        );
         var arraySize = (int)MathEx.Clamp(newCapacity, 4, int.MaxValue);
 
-        Array.Resize(ref _parts, arraySize);
-    }
-
-    private readonly struct Item
-    {
-        private readonly string? _text;
-        private readonly TextSegment? _textSequence;
-
-        private Item(string? text)
-        {
-            _text = text;
-            _textSequence = null;
-        }
-
-        private Item(TextSegment? textSequence)
-        {
-            _textSequence = textSequence;
-            _text = null;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Item(string? value) => new(value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Item(in TextSegment? value) => new(value);
-
-        public void WriteTo(SourceTextWriter writer)
-        {
-            if (_textSequence.HasValue)
-            {
-                _textSequence.Value.WriteTo(writer);
-            }
-            else
-            {
-                writer.Write(_text);
-            }
-        }
-
-        public void FillList(List<string?> list)
-        {
-            if (_textSequence.HasValue)
-            {
-                _textSequence.Value.FillList(list);
-            }
-            else
-            {
-                list.Add(_text);
-            }
-        }
-
-        public override string? ToString() => _textSequence.HasValue ? _textSequence.Value.DebuggerDisplay : _text;
+        Array.Resize(ref _additionalParts, arraySize);
     }
 }

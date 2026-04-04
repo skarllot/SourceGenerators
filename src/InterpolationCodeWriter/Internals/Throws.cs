@@ -40,6 +40,32 @@ internal static class Throws
     }
 
     /// <summary>
+    /// Throws an <see cref="ArgumentOutOfRangeException"/> if the specified index is outside the valid range.
+    /// </summary>
+    /// <param name="index">The index to validate.</param>
+    /// <param name="length">The exclusive upper bound; the index must be less than this value.</param>
+    /// <param name="paramName">The name of the parameter being checked.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="index"/> is negative or greater than or equal to <paramref name="length"/>.
+    /// </exception>
+    public static void IndexOutOfRangeIfInvalid(int index, int length, string paramName)
+    {
+        if (index >= length)
+        {
+            throw new ArgumentOutOfRangeException(
+                paramName,
+                index,
+                $"The index must be less than {length}. Actual: {index}"
+            );
+        }
+
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException(paramName, index, $"The index must be non-negative. Actual: {index}");
+        }
+    }
+
+    /// <summary>
     /// Throws an <see cref="InvalidOperationException"/> if the specified condition is true.
     /// </summary>
     /// <param name="condition">The condition to evaluate.</param>
@@ -60,7 +86,10 @@ internal static class Throws
     public static void MinMaxExceptionIf(uint min, uint max)
     {
         if (min > max)
-            throw new ArgumentOutOfRangeException(nameof(min), $"Minimum value cannot be greater than maximum. min: {min}, max: {max}");
+            throw new ArgumentOutOfRangeException(
+                nameof(min),
+                $"Minimum value cannot be greater than maximum. min: {min}, max: {max}"
+            );
     }
 
     /// <summary>
