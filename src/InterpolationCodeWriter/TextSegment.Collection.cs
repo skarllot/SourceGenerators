@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Raiqub.Generators.InterpolationCodeWriter.Internals;
 
 namespace Raiqub.Generators.InterpolationCodeWriter;
@@ -86,6 +87,7 @@ partial struct TextSegment
         };
 
     /// <summary>Enumerates the string parts of a <see cref="TextSegment"/>.</summary>
+    [StructLayout(LayoutKind.Auto)]
     public ref struct Enumerator
     {
         private readonly TextSegment _segment;
