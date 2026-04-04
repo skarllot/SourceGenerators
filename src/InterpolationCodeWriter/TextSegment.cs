@@ -108,8 +108,7 @@ public partial struct TextSegment
     /// <returns>A new <see cref="TextSegment"/> built from the interpolated string.</returns>
     public static ref TextSegment Create(
         IFormatProvider? provider,
-        [InterpolatedStringHandlerArgument("provider")]
-        ref TextSegment handler,
+        [InterpolatedStringHandlerArgument("provider")] ref TextSegment handler,
         bool appendLine = false
     )
     {
@@ -137,12 +136,26 @@ public partial struct TextSegment
     /// <param name="writer">The writer to which the parts are written.</param>
     public readonly void WriteTo(SourceTextWriter writer)
     {
+        WriteTo(writer, _appendLine);
+    }
+
+    /// <summary>
+    /// Writes all parts of this segment to the specified <see cref="SourceTextWriter"/>,
+    /// overriding whether a line terminator is appended.
+    /// </summary>
+    /// <param name="writer">The writer to which the parts are written.</param>
+    /// <param name="appendLine">
+    /// <see langword="true"/> to append a line terminator after writing all parts;
+    /// <see langword="false"/> otherwise. Overrides <see cref="AppendLine"/>.
+    /// </param>
+    public readonly void WriteTo(SourceTextWriter writer, bool appendLine)
+    {
         foreach (var item in _parts.AsSpan(0, _length))
         {
             item.WriteTo(writer);
         }
 
-        if (_appendLine)
+        if (appendLine)
         {
             writer.WriteLine();
         }

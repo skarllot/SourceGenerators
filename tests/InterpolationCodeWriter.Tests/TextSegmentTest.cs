@@ -153,6 +153,29 @@ public class TextSegmentTest
             { TextSegment.Create($"value={42}", appendLine: true), "value=42" + Environment.NewLine },
         };
 
+    [Theory]
+    [MemberData(nameof(WriteToWithAppendLineOverrideCases))]
+    public void WriteToOverrideAppendLineWritesCorrectly(TextSegment seq, bool appendLine, string expected)
+    {
+        var writer = new SourceTextWriter();
+        seq.WriteTo(writer, appendLine);
+        Assert.Equal(expected, writer.ToStringAndReset());
+    }
+
+    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
+    public static TheoryData<TextSegment, bool, string> WriteToWithAppendLineOverrideCases =>
+        new()
+        {
+            // Override false → suppresses the stored appendLine=true
+            { TextSegment.Create($"hello", appendLine: true), false, "hello" },
+            // Override true → appends line even though stored appendLine=false
+            { TextSegment.Create($"hello", appendLine: false), true, "hello\n" },
+            // No-op override: matches stored value (false)
+            { TextSegment.Create($"hello"), false, "hello" },
+            // No-op override: matches stored value (true)
+            { TextSegment.Create($"hello", appendLine: true), true, "hello\n" },
+        };
+
     [Fact]
     public void GrowFromMinimumCapacityPreservesAllParts()
     {
