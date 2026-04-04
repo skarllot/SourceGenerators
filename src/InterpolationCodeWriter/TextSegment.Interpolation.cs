@@ -34,7 +34,15 @@ partial struct TextSegment
         _appendLine = false;
 
         var capacity = formattedCount * 2 + 1;
-        _parts = new Item[capacity];
+        _part0 = null;
+        _part1 = null;
+        _part2 = null;
+        _part3 = null;
+        _part4 = null;
+        _part5 = null;
+        _part6 = null;
+        _part7 = null;
+        _additionalParts = capacity > MinimumCapacity ? new string?[capacity - MinimumCapacity] : null;
     }
 
     /// <summary>Appends a literal string part to the segment.</summary>
@@ -42,7 +50,7 @@ partial struct TextSegment
     public void AppendLiteral(string s)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = s;
+        this[_length++] = s;
     }
 
     #region Generic formatting
@@ -66,7 +74,7 @@ partial struct TextSegment
     {
         EnsureCapacityForAdditionalItems(1);
         var str = value is IFormattable formattable ? formattable.ToString(format, _provider) : value?.ToString();
-        _parts[_length++] = str;
+        this[_length++] = str;
     }
 
     /// <summary>Appends the string representation of a <see cref="bool"/> value to the segment.</summary>
@@ -74,7 +82,7 @@ partial struct TextSegment
     public void AppendFormatted(bool value)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(_provider);
+        this[_length++] = value.ToString(_provider);
     }
 
     #endregion
@@ -86,7 +94,7 @@ partial struct TextSegment
     public void AppendFormatted(char value)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(_provider);
+        this[_length++] = value.ToString(_provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="byte"/> value to the segment.</summary>
@@ -102,7 +110,7 @@ partial struct TextSegment
     public void AppendFormatted(byte value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of an <see cref="sbyte"/> value to the segment.</summary>
@@ -118,7 +126,7 @@ partial struct TextSegment
     public void AppendFormatted(sbyte value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="short"/> value to the segment.</summary>
@@ -134,7 +142,7 @@ partial struct TextSegment
     public void AppendFormatted(short value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="ushort"/> value to the segment.</summary>
@@ -150,7 +158,7 @@ partial struct TextSegment
     public void AppendFormatted(ushort value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of an <see cref="int"/> value to the segment.</summary>
@@ -166,7 +174,7 @@ partial struct TextSegment
     public void AppendFormatted(int value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="uint"/> value to the segment.</summary>
@@ -182,7 +190,7 @@ partial struct TextSegment
     public void AppendFormatted(uint value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="long"/> value to the segment.</summary>
@@ -198,7 +206,7 @@ partial struct TextSegment
     public void AppendFormatted(long value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="ulong"/> value to the segment.</summary>
@@ -214,7 +222,7 @@ partial struct TextSegment
     public void AppendFormatted(ulong value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="float"/> value to the segment.</summary>
@@ -230,7 +238,7 @@ partial struct TextSegment
     public void AppendFormatted(float value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="double"/> value to the segment.</summary>
@@ -246,7 +254,7 @@ partial struct TextSegment
     public void AppendFormatted(double value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="decimal"/> value to the segment.</summary>
@@ -262,7 +270,7 @@ partial struct TextSegment
     public void AppendFormatted(decimal value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value.ToString(format, _provider);
+        this[_length++] = value.ToString(format, _provider);
     }
 
     #endregion
@@ -274,7 +282,7 @@ partial struct TextSegment
     public void AppendFormatted(bool? value)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(_provider);
+        this[_length++] = value?.ToString(_provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="char"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -282,7 +290,7 @@ partial struct TextSegment
     public void AppendFormatted(char? value)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(_provider);
+        this[_length++] = value?.ToString(_provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="byte"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -298,7 +306,7 @@ partial struct TextSegment
     public void AppendFormatted(byte? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of an <see cref="sbyte"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -314,7 +322,7 @@ partial struct TextSegment
     public void AppendFormatted(sbyte? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="short"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -330,7 +338,7 @@ partial struct TextSegment
     public void AppendFormatted(short? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="ushort"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -346,7 +354,7 @@ partial struct TextSegment
     public void AppendFormatted(ushort? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of an <see cref="int"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -362,7 +370,7 @@ partial struct TextSegment
     public void AppendFormatted(int? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="uint"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -378,7 +386,7 @@ partial struct TextSegment
     public void AppendFormatted(uint? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="long"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -394,7 +402,7 @@ partial struct TextSegment
     public void AppendFormatted(long? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="ulong"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -410,7 +418,7 @@ partial struct TextSegment
     public void AppendFormatted(ulong? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="float"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -426,7 +434,7 @@ partial struct TextSegment
     public void AppendFormatted(float? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="double"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -442,7 +450,7 @@ partial struct TextSegment
     public void AppendFormatted(double? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     /// <summary>Appends the string representation of a <see cref="decimal"/> value to the segment, or nothing if the value is <see langword="null"/>.</summary>
@@ -458,7 +466,7 @@ partial struct TextSegment
     public void AppendFormatted(decimal? value, string? format)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value?.ToString(format, _provider);
+        this[_length++] = value?.ToString(format, _provider);
     }
 
     #endregion
@@ -470,7 +478,7 @@ partial struct TextSegment
     public void AppendFormatted(string? value)
     {
         EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value;
+        this[_length++] = value;
     }
 
     #endregion
@@ -492,22 +500,30 @@ partial struct TextSegment
     {
         EnsureCapacityForAdditionalItems(1);
         var str = value is IFormattable formattable ? formattable.ToString(format, _provider) : value?.ToString();
-        _parts[_length++] = str;
+        this[_length++] = str;
     }
 
     /// <summary>Appends a <see cref="TextSegment"/> as a nested part of this segment.</summary>
     /// <param name="value">The segment to append.</param>
     public void AppendFormatted(in TextSegment value)
     {
-        EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value;
+        EnsureCapacityForAdditionalItems(value._length);
+        foreach (var item in value)
+        {
+            this[_length++] = item;
+        }
     }
 
     /// <summary>Appends a <see cref="TextSegment"/> as a nested part of this sequence, or nothing if the value is <see langword="null"/>.</summary>
     /// <param name="value">The segment to append.</param>
     public void AppendFormatted(in TextSegment? value)
     {
-        EnsureCapacityForAdditionalItems(1);
-        _parts[_length++] = value;
+        if (value is null)
+        {
+            return;
+        }
+
+        var underlyingValue = value.Value;
+        AppendFormatted(in underlyingValue);
     }
 }

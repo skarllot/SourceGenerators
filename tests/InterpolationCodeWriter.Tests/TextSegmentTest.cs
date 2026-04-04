@@ -132,6 +132,11 @@ public class TextSegmentTest
                 $"[{(TextSegment?)TextSegment.Create($"inner")}]",
                 new List<string?> { "[", "inner", "]" }
             },
+            // More than 8 segments: formattedCount=4 → capacity=4*2+1=9 > MinimumCapacity
+            {
+                $"a{1}b{2}c{3}d{4}e",
+                new List<string?> { "a", "1", "b", "2", "c", "3", "d", "4", "e" }
+            },
         };
 
     [Theory]
@@ -179,49 +184,54 @@ public class TextSegmentTest
     [Fact]
     public void GrowFromMinimumCapacityPreservesAllParts()
     {
-        // capacity starts at 1 (formattedCount=0 → 0*2+1=1)
-        // second AppendLiteral triggers Grow: requiredMinCapacity=2, clamped to minimum 4
-        var seg = new TextSegment(0, 0);
-        seg.AppendLiteral("a");
-        seg.AppendLiteral("b");
-
-        var writer = new SourceTextWriter();
-        seg.WriteTo(writer);
-
-        Assert.Equal("ab", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void GrowDoublesCapacityWhenDoubleSuffices()
-    {
-        // Fill to capacity 4 (after first grow), then trigger a second grow to 8
-        var seg = new TextSegment(0, 0);
-        seg.AppendLiteral("1");
-        seg.AppendLiteral("2"); // grow 1→4
-        seg.AppendLiteral("3");
-        seg.AppendLiteral("4");
-        seg.AppendLiteral("5"); // grow 4→8
-
-        var writer = new SourceTextWriter();
-        seg.WriteTo(writer);
-
-        Assert.Equal("12345", writer.ToStringAndReset());
-    }
-
-    [Fact]
-    public void GrowMultipleTimesPreservesAllPartsInOrder()
-    {
-        // 1→4→8→16: verifies each resize keeps all prior elements intact
+        // inline capacity = 8; 9th AppendLiteral triggers first Grow:
+        // _additionalParts allocated with size 4 (capacity 8→12)
         var seg = new TextSegment(0, 0);
         for (int i = 1; i <= 9; i++)
         {
-            seg.AppendLiteral(i.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            seg.AppendLiteral(i.ToString(CultureInfo.InvariantCulture));
         }
 
         var writer = new SourceTextWriter();
         seg.WriteTo(writer);
 
         Assert.Equal("123456789", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void GrowDoublesCapacityWhenDoubleSuffices()
+    {
+        // 9th item triggers first Grow: _additionalParts 0→4 (capacity 8→12)
+        // 13th item triggers second Grow: double suffices, _additionalParts 4→8 (capacity 12→16)
+        var seg = new TextSegment(0, 0);
+        for (int i = 1; i <= 13; i++)
+        {
+            seg.AppendLiteral(i.ToString(CultureInfo.InvariantCulture));
+        }
+
+        var writer = new SourceTextWriter();
+        seg.WriteTo(writer);
+
+        Assert.Equal("12345678910111213", writer.ToStringAndReset());
+    }
+
+    [Fact]
+    public void GrowMultipleTimesPreservesAllPartsInOrder()
+    {
+        // 9th item:  Grow 1 — _additionalParts 0→4  (capacity 8→12)
+        // 13th item: Grow 2 — _additionalParts 4→8  (capacity 12→16)
+        // 17th item: Grow 3 — _additionalParts 8→16 (capacity 16→24)
+        // verifies each resize keeps all prior elements intact
+        var seg = new TextSegment(0, 0);
+        for (int i = 1; i <= 17; i++)
+        {
+            seg.AppendLiteral(i.ToString(CultureInfo.InvariantCulture));
+        }
+
+        var writer = new SourceTextWriter();
+        seg.WriteTo(writer);
+
+        Assert.Equal("1234567891011121314151617", writer.ToStringAndReset());
     }
 
     [Fact]
