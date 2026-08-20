@@ -22,9 +22,9 @@
       },
       "PolyfillLib": {
         "type": "Direct",
-        "requested": "[11.0.2, )",
-        "resolved": "11.0.2",
-        "contentHash": "vAWsFQHsiVjwSSlB1ki7enc0muq9OuTSagoIfAd+acj4lfJ72JJtulCyRf6JAq+gJJ6GGyXld18Gl1DOo3XPgA==",
+        "requested": "[11.2.0, )",
+        "resolved": "11.2.0",
+        "contentHash": "qt5JaWqC4+OfocYw2gWtSqRrg1H5VCSXvxI2HjM16WCB35RYYLoX/P6JQDq0oG1xCsuiDvb6aRlbXuPIsdyCgQ==",
         "dependencies": {
           "Microsoft.Bcl.Memory": "10.0.10",
           "System.Memory": "4.6.3",
