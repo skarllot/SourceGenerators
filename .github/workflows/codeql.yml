@@ -41,7 +41,7 @@ jobs:
 
     steps:
     - name: 🛡️ Harden Runner
-      uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+      uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
       with:
         egress-policy: block
         disable-sudo-and-containers: true
@@ -68,7 +68,7 @@ jobs:
         submodules: 'true'
 
     - name: 🧰 Setup .NET
-      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
       with:
         global-json-file: global.json
 
@@ -81,7 +81,7 @@ jobs:
 
     # Initializes the CodeQL tools for scanning.
     - name: 🛠️ Initialize CodeQL
-      uses: github/codeql-action/init@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4.37.8
+      uses: github/codeql-action/init@1fc58d04a4d4374f921bdac573c3811c240f9c26 # v4.39.2
       with:
         languages: ${{ matrix.language }}
         # If you wish to specify custom queries, you can do so here or in a config file.
@@ -98,6 +98,6 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: 🔍 Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4.37.8
+      uses: github/codeql-action/analyze@1fc58d04a4d4374f921bdac573c3811c240f9c26 # v4.39.2
       with:
         category: "/language:${{matrix.language}}"
